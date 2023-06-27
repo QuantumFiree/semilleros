@@ -1,14 +1,11 @@
 
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Listado de Categorias') }}
-        </h2>
-    </x-slot>
-
-    @include('index')
-
+@extends('menu')
+@section('contenido')
     <div class="container">
+        <br>
+        <div align="right">
+            <a href="{{route('form_registroCategoria')}}" class="btn btn-primary"> Adicionar </a>
+        </div>
         <br>
         <table class="table">
             <thead>
@@ -25,13 +22,11 @@
                         <td> {{ $c->id }} </td>
                         <td> {{ $c->nombreCategoria }} </td>
                         <td> {{ $c->descripcion }}</td>
-                        <td> <a href="" class="btn btn-success">Editar</a></td>
-                        <td> <a href="" class="btn btn-danger">Eliminar</a> </td>
+                        <td> <a href="{{route('form_actualizaCategoria',$c->id)}}"" class="btn btn-success">Editar</a></td>
+                        <td> <a href="{{route('eliminarCategoria', $c->id)}}" class="btn btn-danger">Eliminar</a> </td>
                     </tr>
             @endforeach
             </tbody>
         </table>
     </div>
-
-
-</x-app-layout>
+    @endsection
