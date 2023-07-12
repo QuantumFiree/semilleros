@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('identificacion')->nullable(false);
             $table->string('direccion')->nullable();
             $table->integer('telefono')->nullable();
-            $table->string('correo')->nullable();
             $table->string('genero')->nullable();
             $table->string('fecha_nacimiento')->nullable();
             $table->string('foto')->nullable();
