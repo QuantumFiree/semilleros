@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('modalidad')->nullable();
             $table->string('clasificacion')->nullable();
             $table->string('observaciones')->nullable();
+            $table->timestamps();
         });
         
     }

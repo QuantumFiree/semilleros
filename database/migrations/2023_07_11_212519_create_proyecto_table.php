@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('proyecto_final')->nullable();
         
             $table->foreign('cod_semillero')->references('cod_semillero')->on('semillero');
+            $table->timestamps();
         });
         
     }

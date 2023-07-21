@@ -33,11 +33,12 @@ Route::middleware([
     'auth'
 ])->group(function () {
     
+    Route::get('/categorias', [Categorias::class, 'index'])->name('categorias');
+    
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
     
-        Route::get('/categorias', [Categorias::class, 'index'])->name('categorias');
     
     
 

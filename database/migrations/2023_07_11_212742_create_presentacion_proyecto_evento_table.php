@@ -24,6 +24,7 @@ return new class extends Migration
         
             $table->foreign('cod_evento')->references('cod_evento')->on('evento');
             $table->foreign('cod_proyecto')->references('cod_proyecto')->on('proyecto');
+            $table->timestamps();
         });
         
     }

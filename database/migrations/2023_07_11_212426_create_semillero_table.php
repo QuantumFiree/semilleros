@@ -30,6 +30,7 @@ return new class extends Migration
             $table->integer('cod_coordinador')->nullable(false);
         
             $table->foreign('cod_coordinador')->references('cod_coordinador')->on('coordinador');
+            $table->timestamps();
         });
     }
 

@@ -19,6 +19,7 @@ return new class extends Migration
         
             $table->foreign('cod_presentacion_proyecto')->references('cod_presentacion_proyecto')->on('presentacion_proyecto');
             $table->foreign('cod_semillerista')->references('cod_semillerista')->on('semillerista');
+            $table->timestamps();
         });
         
     }

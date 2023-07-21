@@ -24,16 +24,18 @@ return new class extends Migration
             $table->string('genero')->nullable();
             $table->string('fecha_nacimiento')->nullable();
             $table->string('foto')->nullable();
+            $table->integer('cod_programa_academico')->nullable(false);
+
             $table->integer('cod_estudiantil')->nullable(false);
             $table->integer('semestre')->nullable();
-            $table->string('reporte_matricula')->nullable();
-            $table->integer('cod_programa_academico')->nullable(false);
             $table->string('fecha_vinculacion')->nullable();
-            $table->boolean('estado')->nullable(false);
             $table->integer('cod_semillero')->nullable(false);
+            $table->string('reporte_matricula')->nullable();
+            $table->boolean('estado')->nullable(false);
         
             $table->foreign('cod_programa_academico')->references('cod_programa_academico')->on('programa');
             $table->foreign('cod_semillero')->references('cod_semillero')->on('semillero');
+            $table->timestamps();
         });
     }
 
