@@ -51,6 +51,7 @@
                 text-align: center;
                 color: white;
                 border-radius: 5px;
+                display: none;
                 transition: background-color 0.3s ease-in-out;
             }
         </style>
@@ -217,8 +218,6 @@
     // Modifica el color de fondo
     coordinadores.addEventListener('click', (event) => {
         event.preventDefault();
-        inputsCoordinador.style.display = ''
-        inputsSemillerista.style.display = 'none'
         coordinadores.classList.remove('nav-link-off-custom');
         coordinadores.classList.add('nav-link-custom');
         semilleristas.classList.remove('nav-link-custom');
@@ -226,8 +225,6 @@
     });
     semilleristas.addEventListener('click', (event) => {
         event.preventDefault();
-        inputsCoordinador.style.display = 'none'
-        inputsSemillerista.style.display = ''
         semilleristas.classList.remove('nav-link-off-custom');
         semilleristas.classList.add('nav-link-custom');
         coordinadores.classList.remove('nav-link-custom');
