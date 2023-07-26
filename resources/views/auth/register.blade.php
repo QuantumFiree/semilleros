@@ -1,120 +1,180 @@
 <x-guest-layout>
-<<<<<<< HEAD
-    <style>
-        /* En tu hoja de estilos CSS */
-        .container-auth {
-            padding: 20px 50px 30px 50px;
-            border-radius: 10px;
-            width: 400px;
-            margin: auto;
-            background-color: rgb(31, 41, 55)
-        }
-
-        .nav-custom {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            width: 300px;
-            margin: auto;
-            margin-bottom: 30px;
-            margin-top: 10px;
-            border: 1px solid rgb(31, 41, 55);
-            border-radius: 5px;
-            background-color: rgb(31, 41, 55);
-        }
-
-        .label-custom {
-            color: white;
-            margin-top: 10px
-        }
-        .nav-link-custom {
-            background-color: rgb(34, 197, 94);
-            width: 100%;
-            text-align: center;
-            color: white;
-            border-radius: 5px;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        .nav-link-off-custom {
-            width: 100%;
-            text-align: center;
-            color: white;
-            border-radius: 5px;
-            transition: background-color 0.3s ease-in-out;
-        }
-        .title-cuenta{
-            color: rgb(31, 41, 55);
-            display: inline-block;
-            margin-left: 170px;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        .title-auth {
-            color: rgb(31, 41, 55);
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-            font-size: 25px;
-        }
-    </style>
-=======
->>>>>>> 43a342b14576279d29ae3ec517f7e67a4222960a
+<style>
+            /* En tu hoja de estilos CSS */
+            .three-columns-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 50px;
+                /* Espacio entre columnas */
+            }
+            .container-auth{
+                padding:20px 50px 30px 50px;
+                border-radius:10px;
+                width:400px;
+                margin:auto;
+                margin-top:30px;
+                background-color: rgb(31, 41, 55)
+            }
+            .nav-custom{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: 300px;
+                margin: auto;
+                margin-bottom: 30px;
+                border: 1px solid rgb(31, 41, 55);
+                border-radius: 5px;
+                background-color: rgb(31, 41, 55);
+            }
+            .label-custom{
+                color: white;
+                margin-top: 10px
+            }
+            .title-auth{
+                color: white;
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 10px
+            }
+            .nav-link-custom{
+                background-color: rgb(34, 197,94);
+                width: 100%;
+                text-align: center;
+                color: white;
+                border-radius: 5px;
+                transition: background-color 0.3s ease-in-out;
+            }
+            .nav-link-off-custom{
+                width: 100%;
+                text-align: center;
+                color: white;
+                border-radius: 5px;
+                transition: background-color 0.3s ease-in-out;
+            }
+        </style>
     <x-authentication-card>
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
 
         <x-validation-errors class="mb-4" />
-<<<<<<< HEAD
+        <nav id="navRegistro" class="nav nav-custom">
+            <a id="linkOneActive" class="nav-link-custom nav-link active" aria-current="page" href="{{ route('register') }}">Coordinador</a>
+            <a id="linkTwoActive" class="nav-link nav-link-off-custom" href="{{ route('register') }}">Semillerista</a>
+        </nav>
         
-        <h1 class="title-auth">REGISTRO</h1>
-        <form id="formUser" method="POST" action="{{ route('register') }}">
+
+        <form method="POST" action="{{ route('register') }}">
             @csrf
+            <div class="three-columns-grid">
+
+                <div class="column">
+                    <div>
+                        <x-label for="nombres" value="{{ __('Nombres') }}"/>
+                        <x-input id="nombres" class="block mt-1 w-full border border-green-500" type="text" name="nombres" :value="old('nombres')" required autofocus autocomplete="nombres" />
+                    </div>
+
+                    <div>
+                        <x-label for="apellidos" value="{{ __('Apellidos') }}" />
+                        <x-input id="apellidos" class="block mt-1 w-full border border-green-500" type="text" name="apellidos" :value="old('apellidos')" required autofocus autocomplete="apellidos" />
+                    </div>
+
+                    <div>
+                        <x-label for="identificacion" value="{{ __('Identificación') }}" />
+                        <x-input id="identificacion" class="block mt-1 w-full border border-green-500" type="text" name="identificacion" :value="old('identificacion')" required />
+                    </div>
+
+                    <div>
+                        <x-label for="direccion" value="{{ __('Dirección') }}" />
+                        <x-input id="direccion" class="block mt-1 w-full border border-green-500" type="text" name="direccion" :value="old('direccion')" required />
+                    </div>
+
+                    <div>
+                        <x-label for="telefono" value="{{ __('Teléfono') }}" />
+                        <x-input id="telefono" class="block mt-1 w-full border border-green-500" type="text" name="telefono" :value="old('telefono')" required />
+                    </div>
+
+                    <div>
+                        <x-label for="genero" value="{{ __('Genero') }}" />
+                        <x-input id="genero" class="block mt-1 w-full border border-green-500" type="text" name="genero" :value="old('genero')" required />
+                    </div>
+                </div>
+                <div class="column">
+                    <div>
+                        <x-label for="fecha_nacimiento" value="{{ __('Fecha de Nacimiento') }}" />
+                        <x-input id="fecha_nacimiento" class="block mt-1 w-full border border-green-500" type="date" name="fecha_nacimiento" :value="old('fecha_nacimiento')" required />
+                    </div>
+                    <div>
+                        <x-label for="codigo_programa_academico" value="{{ __('Código Programa Académico') }}" />
+                        <x-input id="codigo_programa_academico" class="block mt-1 w-full border border-green-500" type="text" name="codigo_programa_academico" :value="old('codigo_programa_academico')" required />
+                    </div>
+                    <div id="inputs_coordinador">
+                        <div>
+                            <x-label for="cod_docente" value="{{ __('Código Docente') }}" />
+                            <x-input id="cod_docente" class="block mt-1 w-full border border-green-500" type="text" name="cod_docente" :value="old('cod_docente')" required />
+                        </div>
+
+                        <div>
+                            <x-label for="area_conocimiento" value="{{ __('Área de Conocimiento') }}" />
+                            <x-input id="area_conocimiento" class="block mt-1 w-full border border-green-500" type="text" name="area_conocimiento" :value="old('area_conocimiento')" required />
+                        </div>
+
+                        <div>
+                            <x-label for="fecha_vinculacion" value="{{ __('Fecha de Vinculación') }}" />
+                            <x-input id="fecha_vinculacion" class="block mt-1 w-full border border-green-500" type="date" name="fecha_vinculacion" :value="old('fecha_vinculacion')" required />
+                        </div>
+
+                        <div style="margin-top:20px">
+                            <x-label for="acuerdo_nombramiento" value="{{ __('Acuerdo de Nombramiento (PDF)') }}" />
+                            <x-input id="acuerdo_nombramiento" class="block mt-1 w-full" type="file" name="acuerdo_nombramiento" :value="old('acuerdo_nombramiento')" required accept="application/pdf" />
+                        </div>
+                    </div>
+                    <div id="inputs_semillerista" style="display:none">
+                        <div>
+                            <x-label for="cod_estudiante" value="{{ __('Codigo Estudiantil') }}" />
+                            <x-input id="cod_estudiante" class="block mt-1 w-full border border-green-500" type="text" name="cod_estudiante" :value="old('cod_estudiante')" required />
+                        </div>
+
+                        <div>
+                            <x-label for="semestre" value="{{ __('Semestre actual') }}" />
+                            <x-input id="semestre" class="block mt-1 w-full border border-green-500" type="text" name="semestre" :value="old('semestre')" required />
+                        </div>
+
+                        <div>
+                            <x-label for="cod_semillero" value="{{ __('Codigo semillero') }}" />
+                            <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="text" name="cod_semillero" :value="old('cod_semillero')" required />
+                        </div>
+
+                        <div>
+                            <x-label for="fecha_vinculacion" value="{{ __('Fecha de Vinculación') }}" />
+                            <x-input id="fecha_vinculacion" class="block mt-1 w-full border border-green-500" type="date" name="fecha_vinculacion" :value="old('fecha_vinculacion')" required />
+                        </div>
+
+                        <div style="margin-top:20px">
+                            <x-label for="reporte_matricula" value="{{ __('Reporte matricula (PDF)') }}" />
+                            <x-input id="reporte_matricula" class="block mt-1 w-full" type="file" name="reporte_matricula" :value="old('reporte_matricula')" required accept="application/pdf" />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="container-auth">
+                <h4 class="title-auth">Usuario</h4>
                 <div>
                     <x-label class="label-custom" for="email" value="{{ __('Correo Electronico') }}" />
                     <x-input id="email" class="block mt-1 w-full border border-green-500 border-2" type="email" name="email" :value="old('email')" required autocomplete="username" />
                 </div>
-=======
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+                <div>
+                    <x-label class="label-custom" for="password" value="{{ __('Contraseña') }}" />
+                    <x-input id="password" class="block mt-1 w-full border border-green-500 border-2" type="password" name="password" required autocomplete="new-password" />
+                </div>
 
-            <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
->>>>>>> 43a342b14576279d29ae3ec517f7e67a4222960a
-
-            <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            </div>
-
-<<<<<<< HEAD
                 <div>
                     <x-label class="label-custom" for="password_confirmation" value="{{ __('Confirmar Contraseña') }}" />
                     <x-input id="password_confirmation" class="block mt-1 w-full border border-green-500 border-2" type="password" name="password_confirmation" required autocomplete="new-password" />
                 </div>
-                <div style="display:none">
-                    <x-input id="inputRol" class="block mt-1 w-full border border-green-500 border-2" type="text" name="rol" autocomplete="rol" value="coordinador" />
-                </div>
-                <div style="display:none">
-                    <x-input id="estado" class="block mt-1 w-full border border-green-500 border-2" type="text" name="estado" autocomplete="estado" value="estado" />
-                </div>
-=======
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
->>>>>>> 43a342b14576279d29ae3ec517f7e67a4222960a
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
@@ -150,31 +210,18 @@
             </div>
     </x-authentication-card>
 </x-guest-layout>
-<<<<<<< HEAD
 <script>
-    // input rol
-    const inputRol = document.getElementById('inputRol');
-    // Formulario User
-    const buttonFormUser = document.getElementById('buttonFormUser');
-    const formUser = document.getElementById('formUser');
-    const inputEstado = document.getElementById('estado');
-
-    buttonFormUser.addEventListener('click', (event) => {
-        event.preventDefault();
-        inputEstado.value = 'inactivo';
-        localStorage.setItem('tipoCuenta', inputRol.value);
-        formUser.submit();
-    });
     // Obtén la etiqueta <nav> por su ID
     const coordinadores = document.getElementById('linkOneActive');
     const semilleristas = document.getElementById('linkTwoActive');
-
-    
+    const inputsCoordinador = document.getElementById('inputs_coordinador')
+    const inputsSemillerista = document.getElementById('inputs_semillerista')
 
     // Modifica el color de fondo
     coordinadores.addEventListener('click', (event) => {
         event.preventDefault();
-        inputRol.value = 'coordinador';
+        inputsCoordinador.style.display = ''
+        inputsSemillerista.style.display = 'none'
         coordinadores.classList.remove('nav-link-off-custom');
         coordinadores.classList.add('nav-link-custom');
         semilleristas.classList.remove('nav-link-custom');
@@ -182,12 +229,11 @@
     });
     semilleristas.addEventListener('click', (event) => {
         event.preventDefault();
-        inputRol.value = 'semillerista';
+        inputsCoordinador.style.display = 'none'
+        inputsSemillerista.style.display = ''
         semilleristas.classList.remove('nav-link-off-custom');
         semilleristas.classList.add('nav-link-custom');
         coordinadores.classList.remove('nav-link-custom');
         coordinadores.classList.add('nav-link-off-custom');
     });
 </script>
-=======
->>>>>>> 43a342b14576279d29ae3ec517f7e67a4222960a
