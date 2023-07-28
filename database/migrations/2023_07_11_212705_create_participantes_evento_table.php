@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('identificacion')->nullable(false);
             $table->string('correo')->nullable(false);
         
-            $table->foreign('cod_evento')->references('cod_evento')->on('evento');
+            //$table->foreign('cod_evento')->references('cod_evento')->on('evento');
             $table->timestamps();
         });
         

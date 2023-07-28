@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('participantes_proyecto', function (Blueprint $table) {
-            $table->integer('cod_proyecto')->nullable(false);
-            $table->integer('cod_semillerista')->nullable(false);
+            $table->unsignedInteger('cod_proyecto')->nullable(false);
+            $table->unsignedInteger('cod_semillerista')->nullable(false);
             $table->integer('numero_participantes')->nullable(false);
         
-            $table->foreign('cod_proyecto')->references('cod_proyecto')->on('proyecto');
-            $table->foreign('cod_semillerista')->references('cod_semillerista')->on('semillerista');
+            //$table->foreign('cod_proyecto')->references('cod_proyecto')->on('proyecto');
+            //$table->foreign('cod_semillerista')->references('cod_semillerista')->on('semillerista');
             $table->timestamps();
         });
         

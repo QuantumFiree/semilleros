@@ -17,8 +17,8 @@ return new class extends Migration
             $table->integer('cod_presentacion_proyecto')->nullable(false);
             $table->integer('cod_semillerista')->nullable(false);
         
-            $table->foreign('cod_presentacion_proyecto')->references('cod_presentacion_proyecto')->on('presentacion_proyecto');
-            $table->foreign('cod_semillerista')->references('cod_semillerista')->on('semillerista');
+            //$table->foreign('cod_presentacion_proyecto')->references('cod_presentacion_proyecto')->on('presentacion_proyecto');
+            //$table->foreign('cod_semillerista')->references('cod_semillerista')->on('semillerista');
             $table->timestamps();
         });
         

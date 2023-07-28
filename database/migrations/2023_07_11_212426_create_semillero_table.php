@@ -27,9 +27,9 @@ return new class extends Migration
             $table->string('fecha_creacion')->nullable();
             $table->integer('numero_resolucion')->nullable();
             $table->string('logo')->nullable();
-            $table->integer('cod_coordinador')->nullable(false);
+            $table->unsignedInteger('cod_coordinador')->nullable(false);
         
-            $table->foreign('cod_coordinador')->references('cod_coordinador')->on('coordinador');
+            //$table->foreign('cod_coordinador')->references('cod_coordinador')->on('coordinador');
             $table->timestamps();
         });
     }

@@ -17,29 +17,22 @@
         <!-- Styles -->
         @livewireStyles
     </head>
+    
+
     <body class="font-sans antialiased">
-        <x-banner />
-
         <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+            @include('navigation-menu')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+            <!-- Si no hay sección "content" definida, muestra un mensaje informativo -->
+            @section('content')
+                <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            {{ __('Contenido predeterminado para esta sección. Proporciona tu propio contenido en las vistas que extienden este diseño.') }}
+                        </div>
                     </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                </div>
+            @show
         </div>
-
-        @stack('modals')
-
-        @livewireScripts
     </body>
 </html>
