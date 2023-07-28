@@ -54,7 +54,7 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register.evento') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('registro.evento') }}" enctype="multipart/form-data">
             @csrf
             <div class="three-columns-grid">
 

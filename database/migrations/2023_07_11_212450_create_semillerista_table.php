@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('semillerista', function (Blueprint $table) {
             $table->unsignedInteger('cod_semillerista')->autoIncrement()->startingValue(1100);
-            $table->unsignedBigInteger('cod_user')->nullable();
+            $table->unsignedBigInteger('cod_user')->nullable(false);
             $table->string('nombres')->nullable(false);
             $table->string('apellidos')->nullable(false);
             $table->integer('identificacion')->nullable(false);
@@ -31,7 +31,6 @@ return new class extends Migration
             $table->string('fecha_vinculacion')->nullable();
             $table->integer('cod_semillero')->nullable(false);
             $table->string('reporte_matricula')->nullable();
-            $table->boolean('estado')->nullable(false);
         
             //$table->foreign('cod_programa_academico')->references('cod_programa_academico')->on('programa');
             //$table->foreign('cod_semillero')->references('cod_semillero')->on('semillero');

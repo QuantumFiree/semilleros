@@ -1,87 +1,178 @@
-@extends('layouts.app')
+<x-guest-layout>
+<style>
+         /* En tu hoja de estilos CSS */
+         .three-columns-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 50px;
+                /* Espacio entre columnas */
+            }
+            .container-auth{
+                padding:20px 50px 30px 50px;
+                border-radius:10px;
+                width:400px;
+                margin:auto;
+                margin-top:30px;
+                background-color: rgb(31, 41, 55)
+            }
+            .nav-custom{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: 300px;
+                margin: auto;
+                margin-bottom: 30px;
+                border: 1px solid rgb(31, 41, 55);
+                border-radius: 5px;
+                background-color: rgb(31, 41, 55);
+            }
+            .label-custom{
+                color: white;
+                margin-top: 10px
+            }
+            .title-auth{
+                color: white;
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 10px
+            }
+            .nav-link-custom{
+                background-color: rgb(34, 197,94);
+                width: 100%;
+                text-align: center;
+                color: white;
+                border-radius: 5px;
+                transition: background-color 0.3s ease-in-out;
+            }
+            .nav-link-off-custom{
+                width: 100%;
+                text-align: center;
+                color: white;
+                border-radius: 5px;
+                transition: background-color 0.3s ease-in-out;
+            }
+    </style>
 
-@section('content')
-    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
-                <h1 class="text-4xl font-bold text-center text-black mb-6">Editar Semillero</h1>
-                @if($semillero)
-                    <form action="{{ route('actualizar_semillero', ['id' => $semillero->cod_semillero]) }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                            <div>
-                                <x-label for="nombre" value="{{ __('Nombre del Semillero') }}" />
-                                <x-input id="nombre" class="block mt-1 w-full border border-green-500" type="text" name="nombre" :value="$semillero->nombre" required autofocus />
-                            </div>
-                            <div>
-                                <x-label for="correo" value="{{ __('Correo Electrónico') }}" />
-                                <x-input id="correo" class="block mt-1 w-full border border-green-500" type="email" name="correo" :value="$semillero->correo" required />
-                            </div>
+    <x-authentication-card>
+        <x-slot name="logo">
+            <x-authentication-card-logo />
+        </x-slot>
 
-                            <div>
-                                <x-label for="descripcion" value="{{ __('Descripción') }}" />
-                                <x-input id="descripcion" class="block mt-1 w-full border border-green-500" type="text" name="descripcion" :value="$semillero->descripcion" required />
-                            </div>
+        <x-validation-errors class="mb-4" />
 
-                            <div>
-                                <x-label for="mision" value="{{ __('Misión') }}" />
-                                <x-input id="mision" class="block mt-1 w-full border border-green-500" type="text" name="mision" :value="$semillero->mision" required />
-                            </div>
+        <form method="POST" action="{{ route('registro.semillero') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="two-columns-grid">
+                <div class="column">
+                    <div class="container-auth">
+                        <h2 class="title-auth">Datos del Semillero</h2>
 
-                            <div>
-                                <x-label for="vision" value="{{ __('Visión') }}" />
-                                <x-input id="vision" class="block mt-1 w-full border border-green-500" type="text" name="vision" :value="$semillero->vision" required />
-                            </div>
+                        <div>
+                            <x-label for="cod_semillero" class="label-custom" value="{{ __('Código Semillero') }}" />
+                            <x-input id="cod_semillero" class="input-custom" type="text" name="cod_semillero" :value="old('cod_semillero')" required autofocus />
+                        </div>
 
-                            <div>
-                                <x-label for="valores" value="{{ __('Valores') }}" />
-                                <x-input id="valores" class="block mt-1 w-full border border-green-500" type="text" name="valores" :value="$semillero->valores" required />
-                            </div>
+                        <div>
+                            <x-label for="nombre" class="label-custom" value="{{ __('Nombre del Semillero') }}" />
+                            <x-input id="nombre" class="input-custom" type="text" name="nombre" :value="old('nombre')" required autofocus />
+                        </div>
 
-                            <div>
-                                <x-label for="objetivo" value="{{ __('Objetivo') }}" />
-                                <x-input id="objetivo" class="block mt-1 w-full border border-green-500" type="text" name="objetivo" :value="$semillero->objetivo" required />
-                            </div>
+                        <div>
+                            <x-label for="correo" class="label-custom" value="{{ __('Correo Electrónico') }}" />
+                            <x-input id="correo" class="input-custom" type="email" name="correo" :value="old('correo')" required />
+                        </div>
 
-                            <div class="column">
-                                <div>
-                                    <x-label for="lineas_investigacion" value="{{ __('Líneas de Investigación') }}" />
-                                    <x-input id="lineas_investigacion" class="block mt-1 w-full border border-green-500" type="text" name="lineas_investigacion" :value="$semillero->lineas_investigacion" required />
-                                </div>
+                        <div>
+                            <x-label for="descripcion" class="label-custom" value="{{ __('Descripción') }}" />
+                            <x-input id="descripcion" class="input-custom" type="text" name="descripcion" :value="old('descripcion')" required />
+                        </div>
 
-                                <div>
-                                    <x-label for="presentacion" value="{{ __('Presentación') }}" />
-                                    <x-input id="presentacion" class="block mt-1 w-full border border-green-500" type="text" name="presentacion" :value="$semillero->presentacion" required />
-                                </div>
+                        <div>
+                            <x-label for="mision" class="label-custom" value="{{ __('Misión') }}" />
+                            <x-input id="mision" class="input-custom" type="text" name="mision" :value="old('mision')" required />
+                        </div>
 
-                                <div>
-                                    <x-label for="fecha_creacion" value="{{ __('Fecha de Creación') }}" />
-                                    <x-input id="fecha_creacion" class="block mt-1 w-full border border-green-500" type="date" name="fecha_creacion" :value="$semillero->fecha_creacion" required />
-                                </div>
+                        <div>
+                            <x-label for="vision" class="label-custom" value="{{ __('Visión') }}" />
+                            <x-input id="vision" class="input-custom" type="text" name="vision" :value="old('vision')" required />
+                        </div>
 
-                                <div>
-                                    <x-label for="numero_resolucion" value="{{ __('Número de Resolución') }}" />
-                                    <x-input id="numero_resolucion" class="block mt-1 w-full border border-green-500" type="text" name="numero_resolucion" :value="$semillero->numero_resolucion" required />
-                                </div>
+                        <div>
+                            <x-label for="valores" class="label-custom" value="{{ __('Valores') }}" />
+                            <x-input id="valores" class="input-custom" type="text" name="valores" :value="old('valores')" required />
+                        </div>
 
-                                <div>
-                                    <x-label for="logo" value="{{ __('Logo (PDF)') }}" />
-                                    <x-input id="logo" class="block mt-1 w-full" type="file" name="logo" :value="$semillero->logo" required accept="application/pdf" />
-                                </div>
+                        <div>
+                            <x-label for="objetivo" class="label-custom" value="{{ __('Objetivo') }}" />
+                            <x-input id="objetivo" class="input-custom" type="text" name="objetivo" :value="old('objetivo')" required />
+                        </div>
+                    </div>
+                </div>
 
-                                <div>
-                                    <x-label for="cod_coordinador" value="{{ __('Código de Coordinador Encargado') }}" />
-                                    <x-input id="cod_coordinador" class="block mt-1 w-full border border-green-500" type="text" name="cod_coordinador" :value="$semillero->cod_coordinador" required />
-                                </div>
+                <div class="column">
+                    <div class="container-auth">
+                        <h2 class="title-auth">Coordinador Encargado</h2>
 
-                            </div>
+                        <div>
+                            <x-label for="lineas_investigacion" class="label-custom" value="{{ __('Líneas de Investigación') }}" />
+                            <x-input id="lineas_investigacion" class="input-custom" type="text" name="lineas_investigacion" :value="old('lineas_investigacion')" required />
+                        </div>
 
-                            <div class="mt-4">
-                                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Guardar cambios</button>
-                            </div>
-                    </form>
-                @endif
+                        <div>
+                            <x-label for="presentacion" class="label-custom" value="{{ __('Presentación') }}" />
+                            <x-input id="presentacion" class="input-custom" type="text" name="presentacion" :value="old('presentacion')" required />
+                        </div>
+
+                        <div>
+                            <x-label for="fecha_creacion" class="label-custom" value="{{ __('Fecha de Creación') }}" />
+                            <x-input id="fecha_creacion" class="input-custom" type="date" name="fecha_creacion" :value="old('fecha_creacion')" required />
+                        </div>
+
+                        <div>
+                            <x-label for="numero_resolucion" class="label-custom" value="{{ __('Número de Resolución') }}" />
+                            <x-input id="numero_resolucion" class="input-custom" type="text" name="numero_resolucion" :value="old('numero_resolucion')" required />
+                        </div>
+
+                        <div>
+                            <x-label for="logo" class="label-custom" value="{{ __('Logo (PDF)') }}" />
+                            <x-input id="logo" class="input-custom" type="file" name="logo" :value="old('logo')" required accept="application/pdf" />
+                        </div>
+
+                        <div>
+                            <x-label for="cod_coordinador" class="label-custom" value="{{ __('Código de Coordinador Encargado') }}" />
+                            <x-input id="cod_coordinador" class="input-custom" type="text" name="cod_coordinador" :value="old('cod_coordinador')" required />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-@endsection
+
+            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                <div class="mt-4">
+                    <x-label for="terms">
+                        <div class="flex items-center">
+                            <x-checkbox name="terms" id="terms" required />
+                            <div class="ml-2">
+                            {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
+                                'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
+                            ]) !!}
+                        </div>
+                    </div>
+                </x-label>
+            </div>
+            @endif
+
+            <div class="flex items-center justify-end mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
+
+                <x-button class="ml-4 button-custom">
+                    {{ __('Register') }}
+                </x-button>
+            </div>
+        </form>
+    </x-authentication-card>
+</x-guest-layout>

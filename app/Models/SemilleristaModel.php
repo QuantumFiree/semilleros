@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+<<<<<<< HEAD
 class CoordinadorModel extends Model
 {
     use HasFactory;
@@ -34,4 +35,11 @@ class CoordinadorModel extends Model
     {
         return $this->belongsTo(User::class, 'cod_user');
     }
+=======
+class SemilleristaModel extends Model
+{
+    protected $table = 'semillerista';
+    protected $primaryKey = 'cod_semillerista';
+    public $timestamps = true;
+>>>>>>> c54fe97e4f2a22c9a935e87a321e9d42e327a735
 }

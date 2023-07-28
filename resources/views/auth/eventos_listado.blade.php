@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-guest-layout>
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
@@ -44,7 +42,7 @@
 
     <div class="max-w-7xl mx-auto py-4 sm:px-6 lg:px-8">
         <div class="flex justify-center space-x-4">
-            <a href="{{ route('register.evento') }}" class="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600">Agregar otro evento</a>
+            <a href="{{ route('registro.evento') }}" class="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600">Agregar otro evento</a>
         </div>
     </div>
-@endsection
+</x-guest-layout>
