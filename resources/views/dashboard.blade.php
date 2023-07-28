@@ -1,13 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        <div class="columns-2">
+            <h2 class="font-semibold text-xl text-white leading-tight">
+                {{ __('Dashboard') }}
+            </h2>
+            <h2 class="font-bold text-xl text-red-600 leading-tight text-right">
+                {{ __(auth()->user()->rol) }}
+            </h2>
+        </div>
     </x-slot>
-    
+
     @if (auth()->user()->estado == 'inactivo')
-        @component('components.alerta-registro')
-        @endcomponent
+    @component('components.alerta-registro')
+    @endcomponent
     @endif
 
     <div class="py-12">
@@ -18,16 +23,16 @@
         </div>
     </div>
 
-    
+
 </x-app-layout>
 <script>
     const redireccion = localStorage.getItem('tipoCuenta');
-    if(redireccion){
-        if(redireccion == "coordinador"){
+    if (redireccion) {
+        if (redireccion == "coordinador") {
             localStorage.removeItem('tipoCuenta');
             window.location.href = 'http://localhost:8000/registro/coordinador';
         }
-        if(redireccion == "semillerista"){
+        if (redireccion == "semillerista") {
             localStorage.removeItem('tipoCuenta');
             window.location.href = 'http://localhost:8000/registro/semillerista';
         }

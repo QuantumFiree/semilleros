@@ -5,9 +5,9 @@
       <p class="font-bold">Completa tu registro</p>
       <p class="text-sm">Termina tu registro para obtener acceso al sistema.</p>
       @if (auth()->user()->rol == 'coordinador')
-        <a id="linkTwoActive" class="link nav-link-off-custom underline" href="{{ route('registroCoordinador') }}">Click aqui para terminar tu registro</a>
+        <a id="linkTwoActive" class="link nav-link-off-custom underline" href="{{ route('registroCoordinador') }}">Click para continuar</a>
       @else
-        <a id="linkTwoActive" class="link nav-link-off-custom underline" href="{{ route('registroSemillerista') }}">Click aqui para terminar tu registro</a>
+        <a id="linkTwoActive" class="link nav-link-off-custom underline" href="{{ route('registroSemillerista') }}">Click para continuar</a>
       @endif
     </div>
   </div>

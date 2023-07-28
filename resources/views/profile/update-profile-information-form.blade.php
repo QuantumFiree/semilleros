@@ -49,18 +49,14 @@
         @endif
 
         <!-- Name -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Modal</button>
-
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    ...
-                </div>
-            </div>
+        <div class="col-span-6 sm:col-span-2">
+            <p class="text-xl font-semibold text-grey-900">Datos Personales</p>
         </div>
-        <div class="col-span-6 sm:col-span-4">
-            <a href="#" class="text-xl font-semibold text-lime-700 no-underline hover:underline ...">Editar Datos Personales</a>
-        </div>
+        @if (auth()->user()->rol == 'coordinador')
+            <a href="{{ route('perfilCoordinador') }}" class="btn btn-primary border-green-500 rounded shadow hover:bg-green-700 hover:border-green-700 bg-green-500">Editar</a>
+        @else
+            <a href="{{ route('perfilSemillerista') }}" class="btn btn-primary border-green-500 rounded shadow hover:bg-green-700 hover:border-green-700 bg-green-500">Editar</a>
+        @endif
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">

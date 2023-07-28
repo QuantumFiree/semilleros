@@ -36,4 +36,12 @@ class ControllerSemillerista extends Controller
 
         return redirect('dashboard');
     }
+
+    public function datosPersonalesView(){
+        return redirect('dashboard');
+    }
+
+    public function datosPersonales(Request $request){
+
+    }
 }

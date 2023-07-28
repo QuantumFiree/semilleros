@@ -18,11 +18,19 @@
         margin-top: 20px;
     }
 </style>
-@extends('menu')
-@section('contenido')
+
+<x-app-layout>  
+<x-slot name="header">
+    <div class="columns-2">
+            <h2 class="font-semibold text-xl text-white leading-tight">
+                {{ __('Proceso de registro') }}
+            </h2>
+            <h2 class="font-bold text-xl text-red-600 leading-tight text-right">
+                {{ __(auth()->user()->rol) }}
+            </h2>
+        </div>
+    </x-slot>
 <div class="container">
-    <br>
-    <h1> Registro Coordinador </h1>
     <div class="container-form">
         <form class="form-custom" id="formDatosPersonales" method="POST" action="{{route('registroCoordinador')}}">
             @csrf
@@ -97,7 +105,5 @@
             </div>
         </form>
     </div>
-</div>
-<script>
-</script>
-@endsection
+</div>  
+</x-app-layout>

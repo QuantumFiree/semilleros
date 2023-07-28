@@ -18,11 +18,19 @@
         margin-top: 20px;
     }
 </style>
-@extends('menu')    
-@section('contenido')
-<div class="container">
-    <br>
-    <h1> Registro Semillerista </h1>
+<x-app-layout>
+    <x-slot name="header">
+    <div class="columns-2">
+            <h2 class="font-semibold text-xl text-white leading-tight">
+                {{ __('Proceso de registro') }}
+            </h2>
+            <h2 class="font-bold text-xl text-red-600 leading-tight text-right">
+                {{ __(auth()->user()->rol) }}
+            </h2>
+        </div>
+    </x-slot>
+
+    <div class="container">
     <div class="container-form">
         <form class="form-custom" id="formDatosPersonales" method="POST" action="{{route('registroSemillerista')}}">
             @csrf
@@ -102,6 +110,6 @@
         </form>
     </div>
 </div>
-<script>
-</script>
-@endsection
+
+    
+</x-app-layout>

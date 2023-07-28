@@ -6,9 +6,13 @@ use App\Models\CoordinadorModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Laravel\Fortify\Features;
+use Laravel\Jetstream\Jetstream;
+use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
 
 class ControllerCoordinador extends Controller
 {
+    
     public function registro(Request $request){
         $user = User::find(auth()->user()->id);
         $user->estado = 'activo';
@@ -35,5 +39,22 @@ class ControllerCoordinador extends Controller
 
     public function registroView(){
         return view('coordinadores.formRegistro', ['codUser' => auth()->user()->id]);
+    }
+
+    public function datosPersonalesView(){
+        $coordinador = CoordinadorModel::where('cod_user', '=', auth()->user()->id)->select('cod_coordinador', 'nombres', 'apellidos', 'direccion', 'telefono', 'fecha_nacimiento', 'cod_docente', 'area_conocimiento', 'fecha_vinculacion', 'acuerdo_nombramiento')->first();
+        return view('coordinadores.editarDatosPersonales', ['coordinador' => $coordinador]);
+    }
+
+    public function datosPersonales(Request $request){
+        $coordinador = CoordinadorModel::find($request->cod_coordinador); 
+        $coordinador->update([
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'genero' => $request->genero,
+            'area_conocimiento' => $request->area_conocimiento,
+        ]);
+
+        return redirect()->route('profile.show');
     }
 }
