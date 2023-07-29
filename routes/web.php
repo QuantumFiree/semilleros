@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ControllerSemillerista;
+use App\Http\Controllers\ControllerCoordinador;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Tienda\Productos;
 use App\Http\Controllers\Tienda\Categorias;
@@ -29,13 +31,26 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified',
     'auth'
 ])->group(function () {
+    // Rutas semillero
+    // Rutas coordinador
+    Route::get('/registro/coordinador', [ControllerCoordinador::class, 'registroView'])->name('registroCoordinador');
+    Route::post('/registro/coordinador', [ControllerCoordinador::class, 'registro'])->name('registroCoordinador');
+    Route::get('/perfil/coordinador/editar_datos_personales', [ControllerCoordinador::class, 'datosPersonalesView'])->name('perfilCoordinador');
+    Route::post('/perfil/coordinador/editar_datos_personales', [ControllerCoordinador::class, 'datosPersonales'])->name('perfilCoordinador');
+
+    // Rutas semillerista
+    Route::get('/registro/semillerista', [ControllerSemillerista::class, 'registroView'])->name('registroSemillerista');
+    Route::post('/registro/semillerista', [ControllerSemillerista::class, 'registro'])->name('registroSemillerista');
+    Route::get('/perfil/semillerista/editar_datos_personales', [ControllerSemillerista::class, 'datosPersonalesView'])->name('perfilSemillerista');
+    Route::post('/perfil/semillerista/editar_datos_personales', [ControllerSemillerista::class, 'datosPersonales'])->name('perfilSemillerista');
+
+    // RUTAS DE LA PROFE
     
     Route::get('/categorias', [Categorias::class, 'index'])->name('categorias');
     
