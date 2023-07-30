@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class SemilleristaModel extends Model
 {
+    protected $fillable = [
+        'direccion',
+        'telefono',
+        // Agrega otros campos que necesitas actualizar aquí...
+    ];
     protected $table = 'semillerista';
     protected $primaryKey = 'cod_semillerista';
     public $timestamps = true;
