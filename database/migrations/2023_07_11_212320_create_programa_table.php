@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('cod_programa_academico')->autoIncrement()->startingValue(100);
             $table->string('nombre_programa')->nullable(false);
             $table->string('facultad')->nullable(false);
+            $table->timestamps();
         });
     }
 

@@ -13,6 +13,30 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+<<<<<<< HEAD
+        <!-- Styles -->
+        @livewireStyles
+    </head>
+    
+
+    <body class="font-sans antialiased">
+        <div class="min-h-screen bg-gray-100">
+            @include('navigation-menu')
+
+            <!-- Si no hay sección "content" definida, muestra un mensaje informativo -->
+            @section('content')
+                <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+                    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                        <div class="p-6 bg-white border-b border-gray-200">
+                            {{ __('Contenido predeterminado para esta sección. Proporciona tu propio contenido en las vistas que extienden este diseño.') }}
+                        </div>
+                    </div>
+                </div>
+            @show
+        </div>
+    </body>
+</html>
+=======
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -52,3 +76,4 @@
 </body>
 
 </html>
+>>>>>>> c54fe97e4f2a22c9a935e87a321e9d42e327a735

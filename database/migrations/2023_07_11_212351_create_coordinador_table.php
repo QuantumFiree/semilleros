@@ -24,14 +24,14 @@ return new class extends Migration
             $table->string('genero')->nullable();
             $table->string('fecha_nacimiento')->nullable();
             $table->string('foto')->nullable();
-            $table->integer('cod_programa_academico')->nullable(false);
+            $table->unsignedInteger('cod_programa_academico')->nullable(false);
 
             $table->integer('cod_docente')->nullable(false);
             $table->string('area_conocimiento')->nullable();
             $table->string('fecha_vinculacion')->nullable();
             $table->string('acuerdo_nombramiento')->nullable();
                     
-            $table->foreign('cod_programa_academico')->references('cod_programa_academico')->on('programa');
+            //$table->foreign('cod_programa_academico')->references('cod_programa_academico')->on('programa');
             $table->timestamps();
         });
     }
