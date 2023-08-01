@@ -38,10 +38,18 @@ class ControllerSemillerista extends Controller
     }
 
     public function datosPersonalesView(){
-        return redirect('dashboard');
+        $semillerista = SemilleristaModel::where('cod_user', '=', auth()->user()->id)->select('cod_semillerista', 'nombres', 'apellidos', 'direccion', 'telefono', 'fecha_nacimiento', 'cod_estudiantil', 'semestre', 'fecha_vinculacion', 'cod_semillero', 'reporte_matricula')->first();
+        return view('semilleristas.editarDatosPersonales', ['semillerista'=>$semillerista]);
     }
 
     public function datosPersonales(Request $request){
+        $semillerista = SemilleristaModel::find($request->cod_semillerista); 
+        $semillerista->update([
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'genero' => $request->genero,
+        ]);
 
+        return redirect()->route('profile.show');
     }
 }
