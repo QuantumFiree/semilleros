@@ -9,7 +9,7 @@ class SemilleroController extends Controller
 {
     public function showForm()
     {
-        return view('auth.registro_semillero');
+        return view('semilleros.registro_semillero');
     }
 
     public function register(Request $request)
@@ -37,7 +37,7 @@ class SemilleroController extends Controller
     public function listado()
     {
         $semilleros = Semillero::all();
-        return view('auth.semilleros_listado', compact('semilleros'));
+        return view('semilleros.semilleros_listado', compact('semilleros'));
     }
 
     public function editar($id)
@@ -48,7 +48,7 @@ class SemilleroController extends Controller
             return redirect()->route('semilleros.listado')->with('error', 'El semillero no existe.');
         }
 
-        return view('auth.semilleros_editar', compact('semillero'));
+        return view('semilleros.semilleros_editar', compact('semillero'));
     }
 
     public function update(Request $request, $id)

@@ -9,7 +9,7 @@ class ProyectoController extends Controller
 {
     public function showForm()
         {
-            return view('auth.registro_proyecto');
+            return view('semilleros.proyectos.registro_proyecto');
         }
 
     public function register(Request $request)
@@ -33,7 +33,7 @@ class ProyectoController extends Controller
     public function listado()
         {
             $proyectos = Proyecto::all();
-            return view('auth.proyectos_listado', compact('proyectos'));
+            return view('semilleros.proyectos.proyectos_listado', compact('proyectos'));
         }
 
     public function editar($cod_proyecto)
@@ -44,7 +44,7 @@ class ProyectoController extends Controller
                 return redirect()->route('proyectos.listado')->with('error', 'El proyecto no existe.');
             }
 
-            return view('auth.proyectos_editar', compact('proyecto'));
+            return view('semilleros.proyectos.proyectos_editar', compact('proyecto'));
         }
 
     public function update(Request $request, $cod_proyecto)

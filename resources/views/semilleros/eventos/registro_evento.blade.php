@@ -54,40 +54,25 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register.proyecto') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('registro.evento') }}" enctype="multipart/form-data">
             @csrf
             <div class="three-columns-grid">
 
                 <div class="column">
-    
+                    <!-- Campos específicos para eventos -->
                     <div class="form-field">
-                        <label for="cod_proyecto">{{ __('Código de Proyecto') }}</label>
-                        <input id="cod_proyecto" type="text" name="cod_proyecto" :value="old('cod_proyecto')" required autofocus />
+                        <label for="cod_evento">{{ __('Código de Evento') }}</label>
+                        <input id="cod_evento" type="text" name="cod_evento" :value="old('cod_evento')" required autofocus />
                     </div>
 
                     <div class="form-field">
-                        <label for="titulo">{{ __('Título del Proyecto') }}</label>
-                        <input id="titulo" type="text" name="titulo" :value="old('titulo')" required />
+                        <label for="nombre">{{ __('Nombre del Evento') }}</label>
+                        <input id="nombre" type="text" name="nombre" :value="old('nombre')" required />
                     </div>
 
                     <div class="form-field">
-                        <label for="cod_semillero">{{ __('Código del Semillero') }}</label>
-                        <input id="cod_semillero" type="text" name="cod_semillero" :value="old('cod_semillero')" required />
-                    </div>
-
-                    <div class="form-field">
-                        <label for="tipo_proyecto">{{ __('Tipo de Proyecto') }}</label>
-                        <input id="tipo_proyecto" type="text" name="tipo_proyecto" :value="old('tipo_proyecto')" />
-                    </div>
-
-
-                </div>
-
-                <div class="column">
-                   
-                    <div class="form-field">
-                        <label for="estado">{{ __('Estado del Proyecto') }}</label>
-                        <input id="estado" type="text" name="estado" :value="old('estado')" required />
+                        <label for="descripcion">{{ __('Descripción') }}</label>
+                        <textarea id="descripcion" name="descripcion" rows="4" required>{{ old('descripcion') }}</textarea>
                     </div>
 
                     <div class="form-field">
@@ -96,19 +81,42 @@
                     </div>
 
                     <div class="form-field">
-                        <label for="fecha_finalizacion">{{ __('Fecha de Finalización') }}</label>
-                        <input id="fecha_finalizacion" type="date" name="fecha_finalizacion" :value="old('fecha_finalizacion')" />
+                        <label for="fecha_fin">{{ __('Fecha de Fin') }}</label>
+                        <input id="fecha_fin" type="date" name="fecha_fin" :value="old('fecha_fin')" />
+                    </div>
+
+                </div>
+                <div class="column">
+                    
+                    <div class="form-field">
+                        <label for="lugar">{{ __('Lugar') }}</label>
+                        <input id="lugar" type="text" name="lugar" :value="old('lugar')" />
                     </div>
 
                     <div class="form-field">
-                        <label for="propuesta">{{ __('Propuesta') }}</label>
-                        <input id="propuesta" type="text" name="propuesta" :value="old('propuesta')" />
+                        <label for="tipo">{{ __('Tipo de Evento') }}</label>
+                        <input id="tipo" type="text" name="tipo" :value="old('tipo')" />
+                    </div>
+
+                    <div class="form-field">
+                        <label for="modalidad">{{ __('Modalidad') }}</label>
+                        <input id="modalidad" type="text" name="modalidad" :value="old('modalidad')" />
+                    </div>
+
+                    <div class="form-field">
+                        <label for="clasificacion">{{ __('Clasificación') }}</label>
+                        <input id="clasificacion" type="text" name="clasificacion" :value="old('clasificacion')" />
                     </div>
 
                 </div>
 
+
                 <div class="column">
-                    
+        
+                    <div class="form-field">
+                        <label for="observaciones">{{ __('Observaciones') }}</label>
+                        <textarea id="observaciones" name="observaciones" rows="4">{{ old('observaciones') }}</textarea>
+                    </div>
                 </div>
 
             </div>

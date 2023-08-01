@@ -44,7 +44,7 @@
 
     <div class="max-w-7xl mx-auto py-4 sm:px-6 lg:px-8">
         <div class="flex justify-center space-x-4">
-            <a href="{{ route('register.proyecto') }}" class="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600">Agregar otro proyecto</a>
+            <a href="{{ route('registro.proyecto') }}" class="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600">Agregar otro proyecto</a>
         </div>
     </div>
 @endsection
