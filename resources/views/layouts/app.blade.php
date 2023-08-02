@@ -26,6 +26,7 @@
 
     <div class="min-h-screen bg-gray-100">
         @livewire('navigation-menu')
+        
 
         <!-- Page Heading -->
         @if (isset($header))
@@ -35,6 +36,11 @@
             </div>
         </header>
         @endif
+
+        @if (auth()->user()->estado == 'inactivo')
+    @component('components.alerta-registro')
+    @endcomponent
+    @endif
 
         <!-- Page Content -->
         <main>

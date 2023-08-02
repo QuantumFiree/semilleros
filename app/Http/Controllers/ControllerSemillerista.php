@@ -13,6 +13,21 @@ class ControllerSemillerista extends Controller
     }
 
     public function registro(Request $request){
+        $identificacion = SemilleristaModel::where('identificacion', $request->identificacion)->first();
+        $cod_estudiantil = SemilleristaModel::where('cod_estudiantil', $request->cod_estudiantil)->first();
+        $camposExistentes = ['identificacion'=>null, 'codEstudiantil'=>null];
+
+        if($identificacion){
+            $camposExistentes['identificacion'] = true;
+        }
+
+        if($cod_estudiantil){
+            $camposExistentes['codEstudiantil'] = true;
+        }
+
+        if($identificacion || $cod_estudiantil){
+            return view('semilleristas.formRegistro', ['camposExistentes' => $camposExistentes]);
+        }
         $user = User::find(auth()->user()->id);
         $user->estado = 'activo';
         $user->save();
@@ -34,7 +49,7 @@ class ControllerSemillerista extends Controller
         $semillerista->reporte_matricula = $request->reporte_matricula;
         $semillerista->save();
 
-        return redirect('dashboard');
+         return redirect('dashboard');
     }
 
     public function datosPersonalesView(){

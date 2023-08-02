@@ -14,6 +14,21 @@ class ControllerCoordinador extends Controller
 {
     
     public function registro(Request $request){
+        $identificacion = CoordinadorModel::where('identificacion', $request->identificacion)->first();
+        $cod_docente = CoordinadorModel::where('cod_docente', $request->cod_docente)->first();
+        $camposExistentes = ['identificacion'=>null, 'codDocente'=>null];
+
+        if($identificacion){
+            $camposExistentes['identificacion'] = true;
+        }
+
+        if($cod_docente){
+            $camposExistentes['codDocente'] = true;
+        }
+
+        if($identificacion || $cod_docente){
+            return view('coordinadores.formRegistro', ['camposExistentes' => $camposExistentes]);
+        }
         $user = User::find(auth()->user()->id);
         $user->estado = 'activo';
         $user->save();

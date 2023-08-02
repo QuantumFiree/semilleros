@@ -10,10 +10,10 @@
         </div>
     </x-slot>
 
-    @if (auth()->user()->estado == 'inactivo')
+    <!-- @if (auth()->user()->estado == 'inactivo')
     @component('components.alerta-registro')
     @endcomponent
-    @endif
+    @endif -->
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
