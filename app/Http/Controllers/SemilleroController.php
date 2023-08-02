@@ -9,35 +9,51 @@ class SemilleroController extends Controller
 {
     public function showForm()
     {
-        return view('auth.registro_semillero');
+        return view('semilleros.registro_semillero');
     }
-
     public function register(Request $request)
     {
+        $request->validate([
+            'cod_semillero' => 'required|unique:semillero,cod_semillero',
+            'nombre' => 'required',
+            'correo' => 'required|email',
+            'descripcion' => 'required',
+            'mision' => 'required',
+            'vision' => 'required',
+            'valores' => 'required',
+            'objetivo' => 'required',
+            'lineas_investigacion' => 'required',
+            'presentacion' => 'required',
+            'fecha_creacion' => 'required|date',
+            'numero_resolucion' => 'required',
+            'logo' => 'required|file|mimes:pdf',
+            'cod_coordinador' => 'required|exists:coordinador,cod_coordinador', // Verificar que el código de coordinador exista en la tabla 'coordinadores'
+        ]);
+    
         $semillero = Semillero::create([
             'cod_semillero' => $request->input('cod_semillero'),
             'nombre' => $request->input('nombre'),
             'correo' => $request->input('correo'),
             'descripcion' => $request->input('descripcion'),
-            'mision'=> $request->input('mision'),
-            'vision'=> $request->input('vision'),
-            'valores'=> $request->input('valores'),
-            'objetivo'=> $request->input('objetivo'),
-            'lineas_investigacion'=> $request->input('lineas_investigacion'),
-            'presentacion'=> $request->input('presentacion'),
-            'fecha_creacion'=> $request->input('fecha_creacion'),
-            'numero_resolucion'=> $request->input('numero_resolucion'),
-            'logo'=> $request->input('logo'),
-            'cod_coordinador'=> $request->input('cod_coordinador'),
+            'mision' => $request->input('mision'),
+            'vision' => $request->input('vision'),
+            'valores' => $request->input('valores'),
+            'objetivo' => $request->input('objetivo'),
+            'lineas_investigacion' => $request->input('lineas_investigacion'),
+            'presentacion' => $request->input('presentacion'),
+            'fecha_creacion' => $request->input('fecha_creacion'),
+            'numero_resolucion' => $request->input('numero_resolucion'),
+            'logo' => $request->input('logo'),
+            'cod_coordinador' => $request->input('cod_coordinador'),
         ]);
-
+    
         return redirect()->route('semilleros.listado')->with('success', 'El semillero ha sido registrado exitosamente.');
     }
 
     public function listado()
     {
         $semilleros = Semillero::all();
-        return view('auth.semilleros_listado', compact('semilleros'));
+        return view('semilleros.semilleros_listado', compact('semilleros'));
     }
 
     public function editar($id)
@@ -48,12 +64,13 @@ class SemilleroController extends Controller
             return redirect()->route('semilleros.listado')->with('error', 'El semillero no existe.');
         }
 
-        return view('auth.semilleros_editar', compact('semillero'));
+        return view('semilleros.semilleros_editar', compact('semillero'));
     }
 
     public function update(Request $request, $id)
     
         {
+            
             $semillero = Semillero::find($id);
                 $semillero->nombre = $request ->input('nombre');
                 $semillero->correo = $request->input('correo');

@@ -60,17 +60,18 @@
             <x-authentication-card-logo />
         </x-slot>
 
-        <x-validation-errors class="mb-4" />
-
         <form method="POST" action="{{ route('registro.semillero') }}" enctype="multipart/form-data">
             @csrf
             <div class="three-columns-grid">
 
                 <div class="column">
-                    <div>
-                        <x-label for="cod_semillero" value="{{ __('Código Semillero') }}" />
-                        <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="text" name="cod_semillero" :value="old('cod_semillero')" required autofocus />
-                    </div>
+                <div>
+                    <x-label for="cod_semillero" value="{{ __('Código Semillero') }}" />
+                    <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="text" name="cod_semillero" :value="old('cod_semillero')" required autofocus />
+                    @error('cod_semillero')
+                        <p class="text-red-500 mt-1">{{ __('El código de semillero ya está registrado.') }}</p>
+                    @enderror
+                </div>
 
                     <div>
                         <x-label for="nombre" value="{{ __('Nombre del Semillero') }}" />
@@ -138,7 +139,12 @@
                     <div>
                         <x-label for="cod_coordinador" value="{{ __('Código de Coordinador Encargado') }}" />
                         <x-input id="cod_coordinador" class="block mt-1 w-full border border-green-500" type="text" name="cod_coordinador" :value="old('cod_coordinador')" required />
+                        @error('cod_coordinador')
+                            <p class="text-red-500 mt-1">{{ __('El código de coordinador no existe en el sistema.') }}</p>
+                        @enderror
                     </div>
+
+
                 </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())

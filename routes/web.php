@@ -96,7 +96,7 @@ Route::middleware([
 Route::get('/registro/semillero', [SemilleroController::class, 'showForm'])->name('registro.semillero');
 Route::post('/registro/semillero', [SemilleroController::class, 'register'])->name('registro.semillero');
 Route::get('/listado/semilleros', [SemilleroController::class, 'listado'])->name('semilleros.listado');
-Route::put('/editar/semillero/{id}', [SemilleroController::class, 'editar'])->name('editar_semillero');
+Route::get('/editar/semillero/{id}', [SemilleroController::class, 'editar'])->name('editar_semillero');
 Route::put('/actualizar/semillero/{id}', [SemilleroController::class, 'update'])->name('actualizar_semillero');
 Route::delete('/eliminar/semillero/{id}', [SemilleroController::class, 'eliminar'])->name('eliminar_semillero');
 

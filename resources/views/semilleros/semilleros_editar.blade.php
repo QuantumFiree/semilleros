@@ -62,17 +62,14 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('registro.semillero') }}" enctype="multipart/form-data">
+        <form action="{{ route('editar_semillero', ['id' => $semillero->cod_semillero]) }}" method="POST" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <div class="two-columns-grid">
                 <div class="column">
                     <div class="container-auth">
-                        <h2 class="title-auth">Datos del Semillero</h2>
+                        <h2 class="title-auth">Editar Semillero</h2>
 
-                        <div>
-                            <x-label for="cod_semillero" class="label-custom" value="{{ __('Código Semillero') }}" />
-                            <x-input id="cod_semillero" class="input-custom" type="text" name="cod_semillero" :value="old('cod_semillero')" required autofocus />
-                        </div>
 
                         <div>
                             <x-label for="nombre" class="label-custom" value="{{ __('Nombre del Semillero') }}" />
@@ -113,8 +110,7 @@
 
                 <div class="column">
                     <div class="container-auth">
-                        <h2 class="title-auth">Coordinador Encargado</h2>
-
+                        
                         <div>
                             <x-label for="lineas_investigacion" class="label-custom" value="{{ __('Líneas de Investigación') }}" />
                             <x-input id="lineas_investigacion" class="input-custom" type="text" name="lineas_investigacion" :value="old('lineas_investigacion')" required />
@@ -170,7 +166,7 @@
                 </a>
 
                 <x-button class="ml-4 button-custom">
-                    {{ __('Register') }}
+                    {{ __('Actualizar') }}
                 </x-button>
             </div>
         </form>

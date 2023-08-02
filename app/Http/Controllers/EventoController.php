@@ -9,7 +9,7 @@ class EventoController extends Controller
 {
     public function showForm()
     {
-        return view('auth.registro_evento');
+        return view('semilleros.eventos.registro_evento');
     }
 
     public function register(Request $request)
@@ -31,7 +31,7 @@ class EventoController extends Controller
     public function listado()
     {
         $eventos = Evento::all();
-        return view('auth.eventos_listado', compact('eventos'));
+        return view('semilleros.eventos.eventos_listado', compact('eventos'));
     }
 
     public function editar($cod_evento)
@@ -42,7 +42,7 @@ class EventoController extends Controller
             return redirect()->route('eventos.listado')->with('error', 'El evento no existe.');
         }
 
-        return view('auth.eventos_editar', compact('evento'));
+        return view('semilleros.eventos.eventos_editar', compact('evento'));
     }
 
     public function update(Request $request, $cod_evento)
