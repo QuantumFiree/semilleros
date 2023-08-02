@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProgramaModel;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\SemilleristaModel;
+use App\Models\Semillero;
 
 class ControllerSemillerista extends Controller
 {
     public function registroView(){
-        return view('semilleristas.formRegistro');
+        $programas = ProgramaModel::all();
+        $semilleros = Semillero::all();
+        return view('semilleristas.formRegistro', ['programas' => $programas, 'semilleros' => $semilleros]);
     }
 
     public function registro(Request $request){
+        
+        $cod_programa = ProgramaModel::where('cod_programa_academico', $request->cod_programa_academico)->first();
+        $cod_semillero = Semillero::where('cod_semillero', $request->cod_semillero)->first();
         $identificacion = SemilleristaModel::where('identificacion', $request->identificacion)->first();
         $cod_estudiantil = SemilleristaModel::where('cod_estudiantil', $request->cod_estudiantil)->first();
-        $camposExistentes = ['identificacion'=>null, 'codEstudiantil'=>null];
+        $camposExistentes = ['identificacion'=>null, 'codEstudiantil'=>null, 'codPrograma' => null, 'codSemillero' => null];
 
         if($identificacion){
             $camposExistentes['identificacion'] = true;
@@ -25,8 +32,18 @@ class ControllerSemillerista extends Controller
             $camposExistentes['codEstudiantil'] = true;
         }
 
-        if($identificacion || $cod_estudiantil){
-            return view('semilleristas.formRegistro', ['camposExistentes' => $camposExistentes]);
+        if(!$cod_programa){
+            $camposExistentes['codPrograma'] = true;
+        }
+
+        if(!$cod_semillero){
+            $camposExistentes['codSemillero'] = true;
+        }
+
+        if($identificacion || $cod_estudiantil || !$cod_programa || !$cod_semillero){
+            $semilleros = Semillero::all();
+        $programas = ProgramaModel::all();
+            return view('semilleristas.formRegistro', ['camposExistentes' => $camposExistentes, 'programas' => $programas, 'semilleros' => $semilleros]);
         }
         $user = User::find(auth()->user()->id);
         $user->estado = 'activo';
