@@ -62,7 +62,7 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register.semillero') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('registro.semillero') }}" enctype="multipart/form-data">
             @csrf
             <div class="three-columns-grid">
 
@@ -127,7 +127,7 @@
 
                     <div>
                         <x-label for="numero_resolucion" value="{{ __('Número de Resolución') }}" />
-                        <x-input id="numero_resolucion" class="block mt-1 w-full border border-green-500" type="text" name="num_resolucion" :value="old('num_resolucion')" required />
+                        <x-input id="numero_resolucion" class="block mt-1 w-full border border-green-500" type="text" name="numero_resolucion" :value="old('numero_resolucion')" required />
                     </div>
 
                     <div>

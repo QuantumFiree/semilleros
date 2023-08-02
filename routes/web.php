@@ -93,22 +93,22 @@ Route::middleware([
 
 });
 
-Route::get('/register/semillero', [SemilleroController::class, 'showForm'])->name('register.semillero');
-Route::post('/register/semillero', [SemilleroController::class, 'register'])->name('register.semillero');
+Route::get('/registro/semillero', [SemilleroController::class, 'showForm'])->name('registro.semillero');
+Route::post('/registro/semillero', [SemilleroController::class, 'register'])->name('registro.semillero');
 Route::get('/listado/semilleros', [SemilleroController::class, 'listado'])->name('semilleros.listado');
 Route::put('/editar/semillero/{id}', [SemilleroController::class, 'editar'])->name('editar_semillero');
 Route::put('/actualizar/semillero/{id}', [SemilleroController::class, 'update'])->name('actualizar_semillero');
 Route::delete('/eliminar/semillero/{id}', [SemilleroController::class, 'eliminar'])->name('eliminar_semillero');
 
-Route::get('/register/proyecto', [ProyectoController::class, 'showForm'])->name('register.proyecto');
-Route::post('/register/proyecto', [ProyectoController::class, 'register'])->name('register.proyecto');
+Route::get('/register/proyecto', [ProyectoController::class, 'showForm'])->name('registro.proyecto');
+Route::post('/register/proyecto', [ProyectoController::class, 'register'])->name('registro.proyecto');
 Route::get('/listado/proyectos', [ProyectoController::class, 'listado'])->name('proyectos.listado');
 Route::put('/editar/proyecto/{cod_proyecto}', [ProyectoController::class, 'editar'])->name('editar_proyecto');
 Route::put('/actualizar/proyecto/{cod_proyecto}', [ProyectoController::class, 'update'])->name('actualizar_proyecto');
 Route::delete('/eliminar/proyecto/{cod_proyecto}', [ProyectoController::class, 'eliminar'])->name('eliminar_proyecto');
 
-Route::get('/register/evento', [EventoController::class, 'showForm'])->name('register.evento');
-Route::post('/register/evento', [EventoController::class, 'register'])->name('register.evento');
+Route::get('/register/evento', [EventoController::class, 'showForm'])->name('registro.evento');
+Route::post('/register/evento', [EventoController::class, 'register'])->name('registro.evento');
 Route::get('/listado/eventos', [EventoController::class, 'listado'])->name('eventos.listado');
 Route::put('/editar/evento/{cod_evento}', [EventoController::class, 'editar'])->name('editar_evento');
 Route::put('/actualizar/evento/{cod_evento}', [EventoController::class, 'update'])->name('actualizar_evento');
