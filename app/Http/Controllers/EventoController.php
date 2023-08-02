@@ -9,7 +9,7 @@ class EventoController extends Controller
 {
     public function showForm()
     {
-        return view('auth.registro_evento');
+        return view('semilleros.eventos.registro_evento');
     }
 
     public function register(Request $request)
