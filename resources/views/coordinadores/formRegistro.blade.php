@@ -55,8 +55,7 @@
                             <x-label for="apellidos" value="{{ __('Apellidos') }}" />
                             <x-input id="apellidos" class="block mt-1 w-full border border-green-500" type="text" name="apellidos" :value="old('apellidos')" required autofocus autocomplete="apellidos" />
                         </div>
-                        @if(isset($camposExistentes))
-                        @if($camposExistentes['identificacion'])
+                        @if(isset($camposExistentes) && $camposExistentes['identificacion'])
                         <div>
                             <x-label for="identificacion" value="{{ __('Identificación') }}" />
                             <x-input id="identificacion" class="block mt-1 w-full border border-green-500" type="number" name="identificacion" :value="old('identificacion')" required />
@@ -64,12 +63,6 @@
                                 * La identificacion ingresada ya esta registrada.
                             </p>
                         </div>
-                        @else
-                        <div>
-                            <x-label for="identificacion" value="{{ __('Identificación') }}" />
-                            <x-input id="identificacion" class="block mt-1 w-full border border-green-500" type="number" name="identificacion" :value="old('identificacion')" required />
-                        </div>
-                        @endif
                         @else
                         <div>
                             <x-label for="identificacion" value="{{ __('Identificación') }}" />
@@ -87,10 +80,15 @@
                             <x-label for="telefono" value="{{ __('Teléfono') }}" />
                             <x-input id="telefono" class="block mt-1 w-full border border-green-500" type="number" name="telefono" :value="old('telefono')" required />
                         </div>
-
-                        <div>
-                            <x-label for="genero" value="{{ __('Genero') }}" />
-                            <x-input id="genero" class="block mt-1 w-full border border-green-500" type="text" name="genero" :value="old('genero')" required />
+                        <div class="sm:col-span-3">
+                            <label for="genero" class="block text-sm font-medium leading-6 text-gray-900">Genero</label>
+                            <div class="mt-2">
+                                <select id="genero" name="genero" autocomplete="genero" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                    <option>Masculino</option>
+                                    <option>Femenino</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="column">
@@ -98,25 +96,40 @@
                             <x-label for="fecha_nacimiento" value="{{ __('Fecha de Nacimiento') }}" />
                             <x-input id="fecha_nacimiento" class="block mt-1 w-full border border-green-500" type="date" name="fecha_nacimiento" :value="old('fecha_nacimiento')" required />
                         </div>
+                        <div class="sm:col-span-3">
+                            <label for="programa" class="block text-sm font-medium leading-6 text-gray-900">programa</label>
+                            <div class="mt-2">
+                                <select id="programa" name="cod_programa_academico" autocomplete="programa" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                @foreach($programas as $p)
+                                <option value="{{$p->cod_programa_academico}}">{{$p->nombre_programa}}</option></option>
+                                    @endforeach
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <!-- @if(isset($camposExistentes) && $camposExistentes['codPrograma'])
+                        <div>
+                            <x-label for="cod_programa_academico" value="{{ __('Código Programa Académico') }}" />
+                            <x-input id="cod_programa_ac*ademico" class="block mt-1 w-full border border-green-500" type="number" name="cod_programa_academico" :value="old('cod_programa_academico')" required />
+                            <p class="mt-2 peer-invalid:visible text-pink-600 text-sm">
+                            * El programa no existe.
+                        </p>
+                        </div>                        
+                        @else
                         <div>
                             <x-label for="cod_programa_academico" value="{{ __('Código Programa Académico') }}" />
                             <x-input id="cod_programa_ac*ademico" class="block mt-1 w-full border border-green-500" type="number" name="cod_programa_academico" :value="old('cod_programa_academico')" required />
                         </div>
-                        @if(isset($camposExistentes))
-                        @if($camposExistentes['codDocente'])
+                        @endif -->
+                        @if(isset($camposExistentes) && $camposExistentes['codDocente'])
                         <div>
                             <x-label for="cod_docente" value="{{ __('Código Docente') }}" />
                             <x-input id="cod_docente" class="block mt-1 w-full border border-green-500" type="number" name="cod_docente" :value="old('cod_docente')" required />
-                        </div>
-                        <p class="mt-2 peer-invalid:visible text-pink-600 text-sm">
+                            <p class="mt-2 peer-invalid:visible text-pink-600 text-sm">
                             * El codigo ingresado ya esta registrado.
                         </p>
-                        @else
-                        <div>
-                            <x-label for="cod_docente" value="{{ __('Código Docente') }}" />
-                            <x-input id="cod_docente" class="block mt-1 w-full border border-green-500" type="number" name="cod_docente" :value="old('cod_docente')" required />
                         </div>
-                        @endif
+                        
                         @else
                         <div>
                             <x-label for="cod_docente" value="{{ __('Código Docente') }}" />

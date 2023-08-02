@@ -55,8 +55,7 @@
                             <x-input id="apellidos" class="block mt-1 w-full border border-green-500" type="text" name="apellidos" :value="old('apellidos')" required autofocus autocomplete="apellidos" />
                         </div>
 
-                        @if(isset($camposExistentes))
-                        @if($camposExistentes['identificacion'])
+                        @if(isset($camposExistentes) && $camposExistentes['identificacion'])
                         <div>
                             <x-label for="identificacion" value="{{ __('Identificación') }}" />
                             <x-input id="identificacion" class="block mt-1 w-full border border-green-500" type="number" name="identificacion" :value="old('identificacion')" required />
@@ -64,12 +63,6 @@
                                 * La identificacion ingresada ya esta registrada.
                             </p>
                         </div>
-                        @else
-                        <div>
-                            <x-label for="identificacion" value="{{ __('Identificación') }}" />
-                            <x-input id="identificacion" class="block mt-1 w-full border border-green-500" type="number" name="identificacion" :value="old('identificacion')" required />
-                        </div>
-                        @endif
                         @else
                         <div>
                             <x-label for="identificacion" value="{{ __('Identificación') }}" />
@@ -89,9 +82,15 @@
                             <x-input id="telefono" class="block mt-1 w-full border border-green-500" type="number" name="telefono" :value="old('telefono')" required />
                         </div>
 
-                        <div>
-                            <x-label for="genero" value="{{ __('Genero') }}" />
-                            <x-input id="genero" class="block mt-1 w-full border border-green-500" type="text" name="genero" :value="old('genero')" required />
+                        <div class="sm:col-span-3">
+                            <label for="genero" class="block text-sm font-medium leading-6 text-gray-900">Genero</label>
+                            <div class="mt-2">
+                                <select id="genero" name="genero" autocomplete="genero" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                    <option>Masculino</option>
+                                    <option>Femenino</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                     <div class="column">
@@ -99,26 +98,27 @@
                             <x-label for="fecha_nacimiento" value="{{ __('Fecha de Nacimiento') }}" />
                             <x-input id="fecha_nacimiento" class="block mt-1 w-full border border-green-500" type="date" name="fecha_nacimiento" :value="old('fecha_nacimiento')" required />
                         </div>
-                        <div>
-                            <x-label for="cod_programa_academico" value="{{ __('Código Programa Académico') }}" />
-                            <x-input id="cod_programa_ac*ademico" class="block mt-1 w-full border border-green-500" type="number" name="cod_programa_academico" :value="old('cod_programa_academico')" required />
+                        <div class="sm:col-span-3">
+                            <label for="programa" class="block text-sm font-medium leading-6 text-gray-900">programa</label>
+                            <div class="mt-2">
+                                <select id="programa" name="cod_programa_academico" autocomplete="programa" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                @foreach($programas as $p)
+                                <option value="{{$p->cod_programa_academico}}">{{$p->nombre_programa}}</option></option>
+                                    @endforeach
+                                    
+                                </select>
+                            </div>
                         </div>
                         
-                        @if(isset($camposExistentes))
-                        @if($camposExistentes['codEstudiantil'])
+                        
+                        @if(isset($camposExistentes) && $camposExistentes['codEstudiantil'])
                         <div>
                             <x-label for="cod_estudiantil" value="{{ __('Codigo Estudiante') }}" />
                             <x-input id="cod_estudiantil" class="block mt-1 w-full border border-green-500" type="number" name="cod_estudiantil" :value="old('cod_estudiantil')" required />
                             <p class="mt-2 peer-invalid:visible text-pink-600 text-sm">
                                 * El codigo ingresado ya esta registrado.
                             </p>
-                        </div>
-                        @else
-                        <div>
-                            <x-label for="cod_estudiantil" value="{{ __('Codigo Estudiante') }}" />
-                            <x-input id="cod_estudiantil" class="block mt-1 w-full border border-green-500" type="number" name="cod_estudiantil" :value="old('cod_estudiantil')" required />
-                        </div>
-                        @endif                        
+                        </div>                       
                         @else
                         <div>
                             <x-label for="cod_estudiantil" value="{{ __('Codigo Estudiante') }}" />
@@ -135,10 +135,18 @@
                             <x-label for="fecha_vinculacion" value="{{ __('Fecha de Vinculación') }}" />
                             <x-input id="fecha_vinculacion" class="block mt-1 w-full border border-green-500" type="date" name="fecha_vinculacion" :value="old('fecha_vinculacion')" />
                         </div>
-                        <div>
-                            <x-label for="cod_semillero" value="{{ __('Codigo Semillero') }}" />
-                            <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="number" name="cod_semillero" :value="old('cod_semillero')" required />
+                        <div class="sm:col-span-3">
+                            <label for="cod_semillero" class="block text-sm font-medium leading-6 text-gray-900">semillero</label>
+                            <div class="mt-2">
+                                <select id="cod_semillero" name="cod_semillero" autocomplete="cod_semillero" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                @foreach($semilleros as $s)
+                                <option value="{{$s->cod_semillero}}">{{$s->nombre}}</option></option>
+                                    @endforeach
+                                    
+                                </select>
+                            </div>
                         </div>
+                        
                         <div style="margin-top:20px">
                             <x-label for="reporte_matricula" value="{{ __('Reporte de Matricula (PDF)') }}" />
                             <x-input id="reporte_matricula" class="block mt-1 w-full" type="file" name="reporte_matricula" :value="old('reporte_matricula')" accept="application/pdf" />

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CoordinadorModel;
+use App\Models\ProgramaModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,9 +15,10 @@ class ControllerCoordinador extends Controller
 {
     
     public function registro(Request $request){
+        $cod_programa = CoordinadorModel::where('cod_programa_academico', $request->cod_programa_academico)->first();
         $identificacion = CoordinadorModel::where('identificacion', $request->identificacion)->first();
         $cod_docente = CoordinadorModel::where('cod_docente', $request->cod_docente)->first();
-        $camposExistentes = ['identificacion'=>null, 'codDocente'=>null];
+        $camposExistentes = ['identificacion'=>null, 'codDocente'=>null, 'codPrograma' => null];
 
         if($identificacion){
             $camposExistentes['identificacion'] = true;
@@ -26,9 +28,15 @@ class ControllerCoordinador extends Controller
             $camposExistentes['codDocente'] = true;
         }
 
-        if($identificacion || $cod_docente){
-            return view('coordinadores.formRegistro', ['camposExistentes' => $camposExistentes]);
+        if(!$cod_programa){
+            $camposExistentes['codPrograma'] = true;
         }
+
+        if($identificacion || $cod_docente || !$cod_programa){
+            $programas = ProgramaModel::all();
+            return view('coordinadores.formRegistro', ['camposExistentes' => $camposExistentes, 'programas'=>$programas]);
+        }
+
         $user = User::find(auth()->user()->id);
         $user->estado = 'activo';
         $user->save();
@@ -53,7 +61,8 @@ class ControllerCoordinador extends Controller
     }
 
     public function registroView(){
-        return view('coordinadores.formRegistro', ['codUser' => auth()->user()->id]);
+        $programas = ProgramaModel::all();
+        return view('coordinadores.formRegistro', ['codUser' => auth()->user()->id, 'programas' => $programas]);
     }
 
     public function datosPersonalesView(){
