@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
@@ -13,26 +13,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @foreach($semilleros as $semillero)
-                            <tr>
+                            @foreach($semilleros as $semillero)
+                                <tr>
                                     <td class="px-4 py-2 border text-center">{{ $semillero->nombre }}</td>
                                     <td class="px-4 py-2 border text-center">{{ $semillero->fecha_creacion }}</td>
                                     <td class="px-4 py-2 border text-center">
-                                        <form action="{{ route('editar_semillero', ['id' => $semillero->cod_semillero]) }}" method="GET">
+                                        <form action="{{ route('editar_semillero', ['id' => $semillero->cod_semillero]) }}" method="POST">
                                             @csrf
+                                            @method('PUT')
                                             <button type="submit" class="text-blue-500 hover:text-blue-700">Editar</button>
                                         </form>
                                         <form action="{{ route('eliminar_semillero', ['id' => $semillero->cod_semillero]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            
-                                            @csrf
-                                            @method('
-                            <button type="submit" class="text-red-500 hover:text-red-700">Eliminar</button>
+                                            <button type="submit" class="text-red-500 hover:text-red-700">Eliminar</button>
                                         </form>
                                     </td>
                                 </tr>
-                        @endforeach
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -45,4 +43,4 @@
             <a href="{{ route('registro.semillero') }}" class="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600">Agregar otro semillero</a>
         </div>
     </div>
-</x-app-layout>
+</x-guest-layout>
