@@ -84,4 +84,11 @@ class ControllerSemillerista extends Controller
 
         return redirect()->route('profile.show');
     }
+
+    public function listadoSemilleristasView(){
+        $semilleristas = SemilleristaModel::join('users', 'cod_user', '=', 'id')->join('semillero', 'semillerista.cod_semillero', '=', 'semillero.cod_semillero')->join('programa', 'semillerista.cod_programa_academico', '=', 'programa.cod_programa_academico')->select('nombres', 'apellidos', 'email', 'estado', 'nombre', 'nombre_programa')->get();
+
+        $semilleristasSinRegistro = User::where('rol', '=', 'semillerista')->get();
+        return view('semilleristas.listado', ['semilleristas' => $semilleristas, 'semilleristasSinRegistro' => $semilleristasSinRegistro]);
+    }
 }

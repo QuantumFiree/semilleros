@@ -50,6 +50,9 @@ Route::middleware([
     Route::get('/perfil/semillerista/editar_datos_personales', [ControllerSemillerista::class, 'datosPersonalesView'])->name('perfilSemillerista');
     Route::post('/perfil/semillerista/editar_datos_personales', [ControllerSemillerista::class, 'datosPersonales'])->name('perfilSemillerista');
 
+    Route::get('/semilleristas/listado', [ControllerSemillerista::class, 'listadoSemilleristasView'])->name('listadoSemilleristas');
+
+
     // RUTAS DE LA PROFE
     
     Route::get('/categorias', [Categorias::class, 'index'])->name('categorias');
