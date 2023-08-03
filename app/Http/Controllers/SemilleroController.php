@@ -16,7 +16,6 @@ class SemilleroController extends Controller
     public function register(Request $request)
     {
         $request->validate([
-            'cod_semillero' => 'required|unique:semillero,cod_semillero',
             'nombre' => 'required',
             'correo' => 'required|email',
             'descripcion' => 'required',
@@ -34,7 +33,6 @@ class SemilleroController extends Controller
 
         try {
             Semillero::create([
-                'cod_semillero' => $request->input('cod_semillero'),
                 'nombre' => $request->input('nombre'),
                 'correo' => $request->input('correo'),
                 'descripcion' => $request->input('descripcion'),

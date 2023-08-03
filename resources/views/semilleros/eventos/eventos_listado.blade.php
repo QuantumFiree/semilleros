@@ -8,8 +8,7 @@
                         <thead>
                             <tr>
                                 <th class="px-4 py-2 border text-center">Nombre</th>
-                                <th class="px-4 py-2 border text-center">Fecha de Inicio</th>
-                                <th class="px-4 py-2 border text-center">Fecha de Fin</th>
+                                <th class="px-4 py-2 border text-center">Codigo</th>
                                 <th class="px-4 py-2 border text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -17,8 +16,7 @@
                             @foreach($eventos as $evento)
                                 <tr>
                                     <td class="px-4 py-2 border text-center">{{ $evento->nombre }}</td>
-                                    <td class="px-4 py-2 border text-center">{{ $evento->fecha_inicio }}</td>
-                                    <td class="px-4 py-2 border text-center">{{ $evento->fecha_fin }}</td>
+                                    <td class="px-4 py-2 border text-center">{{ $evento->cod_evento }}</td>
                                     <td class="px-4 py-2 border text-center">
                                         <form action="{{ route('editar_evento', [$evento->cod_evento]) }}" method="POST">
                                             @csrf

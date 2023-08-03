@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('calificacion')->nullable();
             $table->string('certificacion')->nullable();
             $table->string('evidencias')->nullable();
-            $table->integer('cod_evento')->nullable(false);
-            $table->integer('cod_proyecto')->nullable(false);
+            $table->unsignedInteger('cod_evento')->nullable(false);
+            $table->unsignedInteger('cod_proyecto')->nullable(false);
         
-            //$table->foreign('cod_evento')->references('cod_evento')->on('evento');
-            //$table->foreign('cod_proyecto')->references('cod_proyecto')->on('proyecto');
+            $table->foreign('cod_evento')->references('cod_evento')->on('evento');
+            $table->foreign('cod_proyecto')->references('cod_proyecto')->on('proyecto');
             $table->timestamps();
         });
         

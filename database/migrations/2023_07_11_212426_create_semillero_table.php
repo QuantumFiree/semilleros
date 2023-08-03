@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->unsignedInteger('cod_coordinador')->nullable(false);
         
-            //$table->foreign('cod_coordinador')->references('cod_coordinador')->on('coordinador');
+            $table->foreign('cod_coordinador')->references('cod_coordinador')->on('coordinador');
             $table->timestamps();
         });
     }

@@ -10,8 +10,8 @@ class Semillero extends Model
     use HasFactory;
 
     protected $primaryKey = 'cod_semillero';
-    public $incrementing = false; // Indica que el campo 'cod_semillero' no es autoincremental
-    protected $keyType = 'string'; // Indica el tipo de dato del campo 'cod_semillero'
+    public $incrementing = false; 
+    protected $keyType = 'string'; 
     protected $table = 'semillero';
     protected $fillable = [
         'cod_semillero',
@@ -26,13 +26,11 @@ class Semillero extends Model
         'presentacion',
         'fecha_creacion',
         'numero_resolucion',
-        'logo', // la imagen del logo
-        'cod_coordinador', // Código del coordinador encargado del semillero
+        'logo', 
+        'cod_coordinador', 
     ];
-
-    // Definir la relación con el coordinador encargado
-   // public function coordinador()
-    //{
-        //return $this->belongsTo(Coordinador::class, 'cod_coordinador', 'cod_coordinador');
-    //}
+   public function coordinador()
+    {
+        return $this->belongsTo(Coordinador::class, 'cod_coordinador', 'cod_coordinador');
+    }
 }

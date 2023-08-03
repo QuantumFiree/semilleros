@@ -24,12 +24,12 @@ return new class extends Migration
             $table->string('genero')->nullable();
             $table->string('fecha_nacimiento')->nullable();
             $table->string('foto')->nullable();
-            $table->integer('cod_programa_academico')->nullable(false);
+            $table->unsignedInteger('cod_programa_academico')->nullable(false);
 
-            $table->integer('cod_estudiantil')->nullable(false);
+            $table->unsignedInteger('cod_estudiantil')->nullable(false);
             $table->integer('semestre')->nullable();
             $table->string('fecha_vinculacion')->nullable();
-            $table->integer('cod_semillero')->nullable(false);
+            $table->unsignedInteger('cod_semillero')->nullable(false);
             $table->string('reporte_matricula')->nullable();
             
         
