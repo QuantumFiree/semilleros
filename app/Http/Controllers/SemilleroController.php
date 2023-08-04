@@ -14,6 +14,11 @@ class SemilleroController extends Controller
 
     public function register(Request $request)
     {
+        $codSemillero = $request->input('cod_semillero');
+        $existingSemillero = Semillero::where('cod_semillero', $codSemillero)->first();
+        if ($existingSemillero) {
+            return redirect()->route('registro.semillero')->with('error', 'El semillero ya está registrado.');
+        }
         $semillero = Semillero::create([
             'cod_semillero' => $request->input('cod_semillero'),
             'nombre' => $request->input('nombre'),
@@ -31,6 +36,7 @@ class SemilleroController extends Controller
             'cod_coordinador'=> $request->input('cod_coordinador'),
         ]);
 
+    
         return redirect()->route('semilleros.listado')->with('success', 'El semillero ha sido registrado exitosamente.');
     }
 

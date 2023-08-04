@@ -103,7 +103,7 @@ Route::middleware([
     Route::put('/editar/proyecto/{cod_proyecto}', [ProyectoController::class, 'editar'])->name('editar_proyecto');
     Route::put('/actualizar/proyecto/{cod_proyecto}', [ProyectoController::class, 'update'])->name('actualizar_proyecto');
     Route::delete('/eliminar/proyecto/{cod_proyecto}', [ProyectoController::class, 'eliminar'])->name('eliminar_proyecto');
-
+    Route::get('/error/registro', [SemilleroController::class, 'ErrorRegistro'])->name('error_registro');
     Route::get('/registro/evento', [EventoController::class, 'showForm'])->name('registro.evento');
     Route::post('/registro/evento', [EventoController::class, 'register'])->name('registro.evento');
     Route::get('/listado/eventos', [EventoController::class, 'listado'])->name('eventos.listado');
