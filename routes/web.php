@@ -31,6 +31,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -54,46 +57,45 @@ Route::middleware([
 
 
     // RUTAS DE LA PROFE
-    
+
     Route::get('/categorias', [Categorias::class, 'index'])->name('categorias');
-    
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    
-    
-    
+
+
+
 
     // Rutas Categorias
 
     Route::get('categorias/registro', [Categorias::class, 'form_registro'])
-    ->name('form_registroCategoria');
+        ->name('form_registroCategoria');
 
     Route::post('categorias/registro', [Categorias::class, 'registrar'])
-    ->name('registrarCategoria');
+        ->name('registrarCategoria');
 
     Route::get('categorias/actualizar/{id}', [Categorias::class, 'form_actualiza'])
-    ->name('form_actualizaCategoria');
+        ->name('form_actualizaCategoria');
 
     Route::post('categorias/actualizar/{id}', [Categorias::class, 'actualizar'])
-    ->name('actualizarCategoria');
+        ->name('actualizarCategoria');
 
     Route::get('categorias/eliminar/{id}', [Categorias::class, 'eliminar'])
-    ->name('eliminarCategoria');
+        ->name('eliminarCategoria');
 
 
     // Rutas Productos
 
-    Route::get('productos', [Productos::class, 'index'] )->name('productos');
+    Route::get('productos', [Productos::class, 'index'])->name('productos');
 
-    Route::get('productos/detalle/{id}', [Productos::class, 'detalle'] )->name('detalleProducto');;
+    Route::get('productos/detalle/{id}', [Productos::class, 'detalle'])->name('detalleProducto');;
 
     Route::get('productos/actualizar/{id}', [Productos::class, 'formularioAct'])->name('form_actualizaProducto');
 
     Route::post('productos/actualizar/{id}', [Productos::class, 'actualizar'])->name('actualizarProducto');
 
     Route::get('productos/eliminar/{id}', [Productos::class, 'eliminar'])->name('eliminarProducto');
-
 });
 
 Route::get('/registro/semillero', [SemilleroController::class, 'showForm'])->name('registro.semillero');

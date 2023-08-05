@@ -39,7 +39,7 @@
     </x-slot>
     <div class="container">
         <div class="container-form">
-            <form class="form-custom" id="formDatosPersonales" method="POST" action="{{route('registroCoordinador')}}">
+            <form enctype="multipart/form-data" class="form-custom" id="formDatosPersonales" method="POST" action="{{route('registroCoordinador')}}">
                 @csrf
                 <div class="three-columns-grid">
                     <div class="column">

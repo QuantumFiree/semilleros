@@ -38,7 +38,7 @@
 
     <div class="container">
         <div class="container-form">
-            <form class="form-custom" id="formDatosPersonales" method="POST" action="{{route('registroSemillerista')}}">
+            <form enctype="multipart/form-data" class="form-custom" id="formDatosPersonales" method="POST" action="{{route('registroSemillerista')}}">
                 @csrf
                 <div class="three-columns-grid">
                     <div class="column">
@@ -146,11 +146,20 @@
                                 </select>
                             </div>
                         </div>
-                        
+                        @if(isset($camposExistentes) && $camposExistentes['codEstudiantil'])
+                        <div style="margin-top:20px">
+                            <x-label for="reporte_matricula" value="{{ __('Reporte de Matricula (PDF)') }}" />
+                            <x-input id="reporte_matricula" class="block mt-1 w-full" type="file" name="reporte_matricula" :value="old('reporte_matricula')" accept="application/pdf" />
+                            <p class="mt-2 peer-invalid:visible text-pink-600 text-sm">
+                                * Error al cargar el archivo.
+                            </p>
+                        </div>                 
+                        @else
                         <div style="margin-top:20px">
                             <x-label for="reporte_matricula" value="{{ __('Reporte de Matricula (PDF)') }}" />
                             <x-input id="reporte_matricula" class="block mt-1 w-full" type="file" name="reporte_matricula" :value="old('reporte_matricula')" accept="application/pdf" />
                         </div>
+                        @endif
                         <div class="flex items-center justify-end mt-4">
                             <x-button id="buttonRegistro" class="ml-4">
                                 {{ __('Registrar') }}
@@ -161,6 +170,5 @@
             </form>
         </div>
     </div>
-
-
 </x-app-layout>
+

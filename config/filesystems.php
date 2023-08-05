@@ -29,6 +29,12 @@ return [
     */
 
     'disks' => [
+        'profile_photos' => [
+            'driver' => 'local',
+            'root' => public_path('profile-photos'),
+            'url' => env('APP_URL').'/profile-photos',
+            'visibility' => 'public',
+        ],
 
         'local' => [
             'driver' => 'local',

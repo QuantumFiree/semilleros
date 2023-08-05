@@ -7,6 +7,7 @@ use App\Models\ProgramaModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Fortify\Features;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Fortify\Actions\DisableTwoFactorAuthentication;
@@ -15,10 +16,17 @@ class ControllerCoordinador extends Controller
 {
     
     public function registro(Request $request){
-        $cod_programa = CoordinadorModel::where('cod_programa_academico', $request->cod_programa_academico)->first();
+        $cod_programa = DB::table('programa')->where('cod_programa_academico', $request->cod_programa_academico)->first();
         $identificacion = CoordinadorModel::where('identificacion', $request->identificacion)->first();
         $cod_docente = CoordinadorModel::where('cod_docente', $request->cod_docente)->first();
-        $camposExistentes = ['identificacion'=>null, 'codDocente'=>null, 'codPrograma' => null];
+        $camposExistentes = ['identificacion'=>null, 'codDocente'=>null, 'codPrograma' => null, 'acuerdoNombramiento' => null];
+
+        if ($request->hasFile('acuerdo_nombramiento')) {
+            $archivo = $request->file('acuerdo_nombramiento');
+            $rutaArchivo = $archivo->store('acuerdos_nombramiento', 'public');
+        } else {
+            $camposExistentes['acuerdoNombramiento'] = true;
+        }
 
         if($identificacion){
             $camposExistentes['identificacion'] = true;
@@ -38,7 +46,7 @@ class ControllerCoordinador extends Controller
         }
 
         $user = User::find(auth()->user()->id);
-        $user->estado = 'activo';
+        $user->estado = 'inactivo';
         $user->save();
         $respuesta = $request->all();
         $coordinador = new CoordinadorModel();
@@ -54,7 +62,7 @@ class ControllerCoordinador extends Controller
         $coordinador->cod_docente = $request->cod_docente;
         $coordinador->area_conocimiento = $request->area_conocimiento;
         $coordinador->fecha_vinculacion = $request->fecha_vinculacion;
-        $coordinador->acuerdo_nombramiento = $request->acuerdo_nombramiento;
+        $coordinador->acuerdo_nombramiento = $rutaArchivo;
         $coordinador->save();
 
         return redirect('dashboard');
@@ -72,12 +80,31 @@ class ControllerCoordinador extends Controller
 
     public function datosPersonales(Request $request){
         $coordinador = CoordinadorModel::find($request->cod_coordinador); 
-        $coordinador->update([
-            'direccion' => $request->direccion,
-            'telefono' => $request->telefono,
-            'genero' => $request->genero,
-            'area_conocimiento' => $request->area_conocimiento,
-        ]);
+        if ($request->hasFile('acuerdo_nombramiento')) {
+            $rutaAlmacenamientoArchivo = 'public/' . $request->url_acuerdo_nombramiento_actual;
+            if(Storage::exists($rutaAlmacenamientoArchivo)){
+                if($request->url_acuerdo_nombramiento_actual){
+                    Storage::disk('public')->delete($request->url_acuerdo_nombramiento_actual);
+                }
+            }
+            $archivo = $request->file('acuerdo_nombramiento');
+            $rutaArchivo = $archivo->store('acuerdos_nombramiento', 'public');
+            $coordinador->update([
+                'direccion' => $request->direccion,
+                'telefono' => $request->telefono,
+                'genero' => $request->genero,
+                'area_conocimiento' => $request->area_conocimiento,
+                'acuerdo_nombramiento' => $rutaArchivo,
+            ]);
+        } else {
+            $coordinador->update([
+                'direccion' => $request->direccion,
+                'telefono' => $request->telefono,
+                'genero' => $request->genero,
+                'area_conocimiento' => $request->area_conocimiento,
+            ]);
+        }
+        
 
         return redirect()->route('profile.show');
     }
