@@ -59,11 +59,6 @@
             <div class="three-columns-grid">
 
                 <div class="column">
-    
-                    <div class="form-field">
-                        <label for="cod_proyecto">{{ __('Código de Proyecto') }}</label>
-                        <input id="cod_proyecto" type="text" name="cod_proyecto" :value="old('cod_proyecto')" required autofocus />
-                    </div>
 
                     <div class="form-field">
                         <label for="titulo">{{ __('Título del Proyecto') }}</label>
@@ -75,20 +70,31 @@
                         <input id="cod_semillero" type="text" name="cod_semillero" :value="old('cod_semillero')" required />
                     </div>
 
+                    <div class="column">
                     <div class="form-field">
-                        <label for="tipo_proyecto">{{ __('Tipo de Proyecto') }}</label>
-                        <input id="tipo_proyecto" type="text" name="tipo_proyecto" :value="old('tipo_proyecto')" />
+                        <label for="tipo">{{ __('Tipo de Proyecto') }}</label>
+                        <select id="tipo_proyecto" name="tipo_proyecto" required>
+                            <option value="Proyecto de investigación">Proyecto de investigación</option>
+                            <option value="Proyecto de innovación y desarrollo">Proyecto de innovación y desarrollo</option>
+                            <option value="Proyecto de Emprendimiento">Proyecto de Emprendimiento</option>
+    
+                        </select>
                     </div>
-
+                </div>
 
                 </div>
 
                 <div class="column">
                    
-                    <div class="form-field">
-                        <label for="estado">{{ __('Estado del Proyecto') }}</label>
-                        <input id="estado" type="text" name="estado" :value="old('estado')" required />
-                    </div>
+                <div class="form-field">
+                    <label for="estado">{{ __('Estado del Proyecto') }}</label>
+                    <select id="estado" name="estado" required>
+                        <option value="Propuesta">Propuesta</option>
+                        <option value="En Curso">En Curso</option>
+                        <option value="Inactivo">Inactivo</option>
+                        <option value="Terminado">Terminado</option>
+                    </select>
+                </div>
 
                     <div class="form-field">
                         <label for="fecha_inicio">{{ __('Fecha de Inicio') }}</label>

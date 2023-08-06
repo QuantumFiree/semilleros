@@ -1,6 +1,4 @@
-@extends('layouts.app')
-
-@section('content')
+<x-guest-layout>
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
@@ -10,8 +8,7 @@
                         <thead>
                             <tr>
                                 <th class="px-4 py-2 border text-center">Título</th>
-                                <th class="px-4 py-2 border text-center">Fecha de Inicio</th>
-                                <th class="px-4 py-2 border text-center">Fecha de Finalización</th>
+                                <th class="px-4 py-2 border text-center">Codigo</th>
                                 <th class="px-4 py-2 border text-center">Acciones</th>
                             </tr>
                         </thead>
@@ -19,8 +16,7 @@
                             @foreach($proyectos as $proyecto)
                                 <tr>
                                     <td class="px-4 py-2 border text-center">{{ $proyecto->titulo }}</td>
-                                    <td class="px-4 py-2 border text-center">{{ $proyecto->fecha_inicio }}</td>
-                                    <td class="px-4 py-2 border text-center">{{ $proyecto->fecha_finalizacion }}</td>
+                                    <td class="px-4 py-2 border text-center">{{ $proyecto->cod_proyecto }}</td>
                                     <td class="px-4 py-2 border text-center">
                                         <form action="{{ route('editar_proyecto', [$proyecto->cod_proyecto]) }}" method="POST">
                                             @csrf
@@ -47,4 +43,5 @@
             <a href="{{ route('registro.proyecto') }}" class="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600">Agregar otro proyecto</a>
         </div>
     </div>
-@endsection
+
+</x-guest-layout>

@@ -15,7 +15,9 @@
         .form-field input[type="text"],
         .form-field input[type="date"],
         .form-field input[type="email"],
-        .form-field input[type="file"] {
+        .form-field input[type="file"] 
+        .form-field select
+        {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
@@ -59,7 +61,7 @@
             <div class="three-columns-grid">
 
                 <div class="column">
-                    <!-- Campos específicos para eventos -->
+            
                     <div class="form-field">
                         <label for="cod_evento">{{ __('Código de Evento') }}</label>
                         <input id="cod_evento" type="text" name="cod_evento" :value="old('cod_evento')" required autofocus />
@@ -95,17 +97,30 @@
 
                     <div class="form-field">
                         <label for="tipo">{{ __('Tipo de Evento') }}</label>
-                        <input id="tipo" type="text" name="tipo" :value="old('tipo')" />
+                        <select id="tipo" name="tipo" required>
+                            <option value="Congreso">Congreso</option>
+                            <option value="Encuentro">Encuentro</option>
+                            <option value="Seminario">Seminario</option>
+                        </select>
                     </div>
 
                     <div class="form-field">
                         <label for="modalidad">{{ __('Modalidad') }}</label>
-                        <input id="modalidad" type="text" name="modalidad" :value="old('modalidad')" />
+                        <select id="modaliad" name="Modalidad" required>
+                            <option value="Presencial">Presencial</option>
+                            <option value="Virtual">Virtual</option>
+                            <option value="Hibrida">Hibrida</option>
+                        </select>
                     </div>
 
                     <div class="form-field">
                         <label for="clasificacion">{{ __('Clasificación') }}</label>
-                        <input id="clasificacion" type="text" name="clasificacion" :value="old('clasificacion')" />
+                        <select id="clasificacion" name="clasificacion" required>                   
+                            <option value="Local">Local</option>
+                            <option value="Regional">Regional</option>
+                            <option value="Nacional">Nacional</option>
+                            <option value="Internacional">Internacional</option>
+                        </select>
                     </div>
 
                 </div>

@@ -1,32 +1,4 @@
 <x-guest-layout>
-    <style>
-        /* Estilos CSS */
-        .two-columns-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 50px;
-            /* Espacio entre columnas */
-        }
-        .container-auth {
-            padding: 20px 50px 30px 50px;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 800px;
-            margin: auto;
-            margin-top: 30px;
-            background-color: rgb(31, 41, 55);
-        }
-        .label-custom {
-            color: white;
-            margin-top: 10px;
-        }
-        .title-auth {
-            color: white;
-            text-align: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-    </style>
     <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 bg-white border-b border-gray-200">
@@ -72,4 +44,3 @@
         </div>
     </div>
 </x-guest-layout>
-

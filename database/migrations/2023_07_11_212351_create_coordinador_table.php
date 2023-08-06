@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('fecha_vinculacion')->nullable();
             $table->string('acuerdo_nombramiento')->nullable();
                     
-            //$table->foreign('cod_programa_academico')->references('cod_programa_academico')->on('programa');
+            $table->foreign('cod_programa_academico')->references('cod_programa_academico')->on('programa');
             $table->timestamps();
         });
     }

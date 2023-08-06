@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Semillero;
+use Illuminate\Validation\ValidationException;
 
 class SemilleroController extends Controller
 {
@@ -14,30 +15,43 @@ class SemilleroController extends Controller
 
     public function register(Request $request)
     {
-        $codSemillero = $request->input('cod_semillero');
-        $existingSemillero = Semillero::where('cod_semillero', $codSemillero)->first();
-        if ($existingSemillero) {
-            return redirect()->route('registro.semillero')->with('error', 'El semillero ya está registrado.');
-        }
-        $semillero = Semillero::create([
-            'cod_semillero' => $request->input('cod_semillero'),
-            'nombre' => $request->input('nombre'),
-            'correo' => $request->input('correo'),
-            'descripcion' => $request->input('descripcion'),
-            'mision'=> $request->input('mision'),
-            'vision'=> $request->input('vision'),
-            'valores'=> $request->input('valores'),
-            'objetivo'=> $request->input('objetivo'),
-            'lineas_investigacion'=> $request->input('lineas_investigacion'),
-            'presentacion'=> $request->input('presentacion'),
-            'fecha_creacion'=> $request->input('fecha_creacion'),
-            'numero_resolucion'=> $request->input('numero_resolucion'),
-            'logo'=> $request->input('logo'),
-            'cod_coordinador'=> $request->input('cod_coordinador'),
+        $request->validate([
+            'nombre' => 'required',
+            'correo' => 'required|email',
+            'descripcion' => 'required',
+            'mision' => 'required',
+            'vision' => 'required',
+            'valores' => 'required',
+            'objetivo' => 'required',
+            'lineas_investigacion' => 'required',
+            'presentacion' => 'required',
+            'fecha_creacion' => 'required|date',
+            'numero_resolucion' => 'required',
+            'logo' => 'required|file|mimes:pdf',
+            'cod_coordinador' => 'required|exists:coordinador,cod_coordinador',
         ]);
 
-    
-        return redirect()->route('semilleros.listado')->with('success', 'El semillero ha sido registrado exitosamente.');
+        try {
+            Semillero::create([
+                'nombre' => $request->input('nombre'),
+                'correo' => $request->input('correo'),
+                'descripcion' => $request->input('descripcion'),
+                'mision' => $request->input('mision'),
+                'vision' => $request->input('vision'),
+                'valores' => $request->input('valores'),
+                'objetivo' => $request->input('objetivo'),
+                'lineas_investigacion' => $request->input('lineas_investigacion'),
+                'presentacion' => $request->input('presentacion'),
+                'fecha_creacion' => $request->input('fecha_creacion'),
+                'numero_resolucion' => $request->input('numero_resolucion'),
+                'logo' => $request->file('logo')->store('logos', 'public'), // Guardamos el archivo en la carpeta 'storage/app/public/logos'
+                'cod_coordinador' => $request->input('cod_coordinador'),
+            ]);
+        } catch (\Exception $e) {
+            return redirect()->route('registro.semillero')->withErrors(['error' => 'Hubo un error al registrar el semillero.'])->withInput();
+        }
+
+    return redirect()->route('semilleros.listado')->with('success', 'El semillero ha sido registrado exitosamente.');
     }
 
     public function listado()
@@ -60,6 +74,7 @@ class SemilleroController extends Controller
     public function update(Request $request, $id)
     
         {
+            
             $semillero = Semillero::find($id);
                 $semillero->nombre = $request ->input('nombre');
                 $semillero->correo = $request->input('correo');

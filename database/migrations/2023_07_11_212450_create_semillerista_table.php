@@ -26,17 +26,17 @@ return new class extends Migration
             $table->string('foto')->nullable();
             $table->unsignedInteger('cod_programa_academico')->nullable(false);
 
-            $table->integer('cod_estudiantil')->nullable(false);
+            $table->unsignedInteger('cod_estudiantil')->nullable(false);
             $table->integer('semestre')->nullable();
             $table->string('fecha_vinculacion')->nullable();
-            $table->integer('cod_semillero')->nullable(false);
+            $table->unsignedInteger('cod_semillero')->nullable(false);
             $table->string('reporte_matricula')->nullable();
+            
         
-            //$table->foreign('cod_programa_academico')->references('cod_programa_academico')->on('programa');
-            //$table->foreign('cod_semillero')->references('cod_semillero')->on('semillero');
+            $table->foreign('cod_programa_academico')->references('cod_programa_academico')->on('programa');
+            $table->foreign('cod_semillero')->references('cod_semillero')->on('semillero');
             $table->timestamps();
         });
-        
     }
 
     /**

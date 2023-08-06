@@ -62,7 +62,7 @@
 
         <x-validation-errors class="mb-4" />
 
-        <form action="{{ route('actualizar_semillero', ['id' => $semillero->cod_semillero]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('editar_semillero', ['id' => $semillero->cod_semillero]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="two-columns-grid">
@@ -151,17 +151,21 @@
                             <x-checkbox name="terms" id="terms" required />
                             <div class="ml-2">
                             {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                'terms_of_service' => '<a target="blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'._('Terms of Service').'</a>',
-                                'privacy_policy' => '<a target="blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'._('Privacy Policy').'</a>',
+                                'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
+                                'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
                             ]) !!}
                         </div>
                     </div>
                 </x-label>
             </div>
             @endif
+
             <div class="flex items-center justify-end mt-4">
-                <a href="{{ route('semilleros.listado') }}" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Cancelar</a>
-                <x-button class="ml-4 button-custom" type="submit">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
+
+                <x-button class="ml-4 button-custom">
                     {{ __('Actualizar') }}
                 </x-button>
             </div>

@@ -32,7 +32,7 @@
     </x-slot>
 
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-    <div class="w-full sm:max-w-2xl px-4 py-6 shadow-md overflow-hidden sm:rounded-lg bg-gray-500">
+    <div class="w-full sm:max-w-2xl px-4 py-6 shadow-md overflow-hidden sm:rounded-lg bg-gray-400 border-2 border-green-500">
         <form class="form-custom" id="formDatosPersonales" method="POST" action="{{route('perfilCoordinador')}}">
             @csrf
             <div class="three-columns-grid">

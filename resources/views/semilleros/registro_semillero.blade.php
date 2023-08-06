@@ -67,11 +67,7 @@
             <div class="three-columns-grid">
 
                 <div class="column">
-                    <div>
-                        <x-label for="cod_semillero" value="{{ __('Código Semillero') }}" />
-                        <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="text" name="cod_semillero" :value="old('cod_semillero')" required autofocus />
-                    </div>
-
+                
                     <div>
                         <x-label for="nombre" value="{{ __('Nombre del Semillero') }}" />
                         <x-input id="nombre" class="block mt-1 w-full border border-green-500" type="text" name="nombre" :value="old('nombre')" required autofocus />
@@ -127,7 +123,7 @@
 
                     <div>
                         <x-label for="numero_resolucion" value="{{ __('Número de Resolución') }}" />
-                        <x-input id="numero_resolucion" class="block mt-1 w-full border border-green-500" type="text" name="num_resolucion" :value="old('num_resolucion')" required />
+                        <x-input id="numero_resolucion" class="block mt-1 w-full border border-green-500" type="text" name="numero_resolucion" :value="old('numero_resolucion')" required />
                     </div>
 
                     <div>
