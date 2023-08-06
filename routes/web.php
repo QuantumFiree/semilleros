@@ -31,6 +31,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -54,45 +57,46 @@ Route::middleware([
 
 
     // RUTAS DE LA PROFE
-    
+
     Route::get('/categorias', [Categorias::class, 'index'])->name('categorias');
-    
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    
-    
-    
+
+
+
 
     // Rutas Categorias
 
     Route::get('categorias/registro', [Categorias::class, 'form_registro'])
-    ->name('form_registroCategoria');
+        ->name('form_registroCategoria');
 
     Route::post('categorias/registro', [Categorias::class, 'registrar'])
-    ->name('registrarCategoria');
+        ->name('registrarCategoria');
 
     Route::get('categorias/actualizar/{id}', [Categorias::class, 'form_actualiza'])
-    ->name('form_actualizaCategoria');
+        ->name('form_actualizaCategoria');
 
     Route::post('categorias/actualizar/{id}', [Categorias::class, 'actualizar'])
-    ->name('actualizarCategoria');
+        ->name('actualizarCategoria');
 
     Route::get('categorias/eliminar/{id}', [Categorias::class, 'eliminar'])
-    ->name('eliminarCategoria');
+        ->name('eliminarCategoria');
 
 
     // Rutas Productos
 
-    Route::get('productos', [Productos::class, 'index'] )->name('productos');
+    Route::get('productos', [Productos::class, 'index'])->name('productos');
 
-    Route::get('productos/detalle/{id}', [Productos::class, 'detalle'] )->name('detalleProducto');;
+    Route::get('productos/detalle/{id}', [Productos::class, 'detalle'])->name('detalleProducto');;
 
     Route::get('productos/actualizar/{id}', [Productos::class, 'formularioAct'])->name('form_actualizaProducto');
 
     Route::post('productos/actualizar/{id}', [Productos::class, 'actualizar'])->name('actualizarProducto');
 
     Route::get('productos/eliminar/{id}', [Productos::class, 'eliminar'])->name('eliminarProducto');
+<<<<<<< HEAD
     Route::get('/registro/semillero', [SemilleroController::class, 'showForm'])->name('registro.semillero');
     Route::post('/registro/semillero', [SemilleroController::class, 'register'])->name('registro.semillero');
     Route::get('/listado/semilleros', [SemilleroController::class, 'listado'])->name('semilleros.listado');
@@ -113,6 +117,8 @@ Route::middleware([
     Route::put('/editar/evento/{cod_evento}', [EventoController::class, 'editar'])->name('editar_evento');
     Route::put('/actualizar/evento/{cod_evento}', [EventoController::class, 'update'])->name('actualizar_evento');
     Route::delete('/eliminar/evento/{cod_evento}', [EventoController::class, 'eliminar'])->name('eliminar_evento');
+=======
+>>>>>>> b96b8cbe94261baa6043702ab16c52c7ee9ebac4
 });
 
 Route::get('/registro/semillero', [SemilleroController::class, 'showForm'])->name('registro.semillero');

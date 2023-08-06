@@ -25,7 +25,7 @@
 
             <!-- Current Profile Photo -->
             <div class="mt-2" x-show="! photoPreview">
-                <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                <img src="{{ asset('storage/' . auth()->user()->profile_photo_path) }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
             </div>
 
             <!-- New Profile Photo Preview -->
@@ -35,12 +35,12 @@
             </div>
 
             <x-secondary-button class="mt-2 mr-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                {{ __('Select A New Photo') }}
+                {{ __('Elige una nueva foto') }}
             </x-secondary-button>
 
             @if ($this->user->profile_photo_path)
             <x-secondary-button type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                {{ __('Remove Photo') }}
+                {{ __('Remover foto') }}
             </x-secondary-button>
             @endif
 
@@ -48,15 +48,7 @@
         </div>
         @endif
 
-        <!-- Name -->
-        <div class="col-span-6 sm:col-span-2">
-            <p class="text-xl font-semibold text-grey-900">Datos Personales</p>
-        </div>
-        @if (auth()->user()->rol == 'coordinador')
-            <a href="{{ route('perfilCoordinador') }}" class="btn btn-primary border-green-500 rounded shadow hover:bg-green-700 hover:border-green-700 bg-green-500">Editar</a>
-        @else
-            <a href="{{ route('perfilSemillerista') }}" class="btn btn-primary border-green-500 rounded shadow hover:bg-green-700 hover:border-green-700 bg-green-500">Editar</a>
-        @endif
+        
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
@@ -80,6 +72,16 @@
             @endif
             @endif
         </div>
+
+        <!-- Name -->
+        <div class="col-span-6 sm:col-span-4">
+            <p class="text-xl font-semibold text-grey-900">Datos Personales</p>
+        </div>
+        @if (auth()->user()->rol == 'coordinador')
+            <a href="{{ route('perfilCoordinador') }}" class="btn btn-primary border-green-500 rounded shadow hover:bg-green-700 hover:border-green-700 bg-green-500">Editar</a>
+        @else
+            <a href="{{ route('perfilSemillerista') }}" class="btn btn-primary border-green-500 rounded shadow hover:bg-green-700 hover:border-green-700 bg-green-500">Editar</a>
+        @endif
     </x-slot>
 
     <x-slot name="actions">

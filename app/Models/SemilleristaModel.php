@@ -11,6 +11,8 @@ class SemilleristaModel extends Model
     protected $fillable = [
         'direccion',
         'telefono',
+        'genero',
+        'reporte_matricula'
         // Agrega otros campos que necesitas actualizar aquí...
     ];
     protected $table = 'semillerista';

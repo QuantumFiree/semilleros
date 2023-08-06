@@ -10,7 +10,9 @@ class CoordinadorModel extends Model
     protected $fillable = [
         'direccion',
         'telefono',
-        'area_conocimiento'
+        'area_conocimiento',
+        'genero',
+        'acuerdo_nombramiento'
         // Agrega otros campos que necesitas actualizar aquí...
     ];
     protected $table = 'coordinador';
