@@ -1,71 +1,143 @@
-@extends('layouts.app')
 
-@section('content')
-    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-            <div class="p-6 bg-white border-b border-gray-200">
-                <h1 class="text-4xl font-bold text-center text-black mb-6">Editar Proyecto</h1>
-                @isset($proyecto)
-                    <form action="{{ route('actualizar_proyecto', [$proyecto->cod_proyecto]) }}" method="POST" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
+<x-app-layout>
+   
+<style>
+ 
+        .form-field {
+            margin-bottom: 10px;
+        }
 
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="col-span-2">
-                                <label for="cod_proyecto" class="block text-sm font-medium text-gray-700">Código de Proyecto</label>
-                                <input id="cod_proyecto" type="text" name="cod_proyecto" :value="$proyecto->cod_proyecto" required autofocus class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-                            </div>
+        .form-field label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
 
-                            <div class="col-span-2">
-                                <x-label for="titulo" value="{{ __('Título del Proyecto') }}" />
-                                <x-input id="titulo" class="block mt-1 w-full border border-green-500" type="text" name="titulo" :value="$proyecto->titulo" required autofocus />
-                            </div>
+        .form-field select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 10px;
+        }
 
-                            <div class="col-span-2">
-                                <x-label for="cod_semillero" value="{{ __('Código del Semillero') }}" />
-                                <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="text" name="cod_semillero" :value="$proyecto->cod_semillero" required />
-                            </div>
+        .btn-register {
+            background-color: #34D399;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-                            <div class="col-span-2">
-                                <x-label for="tipo_proyecto" value="{{ __('Tipo de Proyecto') }}" />
-                                <x-input id="tipo_proyecto" class="block mt-1 w-full border border-green-500" type="text" name="tipo_proyecto" :value="$proyecto->tipo_proyecto" />
-                            </div>
+        .btn-register:hover {
+            background-color: #2FAE85;
+        }
 
-                            <div class="col-span-2">
-                                <x-label for="estado" value="{{ __('Estado del Proyecto') }}" />
-                                <x-input id="estado" class="block mt-1 w-full border border-green-500" type="text" name="estado" :value="$proyecto->estado" required />
-                            </div>
+            .columns-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
 
-                            <div class="col-span-2">
-                                <x-label for="fecha_inicio" value="{{ __('Fecha de Inicio') }}" />
-                                <x-input id="fecha_inicio" class="block mt-1 w-full border border-green-500" type="date" name="fecha_inicio" :value="$proyecto->fecha_inicio" />
-                            </div>
 
-                            <div class="col-span-2">
-                                <x-label for="fecha_finalizacion" value="{{ __('Fecha de Finalización') }}" />
-                                <x-input id="fecha_finalizacion" class="block mt-1 w-full border border-green-500" type="date" name="fecha_finalizacion" :value="$proyecto->fecha_finalizacion" />
-                            </div>
 
-                            <div class="col-span-2">
-                                <x-label for="propuesta" value="{{ __('Propuesta') }}" />
-                                <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="text" name="propuesta" :value="$proyecto->propuesta" />
-                            </div>
+        .columns-grid select {
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 10px; 
+        }
 
-                            <div class="col-span-2">
-                                <x-label for="proyecto_final" value="{{ __('Proyecto Final') }}" />
-                                <x-input id="proyecto_final" class="block mt-1 w-full border border-green-500" type="text" name="proyecto_final" :value="$proyecto->proyecto_final" />
-                            </div>
 
-                            <div class="col-span-2 mt-4">
-                                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Guardar cambios</button>
-                            </div>
-                        </div>
-                    </form>
-                    
-                @else
-                    <p>El proyecto no existe.</p>
-                @endisset
-            </div>
+    </style>
+
+
+    <x-slot name="header">
+        <div class="columns-2">
+            <h2 class="font-semibold text-xl text-blue-900 text-center leading-tight">
+                {{ __('Editar información del Proyecto') }}
+            </h2>
+
+            <h2 class="font-bold text-xl text-green-400 leading-tight text-right">
+                {{ __(auth()->user()->rol) }}
+            </h2>
         </div>
-    </div>
-@endsection
+    </x-slot>
+
+    <x-authentication-card>
+        <x-slot name="logo">
+        </x-slot>
+        <form method="POST" action="{{ route('actualizar_proyecto', $proyecto->cod_proyecto) }}" enctype="multipart/form-data">
+            @method('PUT')
+            @csrf
+            <div class="three-columns-grid">
+                <div class="column">
+                
+                <div>
+                    <x-label for="titulo" value="{{ __('Título del Proyecto') }}" />
+                    <x-input id="titulo" class="block mt-1 w-full border border-green-500" type="text" name="titulo"  required autofocus />
+                </div>
+
+                <div>
+                    <x-label for="cod_semillero" value="{{ __('Código del Semillero') }}" />
+                    <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="text" name="cod_semillero" required />
+                </div>
+
+                <div class="form-field">
+                    <label for="tipo">{{ __('Tipo de Proyecto') }}</label>
+                    <select id="tipo_proyecto" name="tipo_proyecto" required>
+                        <option value="Proyecto de investigación">Proyecto de investigación</option>
+                        <option value="Proyecto de innovación y desarrollo">Proyecto de innovación y desarrollo</option>
+                        <option value="Proyecto de Emprendimiento">Proyecto de Emprendimiento</option>
+
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="estado">{{ __('Estado del Proyecto') }}</label>
+                    <select id="estado" name="estado" required>
+                        <option value="Propuesta">Propuesta</option>
+                        <option value="En Curso">En Curso</option>
+                        <option value="Inactivo">Inactivo</option>
+                        <option value="Terminado">Terminado</option>
+                    </select>
+                </div>
+
+                <div>
+                    <x-label for="fecha_inicio" value="{{ __('Fecha de Inicio') }}" />
+                    <x-input id="fecha_inicio" class="block mt-1 w-full border border-green-500" type="date" name="fecha_inicio"  />
+                </div>
+
+                <div>
+                    <x-label for="fecha_finalizacion" value="{{ __('Fecha de Finalización') }}" />
+                    <x-input id="fecha_finalizacion" class="block mt-1 w-full border border-green-500" type="date" name="fecha_finalizacion"  />
+                </div>
+
+                <div>
+                    <x-label for="propuesta" value="{{ __('Propuesta') }}" />
+                    <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="text" name="propuesta"  />
+                </div>
+
+                <div>
+                    <x-label for="proyecto_final" value="{{ __('Proyecto Final') }}" />
+                    <x-input id="proyecto_final" class="block mt-1 w-full border border-green-500" type="text" name="proyecto_final"  />
+                </div>
+
+            </div>
+
+            <div class="flex items-center justify-center mt-4">
+                <button type="submit" class="btn-register bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    {{ isset($proyecto) ? __('Actualizar') : __('Registrar') }}
+                </button>
+            </div>
+        </form>
+    </x-authentication-card>
+</x-app-layout>

@@ -24,6 +24,7 @@ class EventoController extends Controller
         $evento->modalidad = $request->input('modalidad');
         $evento->clasificacion = $request->input('clasificacion');
         $evento->observaciones = $request->input('observaciones');
+        $evento->cod_semillero = $request->input('cod_semillero');
         $evento->save();
         return redirect()->route('eventos.listado')->with('success', 'El evento ha sido registrado exitosamente.');
     }

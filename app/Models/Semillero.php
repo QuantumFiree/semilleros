@@ -28,9 +28,16 @@ class Semillero extends Model
         'numero_resolucion',
         'logo', 
         'cod_coordinador', 
+        'archivo',
+        'archivos_resolucion',
     ];
-   public function coordinador()
+    public function coordinador()
     {
-        return $this->belongsTo(Coordinador::class, 'cod_coordinador', 'cod_coordinador');
+        return $this->belongsTo(CoordinadorModel::class, 'cod_coordinador');
+    }
+    
+    public function proyectos()
+    {
+        return $this->hasMany(Proyecto::class, 'cod_semillero');
     }
 }
