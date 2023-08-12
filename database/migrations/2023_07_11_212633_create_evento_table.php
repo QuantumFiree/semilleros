@@ -24,6 +24,8 @@ return new class extends Migration
             $table->string('modalidad')->nullable();
             $table->string('clasificacion')->nullable();
             $table->string('observaciones')->nullable();
+            $table->unsignedInteger('cod_semillero')->nullable(false);
+            $table->foreign('cod_semillero')->references('cod_semillero')->on('semillero');
             $table->timestamps();
         });
         

@@ -18,4 +18,10 @@ class CoordinadorModel extends Model
     protected $table = 'coordinador';
     protected $primaryKey = 'cod_coordinador';
     public $timestamps = true;
+
+
+    public function semilleros()
+    {
+        return $this->hasMany(Semillero::class, 'cod_coordinador');
+    }
 }

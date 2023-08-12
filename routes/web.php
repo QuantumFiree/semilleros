@@ -8,6 +8,7 @@ use App\Http\Controllers\Tienda\Categorias;
 use App\Http\Controllers\SemilleroController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\PresentacionProyectoController;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Console;
@@ -111,6 +112,10 @@ Route::get('/listado/proyectos', [ProyectoController::class, 'listado'])->name('
 Route::put('/editar/proyecto/{cod_proyecto}', [ProyectoController::class, 'editar'])->name('editar_proyecto');
 Route::put('/actualizar/proyecto/{cod_proyecto}', [ProyectoController::class, 'update'])->name('actualizar_proyecto');
 Route::delete('/eliminar/proyecto/{cod_proyecto}', [ProyectoController::class, 'eliminar'])->name('eliminar_proyecto');
+Route::get('/presentar/proyecto', [PresentacionProyectoController::class,'create'])->name('presentar_proyecto');
+Route::post('/guardar/proyecto', [PresentacionProyectoController::class, 'store'])->name('guardar_proyecto');
+
+
 
 Route::get('/registro/evento', [EventoController::class, 'showForm'])->name('registro.evento');
 Route::post('/registro/evento', [EventoController::class, 'register'])->name('registro.evento');
