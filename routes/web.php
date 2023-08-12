@@ -9,6 +9,7 @@ use App\Http\Controllers\SemilleroController;
 use App\Http\Controllers\ProyectoController;
 use App\Http\Controllers\EventoController;
 use App\Http\Controllers\PresentacionProyectoController;
+use App\Http\Controllers\ParticipantesProyectoController;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Console;
@@ -114,7 +115,8 @@ Route::put('/actualizar/proyecto/{cod_proyecto}', [ProyectoController::class, 'u
 Route::delete('/eliminar/proyecto/{cod_proyecto}', [ProyectoController::class, 'eliminar'])->name('eliminar_proyecto');
 Route::get('/presentar/proyecto', [PresentacionProyectoController::class,'create'])->name('presentar_proyecto');
 Route::post('/guardar/proyecto', [PresentacionProyectoController::class, 'store'])->name('guardar_proyecto');
-
+Route::get('/participantes/proyecto', [ParticipantesProyectoController::class, 'create'])->name('participantes_proyecto.create');
+Route::post('/participantes/proyecto', [ParticipantesProyectoController::class, 'store'])->name('participantes_proyecto.store');
 
 
 Route::get('/registro/evento', [EventoController::class, 'showForm'])->name('registro.evento');

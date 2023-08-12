@@ -215,13 +215,6 @@
     <div class="flex justify-center mt-4">
         <a href="{{ route('registro.proyecto') }}" class="px-4 py-2 bg-green-500 text-black rounded">Registrar otro Proyecto</a>
     </div>
-
-    <div class="flex justify-center mt-4">
-        <a href="{{ route('presentar_proyecto') }}" class="px-4 py-2 bg-green-500 text-black rounded">Presentar un Proyecto</a>
-    </div>
-
-
-
     <script>
         // Función para abrir el modal cuando se hace clic en el botón del ojo
         function openModal(proyecto) {

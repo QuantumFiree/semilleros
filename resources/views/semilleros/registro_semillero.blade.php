@@ -100,66 +100,66 @@
             @csrf
             <div class="three-columns-grid">
                 <div>
-                    <x-label for="nombre" value="{{ __('Nombre del Semillero') }}" />
+                    <x-label for="nombre" value="{{ __('Nombre del Semillero:') }}" />
                     <x-input id="nombre" class="form-input" type="text" name="nombre" :value="old('nombre')" required autofocus />
                 </div>
 
                 <div>
-                    <x-label for="correo" value="{{ __('Correo Electrónico') }}" />
+                    <x-label for="correo" value="{{ __('Correo Electrónico:') }}" />
                     <x-input id="correo" class="form-input" type="email" name="correo" :value="old('correo')" required />
                 </div>
 
                 <div>
-                    <x-label for="descripcion" value="{{ __('Descripción') }}" />
+                    <x-label for="descripcion" value="{{ __('Descripción:') }}" />
                     <x-input id="descripcion" class="form-input" type="text" name="descripcion" :value="old('descripcion')" required />
                 </div>
 
                 <div>
-                    <x-label for="mision" value="{{ __('Misión') }}" />
+                    <x-label for="mision" value="{{ __('Misión:') }}" />
                     <x-input id="mision" class="form-input" type="text" name="mision" :value="old('mision')" required />
                 </div>
                 <div>
-                    <x-label for="vision" value="{{ __('Visión') }}" />
+                    <x-label for="vision" value="{{ __('Visión:') }}" />
                     <x-input id="vision" class="form-input" type="text" name="vision" :value="old('vision')" required />
                 </div>
 
                 <div>
-                    <x-label for="valores" value="{{ __('Valores') }}" />
+                    <x-label for="valores" value="{{ __('Valores:') }}" />
                     <x-input id="valores" class="form-input" type="text" name="valores" :value="old('valores')" required />
                 </div>
 
                 <div>
-                    <x-label for="objetivo" value="{{ __('Objetivo') }}" />
+                    <x-label for="objetivo" value="{{ __('Objetivo:') }}" />
                     <x-input id="objetivo" class="form-input" type="text" name="objetivo" :value="old('objetivo')" required />
                 </div>
 
                 <div>
-                    <x-label for="lineas_investigacion" value="{{ __('Líneas de Investigación') }}" />
+                    <x-label for="lineas_investigacion" value="{{ __('Líneas de Investigación:') }}" />
                     <x-input id="lineas_investigacion" class="form-input" type="text" name="lineas_investigacion" :value="old('lineas_investigacion')" required />
                 </div>
 
                 <div>
-                    <x-label for="presentacion" value="{{ __('Presentación') }}" />
+                    <x-label for="presentacion" value="{{ __('Presentación:') }}" />
                     <x-input id="presentacion" class="form-input" type="text" name="presentacion" :value="old('presentacion')" required />
                 </div>
 
                 <div>
-                    <x-label for="fecha_creacion" value="{{ __('Fecha de Creación') }}" />
+                    <x-label for="fecha_creacion" value="{{ __('Fecha de Creación:') }}" />
                     <x-input id="fecha_creacion" class="form-input" type="date" name="fecha_creacion" :value="old('fecha_creacion')" required />
                 </div>
 
                 <div>
-                    <x-label for="numero_resolucion" value="{{ __('Número de Resolución') }}" />
+                    <x-label for="numero_resolucion" value="{{ __('Número de Resolución:') }}" />
                     <x-input id="numero_resolucion" class="form-input" type="text" name="numero_resolucion" :value="old('numero_resolucion')" required />
                 </div>
 
                 <div>
-                    <x-label for="logo" value="{{ __('Logo (Imagen)') }}" />
+                    <x-label for="logo" value="{{ __('Logo: ') }}" />
                     <x-input id="logo" class="form-input" type="file" name="logo" :value="old('logo')" required accept="image/*" />
                 </div>
 
                 <div>
-                    <x-label for="cod_coordinador" value="{{ __('Código de Coordinador Encargado') }}" />
+                    <x-label for="cod_coordinador" value="{{ __('Código de Coordinador Encargado:') }}" />
                     <x-input id="cod_coordinador" class="form-input" type="text" name="cod_coordinador" :value="old('cod_coordinador')" required />
                     @error('cod_coordinador')
                         <p class="text-red-600">{{ $message }}</p>
@@ -167,12 +167,12 @@
                 </div>
 
                 <div>
-                    <x-label for="archivo" value="{{ __('Archivo (File)') }}" />
+                    <x-label for="archivo" value="{{ __('Archivo presentación:') }}" />
                     <x-input id="archivo" class="form-input" type="file" name="archivo" :value="old('archivo')" required accept="file/*" />
                 </div>
 
                 <div>
-                    <x-label for="archivo_resolucion" value="{{ __('Archivo (File)') }}" />
+                    <x-label for="archivo_resolucion" value="{{ __('Archivo Resolución:') }}" />
                     <x-input id="archivo_resolucion" class="form-input" type="file" name="archivo_resolucion" :value="old('archivo')" required accept="file/*" />
                 </div>
 
