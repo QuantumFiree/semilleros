@@ -96,29 +96,6 @@ Route::middleware([
     Route::post('productos/actualizar/{id}', [Productos::class, 'actualizar'])->name('actualizarProducto');
 
     Route::get('productos/eliminar/{id}', [Productos::class, 'eliminar'])->name('eliminarProducto');
-<<<<<<< HEAD
-    Route::get('/registro/semillero', [SemilleroController::class, 'showForm'])->name('registro.semillero');
-    Route::post('/registro/semillero', [SemilleroController::class, 'register'])->name('registro.semillero');
-    Route::get('/listado/semilleros', [SemilleroController::class, 'listado'])->name('semilleros.listado');
-    Route::put('/editar/semillero/{id}', [SemilleroController::class, 'editar'])->name('editar_semillero');
-    Route::put('/actualizar/semillero/{id}', [SemilleroController::class, 'update'])->name('actualizar_semillero');
-    Route::delete('/eliminar/semillero/{id}', [SemilleroController::class, 'eliminar'])->name('eliminar_semillero');
-
-    Route::get('/registro/proyecto', [ProyectoController::class, 'showForm'])->name('registro.proyecto');
-    Route::post('/registro/proyecto', [ProyectoController::class, 'register'])->name('registro.proyecto');
-    Route::get('/listado/proyectos', [ProyectoController::class, 'listado'])->name('proyectos.listado');
-    Route::put('/editar/proyecto/{cod_proyecto}', [ProyectoController::class, 'editar'])->name('editar_proyecto');
-    Route::put('/actualizar/proyecto/{cod_proyecto}', [ProyectoController::class, 'update'])->name('actualizar_proyecto');
-    Route::delete('/eliminar/proyecto/{cod_proyecto}', [ProyectoController::class, 'eliminar'])->name('eliminar_proyecto');
-    Route::get('/error/registro', [SemilleroController::class, 'ErrorRegistro'])->name('error_registro');
-    Route::get('/registro/evento', [EventoController::class, 'showForm'])->name('registro.evento');
-    Route::post('/registro/evento', [EventoController::class, 'register'])->name('registro.evento');
-    Route::get('/listado/eventos', [EventoController::class, 'listado'])->name('eventos.listado');
-    Route::put('/editar/evento/{cod_evento}', [EventoController::class, 'editar'])->name('editar_evento');
-    Route::put('/actualizar/evento/{cod_evento}', [EventoController::class, 'update'])->name('actualizar_evento');
-    Route::delete('/eliminar/evento/{cod_evento}', [EventoController::class, 'eliminar'])->name('eliminar_evento');
-=======
->>>>>>> b96b8cbe94261baa6043702ab16c52c7ee9ebac4
 });
 
 Route::get('/registro/semillero', [SemilleroController::class, 'showForm'])->name('registro.semillero');
