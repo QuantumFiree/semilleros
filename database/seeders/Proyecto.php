@@ -20,14 +20,14 @@ class Proyecto extends Seeder
         $datos =[
             [
                
-                'titulo'=>'1995-26-12',
+                'titulo'=>'Computación en la nube',
                 'cod_semillero'=>'1000',
-                'tipo_proyecto'=>'cientifico',
-                'estado'=>'aprovado',
+                'tipo_proyecto'=>'Proyecto de investigación',
+                'estado'=>'En curso',
                 'fecha_inicio'=>'2023-08-05',
                 'fecha_finalizacion'=>'2023-08-09',
-                'propuesta'=>'Aprovechar los avances cientificos',
-                'proyecto_final'=>'El hombre y la ciencia'       
+                'propuesta'=>'Aprovechar la computación en la nube',
+                'proyecto_final'=>'Cloud computing'       
             ]
 
 

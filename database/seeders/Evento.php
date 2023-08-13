@@ -23,10 +23,10 @@ class Evento extends Seeder
                 'descripcion'=>'ingenieros del futuro',
                 'fecha_inicio'=>'2023-08-05',
                 'fecha_fin'=>'2023-08-07',
-                'lugar'=>'Pasto',
-                'tipo'=>'foro',
-                'modalidad'=>'virtual',
-                'clasificacion'=>'uno',
+                'lugar'=>'Ipiales',
+                'tipo'=>'Congreso',
+                'modalidad'=>'Virtual',
+                'clasificacion'=>'Regional',
                 'observaciones'=>'ninguna'      
             ],
 
@@ -36,9 +36,9 @@ class Evento extends Seeder
                 'fecha_inicio'=>'2023-07-02',
                 'fecha_fin'=>'2023-07-05',
                 'lugar'=>'Pasto',
-                'tipo'=>'foro',
-                'modalidad'=>'presencial',
-                'clasificacion'=>'dos',
+                'tipo'=>'Encuentro',
+                'modalidad'=>'Presencial',
+                'clasificacion'=>'Local',
                 'observaciones'=>'ninguna'      
             ]
 
