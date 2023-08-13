@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\InicioController;
 use App\Http\Controllers\ControllerSemillerista;
 use App\Http\Controllers\ControllerCoordinador;
 use Illuminate\Support\Facades\Route;
@@ -26,13 +26,13 @@ use Illuminate\Contracts\Auth\Authenticatable;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+
 
 Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
-
+Route::get('/', [InicioController::class, 'getInicio']);
 
 
 Route::middleware([

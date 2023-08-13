@@ -23,10 +23,10 @@ class Programa extends Seeder
                
                 'nombre_programa'=>'Ingeniería de Sistemas',
                 'facultad'=>'30'      
-            ]
+            ],
 
 
-     /*       [
+            [
                 
                 'nombre_programa'=>'Ingeniería Electronica',
                 'facultad'=>'30'   
@@ -39,7 +39,7 @@ class Programa extends Seeder
                 'facultad'=>'30'
             ]
 
-*/
+
           
         ];
 
