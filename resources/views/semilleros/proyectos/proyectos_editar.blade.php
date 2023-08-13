@@ -62,7 +62,7 @@
 
     <x-slot name="header">
         <div class="columns-2">
-            <h2 class="font-semibold text-xl text-blue-900 text-center leading-tight">
+            <h2 class="font-semibold text-xl text-blue-900 text-right leading-tight">
                 {{ __('Editar información del Proyecto') }}
             </h2>
 
