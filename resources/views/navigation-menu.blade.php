@@ -12,14 +12,19 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link href="{{ route('eventos.listado') }}" :active="request()->routeIs('eventos.listado')">
+                        {{ __('Eventos') }}
                     </x-nav-link>
                 </div>
                 @if(auth()->user()->rol == 'admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('listadoSemilleristas') }}" :active="request()->routeIs('listadoSemilleristas')">
                         {{ __('Semilleristas') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('listadoCoordinadores') }}" :active="request()->routeIs('listadoCoordinadores')">
+                        {{ __('Coordinadores') }}
                     </x-nav-link>
                 </div>
                 @else

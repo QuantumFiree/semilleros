@@ -39,7 +39,7 @@ class PresentacionProyectoController extends Controller
 
         $presentacion->save();
         
-        return redirect()->route('guardar_proyecto')->with('success', 'Presentación de proyecto creada exitosamente.');
+        return redirect()->route('proyectos.listado')->with('success', 'Presentación de proyecto creada exitosamente.');
     }
 
 }

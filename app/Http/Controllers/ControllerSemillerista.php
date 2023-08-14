@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\SemilleristaModel;
 use App\Models\Semillero;
+use Faker\Core\Coordinates;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -56,7 +57,7 @@ class ControllerSemillerista extends Controller
             return view('semilleristas.formRegistro', ['camposExistentes' => $camposExistentes, 'programas' => $programas, 'semilleros' => $semilleros]);
         }
         $user = User::find(auth()->user()->id);
-        $user->estado = 'inactivo';
+        $user->estado = 'pendiente';
         $user->save();
         $respuesta = $request->all();
         $semillerista = new SemilleristaModel();
@@ -79,50 +80,132 @@ class ControllerSemillerista extends Controller
          return redirect('dashboard');
     }
 
-    public function datosPersonalesView(){
-        $semillerista = SemilleristaModel::where('cod_user', '=', auth()->user()->id)->join('semillero', 'semillero.cod_semillero', '=', 'semillerista.cod_semillero')->select('cod_semillerista', 'nombres', 'apellidos', 'direccion', 'telefono', 'fecha_nacimiento', 'cod_estudiantil', 'semestre', 'fecha_vinculacion', 'semillerista.cod_semillero', 'reporte_matricula', 'nombre')->first();
-        return view('semilleristas.editarDatosPersonales', ['semillerista'=>$semillerista]);
+    public function datosPersonalesView(Request $request, $cod_semillerista){
+        $semilleros = Semillero::all();
+        $programas = ProgramaModel::all();
+        $semillerista = SemilleristaModel::where('cod_user', '=', $cod_semillerista)->join('semillero', 'semillero.cod_semillero', '=', 'semillerista.cod_semillero')->join('programa', 'programa.cod_programa_academico', '=', 'semillerista.cod_programa_academico')->join('users', 'users.id', '=', 'cod_user')->select('cod_user', 'cod_semillerista', 'nombres', 'apellidos', 'identificacion', 'direccion', 'telefono', 'genero', 'fecha_nacimiento', 'cod_estudiantil', 'semestre', 'fecha_vinculacion', 'semillerista.cod_semillero', 'reporte_matricula', 'nombre', 'programa.cod_programa_academico', 'nombre_programa', 'estado')->first();
+        
+        return view('semilleristas.editarDatosPersonales', ['semillerista'=>$semillerista, 'semilleros' => $semilleros, 'programas' => $programas]);
     }
 
     public function datosPersonales(Request $request){
         
         $semillerista = SemilleristaModel::find($request->cod_semillerista); 
 
-        if ($request->hasFile('reporte_matricula')) {
-            $rutaAlmacenamientoArchivo = 'public/' . $request->url_reporte_actual;
-            if(Storage::exists($rutaAlmacenamientoArchivo)){
-                if($request->url_reporte_actual){
-                    Storage::disk('public')->delete($request->url_reporte_actual);
+        if(auth()->user()->rol == 'admin'){
+            if ($request->hasFile('reporte_matricula')) {
+                $rutaAlmacenamientoArchivo = 'public/' . $request->url_reporte_actual;
+                if(Storage::exists($rutaAlmacenamientoArchivo)){
+                    if($request->url_reporte_actual){
+                        Storage::disk('public')->delete($request->url_reporte_actual);
+                    }
+                    
                 }
-                
+                $archivo = $request->file('reporte_matricula');
+                $rutaArchivo = $archivo->store('reportes_matricula', 'public');
+                $semillerista->update([
+                    'cod_semillerista' => $request->cod_semillerista,
+                    'nombres' => $request->nombres,
+                    'apellidos' => $request->apellidos,
+                    'identificacion' => $request->identificacion,
+                    'direccion' => $request->direccion,
+                    'telefono' => $request->telefono,
+                    'genero' => $request->genero,
+                    'fecha_nacimiento' => $request->fecha_nacimiento,
+                    'cod_programa_academico' => $request->cod_programa_academico,
+                    'cod_estudiantil' => $request->cod_estudiantil,
+                    'semestre' => $request->semestre,
+                    'fecha_vinculacion' => $request->fecha_vinculacion,
+                    'cod_semillero' => $request->cod_semillero,
+                    'reporte_matricula' => $rutaArchivo,
+                ]);
+            } else {
+                $semillerista->update([
+    
+                    'cod_semillerista' => $request->cod_semillerista,
+                    'nombres' => $request->nombres,
+                    'apellidos' => $request->apellidos,
+                    'identificacion' => $request->identificacion,
+                    'direccion' => $request->direccion,
+                    'telefono' => $request->telefono,
+                    'genero' => $request->genero,
+                    'fecha_nacimiento' => $request->fecha_nacimiento,
+                    'cod_programa_academico' => $request->cod_programa_academico,
+                    'cod_estudiantil' => $request->cod_estudiantil,
+                    'semestre' => $request->semestre,
+                    'fecha_vinculacion' => $request->fecha_vinculacion,
+                    'cod_semillero' => $request->cod_semillero,
+                ]);
             }
-            $archivo = $request->file('reporte_matricula');
-            $rutaArchivo = $archivo->store('reportes_matricula', 'public');
-            $semillerista->update([
-                'direccion' => $request->direccion,
-                'telefono' => $request->telefono,
-                'genero' => $request->genero,
-                'reporte_matricula' => $rutaArchivo,
+        }else{
+            if($request->hasFile('reporte_matricula')){
+                $rutaAlmacenamientoArchivo = 'public/' . $request->url_reporte_actual;
+                if(Storage::exists($rutaAlmacenamientoArchivo)){
+                    if($request->url_reporte_actual){
+                        Storage::disk('public')->delete($request->url_reporte_actual);
+                    }
+                    
+                }
+                $archivo = $request->file('reporte_matricula');
+                $rutaArchivo = $archivo->store('reportes_matricula', 'public');
+
+                $semillerista->update([
+                    'direccion' => $request->direccion,
+                    'telefono' => $request->telefono,
+                    'reporte_matricula' => $rutaArchivo
+                ]);
+            }else{
+                $semillerista->update([
+                    'direccion' => $request->direccion,
+                    'telefono' => $request->telefono,
+                ]);
+            }
+            
+        }
+
+        if($request->estado){
+            $user = User::where('users.id', '=', $request->cod_user)->first();
+            $user->update([
+                'estado' => 'activo'
             ]);
-        } else {
-            $semillerista->update([
-                'direccion' => $request->direccion,
-                'telefono' => $request->telefono,
-                'genero' => $request->genero,
+        }else if(auth()->user()->rol == 'admin'){
+            $user = User::where('users.id', '=', $request->cod_user)->first();
+            $user->update([
+                'estado' => 'inactivo'
             ]);
         }
+
+        $semilleros = Semillero::all();
+        $programas = ProgramaModel::all();
+        $semilleristas = SemilleristaModel::join('users', 'users.id', '=', 'semillerista.cod_user')->join('semillero', 'semillero.cod_semillero', '=', 'semillerista.cod_semillero')->join('programa', 'programa.cod_programa_academico', '=', 'semillerista.cod_programa_academico')->select('cod_semillerista', 'nombres', 'apellidos', 'identificacion', 'direccion', 'telefono', 'genero', 'fecha_nacimiento', 'cod_estudiantil', 'semestre', 'fecha_vinculacion', 'semillerista.cod_semillero', 'reporte_matricula', 'nombre', 'programa.cod_programa_academico', 'nombre_programa', 'estado', 'profile_photo_path', 'email', 'users.id')->get();
 
         
 
         if(auth()->user()->rol == 'semillerista'){
             return redirect()->route('profile.show');
         }else{
-            return redirect()->route('listadoSemilleristas');
+            return redirect()->route('listadoSemilleristas', ['semilleristas' => $semilleristas, 'semilleros' => $semilleros, 'programas' => $programas]);
         }
     }
 
+    public function eliminarSemillerista(Request $request, $cod_semillerista){
+        $semillerista = SemilleristaModel::find($cod_semillerista);
+        $user = User::find($semillerista->cod_user);
+        $semillerista->delete();
+        $user->delete();
+
+        $semilleros = Semillero::all();
+        $programas = ProgramaModel::all();
+        $semilleristas = SemilleristaModel::join('users', 'users.id', '=', 'semillerista.cod_user')->join('semillero', 'semillero.cod_semillero', '=', 'semillerista.cod_semillero')->join('programa', 'programa.cod_programa_academico', '=', 'semillerista.cod_programa_academico')->select('cod_semillerista', 'nombres', 'apellidos', 'identificacion', 'direccion', 'telefono', 'genero', 'fecha_nacimiento', 'cod_estudiantil', 'semestre', 'fecha_vinculacion', 'semillerista.cod_semillero', 'reporte_matricula', 'nombre', 'programa.cod_programa_academico', 'nombre_programa', 'estado', 'profile_photo_path', 'email', 'users.id')->get();
+
+        return view('semilleristas.listado', ['semilleristas' => $semilleristas, 'semilleros' => $semilleros, 'programas' => $programas]);
+    }
+
     public function listadoSemilleristasView(){
-        $semilleristas = SemilleristaModel::join('users', 'cod_user', '=', 'id')->join('semillero', 'semillerista.cod_semillero', '=', 'semillero.cod_semillero')->join('programa', 'semillerista.cod_programa_academico', '=', 'programa.cod_programa_academico')->select('cod_semillerista', 'nombres', 'apellidos','identificacion', 'direccion', 'telefono', 'fecha_nacimiento', 'cod_estudiantil', 'semestre', 'fecha_vinculacion', 'reporte_matricula', 'email', 'estado', 'nombre', 'nombre_programa', 'profile_photo_path')->get();
+
+        $semilleros = Semillero::all();
+        $programas = ProgramaModel::all();
+        $semilleristas = SemilleristaModel::join('users', 'users.id', '=', 'semillerista.cod_user')->join('semillero', 'semillero.cod_semillero', '=', 'semillerista.cod_semillero')->join('programa', 'programa.cod_programa_academico', '=', 'semillerista.cod_programa_academico')->select('cod_semillerista', 'nombres', 'apellidos', 'identificacion', 'direccion', 'telefono', 'genero', 'fecha_nacimiento', 'cod_estudiantil', 'semestre', 'fecha_vinculacion', 'semillerista.cod_semillero', 'reporte_matricula', 'nombre', 'programa.cod_programa_academico', 'nombre_programa', 'estado', 'profile_photo_path', 'email', 'users.id')->get();
 
         return view('semilleristas.listado', ['semilleristas' => $semilleristas]);
     }

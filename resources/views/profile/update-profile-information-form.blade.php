@@ -29,7 +29,7 @@
             </div>
 
             <!-- New Profile Photo Preview -->
-            <div class="mt-2" x-show="photoPreview" style="display: none;">
+            <div class="mt-2" x-show="photoPreview" style="">
                 <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center" x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
                 </span>
             </div>
@@ -78,9 +78,9 @@
             <p class="text-xl font-semibold text-grey-900">Datos Personales</p>
         </div>
         @if (auth()->user()->rol == 'coordinador')
-            <a href="{{ route('perfilCoordinador') }}" class="btn btn-primary border-green-500 rounded shadow hover:bg-green-700 hover:border-green-700 bg-green-500">Editar</a>
+            <a href="{{ route('perfilCoordinadorView', ['cod_coordinador' => auth()->user()->id]) }}" class="btn btn-primary border-green-500 rounded shadow hover:bg-green-700 hover:border-green-700 bg-green-500">Editar</a>
         @else
-            <a href="{{ route('perfilSemillerista') }}" class="btn btn-primary border-green-500 rounded shadow hover:bg-green-700 hover:border-green-700 bg-green-500">Editar</a>
+            <a href="{{ route('perfilSemilleristaView', ['cod_semillerista' => auth()->user()->id]) }}" class="btn btn-primary border-green-500 rounded shadow hover:bg-green-700 hover:border-green-700 bg-green-500">Editar</a>
         @endif
     </x-slot>
 

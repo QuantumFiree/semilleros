@@ -7,7 +7,7 @@
     }
 
     .container-form {
-        width: 800px;
+        width: 600px;
         margin: auto;
     }
 
@@ -21,9 +21,9 @@
     <x-slot name="header">
         <div class="columns-2">
             <h2 class="font-semibold text-xl text-white leading-tight">
-                {{ __('Proceso de registro') }}
+                {{ __('Actualizar datos personales') }}
             </h2>
-            <h2 class="font-bold text-xl text-red-600 leading-tight text-right">
+            <h2 class="justify-self-end font-sans text-end font-extrabold text-2xl text-yellow-400 leading-tight">
                 {{ __(auth()->user()->rol) }}
             </h2>
         </div>
@@ -33,6 +33,8 @@
         <div class="container-form">
             @component('components.form-editar-semillerista')
             @slot('semillerista', $semillerista)
+            @slot('semilleros', $semilleros)
+            @slot('programas', $programas)
             @endcomponent
         </div>
     </div>

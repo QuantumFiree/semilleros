@@ -1,6 +1,5 @@
 <x-applayout>
     <style>
-        /* Estilos CSS personalizados aquí */
         .form-field {
             margin-bottom: 10px;
         }
@@ -51,6 +50,57 @@
             color: #444;
             margin-bottom: 10px; 
         }
+
+        .participant-container {
+        position: relative;
+        }
+
+        .add-participant-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 40px;
+            background-color: #f2f2f2;
+            border: none;
+            cursor: pointer;
+        }
+
+        .add-participant-btn {
+        background-color: #007BFF; /* Cambia el color a azul */
+        color: white; /* Color del icono */
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0; 
+        margin-left: -25px; 
+        border-radius: 0 4px 4px 0;
+        position: relative; 
+        right: auto; 
+        margin-left: 0; 
+        margin-top: 5px; 
+       
+    }
+
+    .form-field input[type="text"],
+    .form-field select,
+    .form-field input[type="date"],
+    .form-field input[type="file"] {
+        border: 1px solid #ccc;
+        border-radius: 6px; /* Ajusta el radio del borde */
+        padding: 10px;
+        width: 100%;
+        font-size: 14px;
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    
 
 
     </style>
@@ -118,12 +168,12 @@
 
                 <div>
                     <x-label for="propuesta" value="{{ __('Propuesta') }}" />
-                    <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="text" name="propuesta"  />
+                    <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="file" name="propuesta" />   
                 </div>
 
                 <div>
                     <x-label for="proyecto_final" value="{{ __('Proyecto Final') }}" />
-                    <x-input id="proyecto_final" class="block mt-1 w-full border border-green-500" type="text" name="proyecto_final"  />
+                    <x-input id="proyecto_final" class="block mt-1 w-full border border-green-500" type="file" name="proyecto_final" />
                 </div>
 
             </div>
@@ -133,6 +183,14 @@
                     {{ __('Registrar') }}
                 </button>
             </div>
+
+            <div class="flex items-center justify-end mt-4">
+                <a href="{{ route('participantes_proyecto.store') }}" class="btn-register">
+                    {{ __('Agregar participantes a un proyecto') }}
+                </a>
+            </div>
         </form>
+
+       
     </x-authentication-card>
 </x-app-layout>
