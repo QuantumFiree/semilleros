@@ -5,21 +5,21 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh; 
+        height: 100vh;
     }
 
     .container-form {
-        width: 800px; 
+        width: 800px;
         margin-top: 30px;
     }
 
     .input-custom {
         width: 100%;
-        padding: 8px; 
+        padding: 8px;
         border: 1px solid #ccc;
         border-radius: 5px;
         font-size: 16px;
-        margin-bottom: 5px; 
+        margin-bottom: 5px;
     }
 
     .button-custom {
@@ -30,7 +30,7 @@
     .font-semibold.text-xl {
         font-size: 24px;
         margin-bottom: 20px;
-        text-align: center; 
+        text-align: center;
     }
 
     .two-columns-grid {
@@ -40,7 +40,7 @@
     }
 
     .text-red-600 {
-        margin-left: auto; 
+        margin-left: auto;
     }
 
     .table {
@@ -102,8 +102,9 @@
                                     <th class="p-3">Nombre</th>
                                     <th class="p-3">Codigo</th>
                                     <th class="p-3">Estado</th>
-                                    <th class="p-3">Presentación</th>
-                                    <th class="p-3 text-left">Acciones</th>
+                                    <th class="p-3">Presentacion</th>
+                                    <th class="p-3">Participantes</th>
+                                    <th class="p-3">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,8 +122,36 @@
                                             </a>
                                         @endif
                                     </td>
+                                    <td class="p-3 text-center" >
+                                    @php
+                                        $proyectosData = [];
+
+                                        foreach ($proyectosConParticipantes as $proyectoConParticipantes) {
+                                            $proyectoData = [];
+
+                                            if ($proyectoConParticipantes['proyecto']->cod_proyecto == $proyecto->cod_proyecto) {
+                                                $proyectoData['titulo'] = $proyectoConParticipantes['proyecto']->titulo;
+                                                $participantes = [];
+
+                                                foreach ($proyectoConParticipantes['participantes'] as $participante) {
+                                                    $participantes[] = $participante->nombres;
+                                                }
+
+                                                $proyectoData['participantes'] = $participantes;
+                                            }
+
+                                            $proyectosData[$proyecto->cod_proyecto] = $proyectoData;
+                                        }
+                                    @endphp
+                                        <a href="#" class="text-blue-500 hover:text-blue-700 view-participantes"
+                                        data-proyecto-data="{{ json_encode($proyectosData) }}"
+                                        data-cod-proyecto = "{{ $proyecto->cod_proyecto }}"
+                                        >
+                                            Ver participantes
+                                        </a>
+                                    </td>
                                     <td class="p-3 text-center">
-                                  
+
                                         <a href="#" class="text-gray-400 hover:text-gray-100 mr-2 view-proyecto"
                                                 data-cod-proyecto="{{ $proyecto->cod_proyecto }}"
                                                 data-titulo="{{ $proyecto->titulo }}"
@@ -132,7 +161,7 @@
                                                 data-fecha-inicio="{{ $proyecto->fecha_inicio}}"
                                                 data-fecha-finalizacion="{{ $proyecto->fecha_finalizacion}}"
                                                 data-propuesta="{{ $proyecto->propuesta}}"
-                                                data-proyecto-final="{{ $proyecto->proyecto_final }}" 
+                                                data-proyecto-final="{{ $proyecto->proyecto_final }}"
                                                 >
                                                     <i class="far fa-eye"></i>
                                         </a>
@@ -173,12 +202,12 @@
                                 <td class="text-white"><strong>Título:</strong></td>
                                 <td class="text-white" id="proyecto-titulo"></td>
                             </tr>
-                        
+
                             <tr>
                                 <td class="text-white"><strong>Código del semillero:</strong></td>
                                 <td class="text-white" id="proyecto-cod-semillero"></td>
                             </tr>
-                            
+
                             <tr>
                                 <td class="text-white"><strong>Tipo:</strong></td>
                                 <td class="text-white" id="proyecto-tipo-proyecto"></td>
@@ -195,7 +224,7 @@
                                 <td class="text-white"><strong>Fecha de finalización:</strong></td>
                                 <td class="text-white"  id="proyecto-fecha-finalizacion"></td>
                             </tr>
-                            
+
                             <tr>
                                 <td class="text-white"><strong>Propuesta:</strong></td>
                                 <td class="text-white" id="proyecto-propuesta"></td>
@@ -212,9 +241,19 @@
         </div>
     </div>
 
+    <div id="participantes-modal-container" class="hidden fixed inset-0 overflow-y-auto flex justify-center items-center z-50 bg-gray-900 bg-opacity-50">
+        <div class="modal-content-wrapper bg-gray-700 text-white p-4 rounded z-10 relative">
+            <ul id="contenido-modal">
+            </ul>
+            <div class="flex justify-center mt-4">
+                <button id="close-participantes-modal" class="px-4 py-2 bg-blue-500 text-black rounded">Cerrar</button>
+            </div>
+        </div>
+    </div>
     <div class="flex justify-center mt-4">
         <a href="{{ route('registro.proyecto') }}" class="px-4 py-2 bg-green-500 text-black rounded">Registrar otro Proyecto</a>
     </div>
+
     <script>
         // Función para abrir el modal cuando se hace clic en el botón del ojo
         function openModal(proyecto) {
@@ -227,8 +266,23 @@
             document.getElementById('proyecto-fecha-finalizacion').innerText = proyecto.fecha_finalizacion;
             document.getElementById('proyecto-propuesta').innerText = proyecto.propuesta;
             document.getElementById('proyecto-proyecto-final').innerText = proyecto.proyecto_final;
-            
+
             document.getElementById('modal-container').classList.remove('hidden');
+        }
+
+        function openParticipantesModal(participantes) {
+            if(participantes){
+                var modalContent = `
+                <h2 class="font-semibold text-xl mb-4 text-center">Participantes</h2>
+                <ul>
+                    ${participantes.map(participante => `<li class="text-xl mb-4 text-center">${participante}</li>`).join('')}
+                </ul>`;
+            }else{
+                var modalContent = `
+                <h2 class="font-semibold text-xl mb-4 text-center">No hay participantes en este proyecto</h2>`;
+            }
+            document.getElementById('contenido-modal').innerHTML  = modalContent
+            document.getElementById('participantes-modal-container').classList.remove('hidden');
         }
 
         // Función para cerrar el modal cuando se hace clic en el botón de cerrar
@@ -236,15 +290,23 @@
         document.getElementById('modal-container').classList.add('hidden');
         }
 
+        function closeParticipantesModal() {
+            document.getElementById('participantes-modal-container').classList.add('hidden');
+        }
+
         // Escuchar el clic en el botón de cerrar y cerrar el modal
         document.getElementById('close-modal').addEventListener('click', function() {
             closeModal();
         });
 
+        document.getElementById('close-participantes-modal').addEventListener('click', function() {
+            closeParticipantesModal();
+        });
+
         // Escuchar el clic en el botón del ojo y abrir el modal
         document.querySelectorAll('.view-proyecto').forEach(function(button) {
             button.addEventListener('click', function() {
-        
+
                 var proyectoCodigo = button.getAttribute('data-cod-proyecto');
                 var proyectoTitulo= button.getAttribute('data-titulo');
                 var proyectoCodSemillero = button.getAttribute('data-cod-semillero');
@@ -254,8 +316,8 @@
                 var proyectoFechaFin = button.getAttribute('data-fecha-finalizacion');
                 var proyectoPropuesta = button.getAttribute('data-propuesta');
                 var proyectoProyectoFinal = button.getAttribute('data-proyecto-final');
-                
-              
+
+
                 var proyectoData = {
                     cod_proyecto: proyectoCodigo,
                     titulo: proyectoTitulo,
@@ -268,6 +330,24 @@
                     proyecto_final:proyectoProyectoFinal,
                 };
                 openModal(proyectoData);
+            });
+        });
+
+        document.querySelectorAll('.view-participantes').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var proyectosData = button.getAttribute('data-proyecto-data');
+                var codProyecto = button.getAttribute('data-cod-proyecto');
+                var participantes
+
+                if (proyectosData && codProyecto) {
+                    proyectosData = JSON.parse(proyectosData);
+
+                    if (proyectosData.hasOwnProperty(codProyecto)) {
+                        var proyectoData = proyectosData[codProyecto];
+                        participantes = proyectoData.participantes;
+                    }
+                }
+                openParticipantesModal(participantes);
             });
         });
 

@@ -12,7 +12,8 @@ class SemilleristaModel extends Model
         'direccion',
         'telefono',
         'genero',
-        'reporte_matricula'
+        'reporte_matricula',
+        'nombres'
         // Agrega otros campos que necesitas actualizar aquí...
     ];
     protected $table = 'semillerista';

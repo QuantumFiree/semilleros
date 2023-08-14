@@ -13,7 +13,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 8px;
-           
+
         }
         .container-auth {
             padding: 16px;
@@ -42,8 +42,8 @@
         }
         .center-title {
             text-align: center;
-            background-color: #1f2937; 
-            padding: 10px 0; 
+            background-color: #1f2937;
+            padding: 10px 0;
         }
         .title-border {
             border: 2px solid white;
@@ -206,6 +206,11 @@
                     <x-label for="archivo" value="{{ __('Archivo (File)') }}" />
                     <x-input id="archivo" class="form-input" type="file" name="archivo" :value="old('archivo')" required accept="file/*" />
                 </div>
+
+                <div>
+                    <x-label for="archivo_resolucion" value="{{ __('Archivo (File)') }}" />
+                    <x-input id="archivo_resolucion" class="form-input" type="file" name="archivo_resolucion" :value="old('archivo')" required accept="file/*" />
+                </div>
             </div>
 
             <div class="flex items-center justify-center mt-4">
@@ -216,3 +221,4 @@
         </form>
     </x-authentication-card>
 </x-app-layout>
+

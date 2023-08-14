@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('participantes_presentacion_proyecto', function (Blueprint $table) {
             $table->unsignedInteger('cod_presentacion_proyecto')->nullable(false);
             $table->unsignedInteger('cod_semillerista')->nullable(false);
-        
-            $table->foreign('cod_presentacion_proyecto')->references('cod_presentacion_proyecto')->on('presentacion_proyecto');
-            $table->foreign('cod_semillerista')->references('cod_semillerista')->on('semillerista');
+
+            $table->foreign('cod_presentacion_proyecto', 'fk_cod_presentacion_proyecto')->references('cod_presentacion_proyecto')->on('presentacion_proyecto');
+            $table->foreign('cod_semillerista', 'fk_cod_semillerista')->references('cod_semillerista')->on('semillerista');
             $table->timestamps();
         });
-        
+
     }
 
     /**

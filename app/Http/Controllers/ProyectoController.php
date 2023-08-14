@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Proyecto;
+use App\Models\ParticipantesPresentacionProyecto;
+use App\Models\PresentacionProyecto;
+use App\Models\ParticipantesProyecto;
+use App\Models\SemilleristaModel;
 
 class ProyectoController extends Controller
 {
@@ -25,7 +29,7 @@ class ProyectoController extends Controller
                 'propuesta' => 'nullable|file|max:2048',
                 'proyecto_final' => 'nullable|file|max:2048',
             ]);
-        
+
             $proyecto = Proyecto::create([
                 'titulo' => $request->input('titulo'),
                 'cod_semillero' => $request->input('cod_semillero'),
@@ -36,17 +40,34 @@ class ProyectoController extends Controller
                 'propuesta'=> $request->file('propuesta')->store('archivos', 'public'),
                 'proyecto_final'=> $request->file('proyecto_final')->store('archivos', 'public'),
             ]);
-        
+
             $proyecto->save();
             return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido registrado exitosamente.');
 
-            
+
         }
 
     public function listado()
         {
             $proyectos = Proyecto::all();
-            return view('semilleros.proyectos.proyectos_listado', compact('proyectos'));
+            $participantes_presentacion_proyecto = ParticipantesPresentacionProyecto::all();
+
+            $proyectosConParticipantes = [];
+
+            foreach ($participantes_presentacion_proyecto as $participante_presentacion) {
+                $proyecto_con_presentacion = Proyecto::find($participante_presentacion->presentacionProyecto->cod_proyecto);
+                $semillerista = SemilleristaModel::find($participante_presentacion->cod_semillerista);
+
+                if (!isset($proyectosConParticipantes[$proyecto_con_presentacion->cod_proyecto])) {
+                    $proyectosConParticipantes[$proyecto_con_presentacion->cod_proyecto] = [
+                        'proyecto' => $proyecto_con_presentacion,
+                        'participantes' => [],
+                    ];
+                }
+
+                $proyectosConParticipantes[$proyecto_con_presentacion->cod_proyecto]['participantes'][] = $semillerista;
+            }
+            return view('semilleros.proyectos.proyectos_listado', compact('proyectos', 'proyectosConParticipantes'));
         }
 
     public function editar($cod_proyecto)
@@ -70,10 +91,10 @@ class ProyectoController extends Controller
             $proyecto->fecha_inicio = $request->input('fecha_inicio');
             $proyecto->fecha_finalizacion = $request->input('fecha_finalizacion');
             $proyecto->propuesta = $request->file('propuesta')->store('archivos', 'public');
-            $proyecto->proyecto_final = $request->file('proyecto_final')->store('archivos', 'public');              
+            $proyecto->proyecto_final = $request->file('proyecto_final')->store('archivos', 'public');
             $proyecto->save();
             return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido actualizado exitosamente.');
-            
+
         }
 
     public function eliminar($cod_proyecto)

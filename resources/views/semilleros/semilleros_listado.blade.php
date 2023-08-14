@@ -1,20 +1,20 @@
 <style>
-  
+
     .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh; 
+        height: 100vh;
     }
 
     .container-form {
-        width: 800px; 
+        width: 800px;
         margin-top: 30px;
     }
-    
+
     .input-custom {
         width: 100%;
-        padding: 8px; 
+        padding: 8px;
         border: 1px solid #ccc;
         border-radius: 5px;
         font-size: 16px;
@@ -29,7 +29,7 @@
     .font-semibold.text-xl {
         font-size: 24px;
         margin-bottom: 20px;
-        text-align: center; 
+        text-align: center;
     }
 
     .two-columns-grid {
@@ -39,7 +39,7 @@
     }
 
     .text-red-600 {
-        margin-left: auto; 
+        margin-left: auto;
     }
 
     .table {
@@ -72,7 +72,7 @@
         height: 480;
     }
 
-    
+
 
 
 </style>
@@ -105,7 +105,7 @@
                                     <th class="p-3">Archivo</th>
                                     <th class="p-3">Coordinador </th>
                                     <th class="p-3 text-left">Acciones</th>
-                                    
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -125,9 +125,9 @@
                                             N/A
                                         @endif
                                     </td>
-                            
+
                                     <td class="p-3 text-center">
-                                  
+
                                         <a href="#" class="text-gray-400 hover:text-gray-100 mr-2 view-semillero"
                                                 data-nombre="{{ $semillero->nombre }}"
                                                 data-cod-semillero="{{ $semillero->cod_semillero }}"
@@ -161,8 +161,8 @@
                                             @method('DELETE')
                                         </form>
 
-                                        
-       
+
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -177,7 +177,9 @@
     <div id="modal-container" class="hidden fixed inset-0 overflow-y-auto flex justify-center items-center z-50 bg-gray-900 bg-opacity-50">
         <div class="modal-content-wrapper bg-gray-700 text-white p-4 rounded z-10 relative">
             <h2 class="font-semibold text-xl mb-4 text-center">Detalles del Semillero</h2>
-            <img id="semillero-logo" class="h-24 w-24 rounded-full object-cover" src="{{ asset('storage/' . $semillero->logo) }}" alt="{{ $semillero->nombre}}" />
+            @isset($semillero)
+                <img id="semillero-logo" class="h-24 w-24 rounded-full object-cover" src="{{ asset('storage/' . $semillero->logo) }}" alt="{{ $semillero->nombre}}" />
+            @endisset
                     <table class="table-auto w-full">
                         <tbody>
                             <tr>
@@ -257,14 +259,14 @@
             document.getElementById('semillero-presentacion').innerText = semillero.presentacion;
             document.getElementById('semillero-fecha-creacion').innerText = semillero.fecha_creacion;
             document.getElementById('semillero-numero-resolucion').innerText = semillero.numero_resolucion;
-            document.getElementById('semillero-logo').src = "{{ asset('storage/logos') }}/" + semillero.logo;
+            // document.getElementById('semillero-logo').src = "{{ asset('storage/logos') }}/" + semillero.logo;
             document.getElementById('semillero-logo').style.verticalAlign = 'middle';
             document.getElementById('semillero-logo').alt = 'Logo del semillero';
             document.getElementById('semillero-cod-coordinador').innerText = semillero.cod_coordinador;
             document.getElementById('modal-container').classList.remove('hidden');
         }
 
-    
+
         function closeModal() {
         document.getElementById('modal-container').classList.add('hidden');
         }
@@ -273,10 +275,10 @@
             closeModal();
         });
 
-    
+
         document.querySelectorAll('.view-semillero').forEach(function(button) {
             button.addEventListener('click', function() {
-                
+
                 var semilleroNombre = button.getAttribute('data-nombre');
                 var semilleroCodigo = button.getAttribute('data-cod-semillero');
                 var semilleroCorreo = button.getAttribute('data-correo');
@@ -291,7 +293,7 @@
                 var semilleroNumerodeResolucion = button.getAttribute('data-numero_resolucion');
                 var semilleroLogo = button.getAttribute('data-logo');
                 var semilleroCodigoCoordinador = button.getAttribute('data-cod_coordinador');
-              
+
                 var semilleroData = {
                     nombre: semilleroNombre,
                     cod_semillero: semilleroCodigo,
@@ -313,6 +315,6 @@
         });
 
     </script>
-   
+
 
 </x-app-layout>
