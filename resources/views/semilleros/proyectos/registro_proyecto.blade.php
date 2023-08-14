@@ -1,8 +1,7 @@
-<x-guest-layout>
+<x-applayout>
     <style>
-        /* Estilos CSS personalizados aquí */
         .form-field {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         .form-field label {
@@ -12,23 +11,14 @@
             color: #333;
         }
 
-        .form-field input[type="text"],
-        .form-field input[type="date"],
-        .form-field input[type="email"],
-        .form-field input[type="file"] {
+        .form-field select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        .form-field textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 10px;
         }
 
         .btn-register {
@@ -45,47 +35,117 @@
             background-color: #2FAE85;
         }
 
+        .columns {
+        display: grid;
+        gap: 20px;
+        margin-top: 20px;
+        }
+
+        .columns select {
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 10px; 
+        }
+
+        .participant-container {
+        position: relative;
+        }
+
+        .add-participant-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 40px;
+            background-color: #f2f2f2;
+            border: none;
+            cursor: pointer;
+        }
+
+        .add-participant-btn {
+        background-color: #007BFF; /* Cambia el color a azul */
+        color: white; /* Color del icono */
+        font-size: 20px;
+        width: 40px;
+        height: 40px;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0; 
+        margin-left: -25px; 
+        border-radius: 0 4px 4px 0;
+        position: relative; 
+        right: auto; 
+        margin-left: 0; 
+        margin-top: 5px; 
+       
+    }
+
+    .form-field input[type="text"],
+    .form-field select,
+    .form-field input[type="date"],
+    .form-field input[type="file"] {
+        border: 1px solid #ccc;
+        border-radius: 6px; /* Ajusta el radio del borde */
+        padding: 10px;
+        width: 100%;
+        font-size: 14px;
+        color: #444;
+        margin-bottom: 10px;
+    }
+
+    
+
+
     </style>
+
+    <x-slot name="header">
+        <div class="columns-2">
+            <h2 class="font-semibold text-xl text-blue-800 text-center leading-tight">
+                {{ __('Registro de Proyectos') }}
+            </h2>
+            <h2 class="font-bold text-xl text-green-400 leading-tight text-right">
+                {{ __(auth()->user()->rol) }}
+            </h2>
+        </div>
+    </x-slot>
 
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
         </x-slot>
-
-        <x-validation-errors class="mb-4" />
 
         <form method="POST" action="{{ route('registro.proyecto') }}" enctype="multipart/form-data">
             @csrf
+
             <div class="three-columns-grid">
-
                 <div class="column">
-
-                    <div class="form-field">
-                        <label for="titulo">{{ __('Título del Proyecto') }}</label>
-                        <input id="titulo" type="text" name="titulo" :value="old('titulo')" required />
-                    </div>
-
-                    <div class="form-field">
-                        <label for="cod_semillero">{{ __('Código del Semillero') }}</label>
-                        <input id="cod_semillero" type="text" name="cod_semillero" :value="old('cod_semillero')" required />
-                    </div>
-
-                    <div class="column">
-                    <div class="form-field">
-                        <label for="tipo">{{ __('Tipo de Proyecto') }}</label>
-                        <select id="tipo_proyecto" name="tipo_proyecto" required>
-                            <option value="Proyecto de investigación">Proyecto de investigación</option>
-                            <option value="Proyecto de innovación y desarrollo">Proyecto de innovación y desarrollo</option>
-                            <option value="Proyecto de Emprendimiento">Proyecto de Emprendimiento</option>
-    
-                        </select>
-                    </div>
+                
+                <div>
+                    <x-label for="titulo" value="{{ __('Título del Proyecto') }}" />
+                    <x-input id="titulo" class="block mt-1 w-full border border-green-500" type="text" name="titulo"  required autofocus />
                 </div>
 
+                <div>
+                    <x-label for="cod_semillero" value="{{ __('Código del Semillero') }}" />
+                    <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="text" name="cod_semillero" required />
                 </div>
 
-                <div class="column">
-                   
+                <div class="form-field">
+                    <label for="tipo">{{ __('Tipo de Proyecto') }}</label>
+                    <select id="tipo_proyecto" name="tipo_proyecto" required>
+                        <option value="Proyecto de investigación">Proyecto de investigación</option>
+                        <option value="Proyecto de innovación y desarrollo">Proyecto de innovación y desarrollo</option>
+                        <option value="Proyecto de Emprendimiento">Proyecto de Emprendimiento</option>
+
+                    </select>
+                </div>
+
                 <div class="form-field">
                     <label for="estado">{{ __('Estado del Proyecto') }}</label>
                     <select id="estado" name="estado" required>
@@ -96,25 +156,24 @@
                     </select>
                 </div>
 
-                    <div class="form-field">
-                        <label for="fecha_inicio">{{ __('Fecha de Inicio') }}</label>
-                        <input id="fecha_inicio" type="date" name="fecha_inicio" :value="old('fecha_inicio')" />
-                    </div>
-
-                    <div class="form-field">
-                        <label for="fecha_finalizacion">{{ __('Fecha de Finalización') }}</label>
-                        <input id="fecha_finalizacion" type="date" name="fecha_finalizacion" :value="old('fecha_finalizacion')" />
-                    </div>
-
-                    <div class="form-field">
-                        <label for="propuesta">{{ __('Propuesta') }}</label>
-                        <input id="propuesta" type="text" name="propuesta" :value="old('propuesta')" />
-                    </div>
-
+                <div>
+                    <x-label for="fecha_inicio" value="{{ __('Fecha de Inicio') }}" />
+                    <x-input id="fecha_inicio" class="block mt-1 w-full border border-green-500" type="date" name="fecha_inicio"  />
                 </div>
 
-                <div class="column">
-                    
+                <div>
+                    <x-label for="fecha_finalizacion" value="{{ __('Fecha de Finalización') }}" />
+                    <x-input id="fecha_finalizacion" class="block mt-1 w-full border border-green-500" type="date" name="fecha_finalizacion"  />
+                </div>
+
+                <div>
+                    <x-label for="propuesta" value="{{ __('Propuesta') }}" />
+                    <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="file" name="propuesta" />   
+                </div>
+
+                <div>
+                    <x-label for="proyecto_final" value="{{ __('Proyecto Final') }}" />
+                    <x-input id="proyecto_final" class="block mt-1 w-full border border-green-500" type="file" name="proyecto_final" />
                 </div>
 
             </div>
@@ -124,6 +183,14 @@
                     {{ __('Registrar') }}
                 </button>
             </div>
+
+            <div class="flex items-center justify-end mt-4">
+                <a href="{{ route('participantes_proyecto.store') }}" class="btn-register">
+                    {{ __('Agregar participantes a un proyecto') }}
+                </a>
+            </div>
         </form>
+
+       
     </x-authentication-card>
-</x-guest-layout>
+</x-app-layout>

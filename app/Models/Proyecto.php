@@ -25,8 +25,9 @@ class Proyecto extends Model
     protected $primaryKey = 'cod_proyecto';
     public $timestamps = false;
 
-    public function coordinador()
+
+    public function semillero()
     {
-        return $this->belongsTo(Semillero::class, 'cod_semillero', 'cod_semillero');
+        return $this->belongsTo(Semillero::class, 'cod_semillero');
     }
 }

@@ -28,7 +28,8 @@ return new class extends Migration
             $table->integer('numero_resolucion')->nullable();
             $table->string('logo')->nullable();
             $table->unsignedInteger('cod_coordinador')->nullable(false);
-        
+            $table->string('archivo')->nullable();
+            $table->string('archivo_resolucion')->nullable();
             $table->foreign('cod_coordinador')->references('cod_coordinador')->on('coordinador');
             $table->timestamps();
         });

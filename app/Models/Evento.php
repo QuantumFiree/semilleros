@@ -22,10 +22,16 @@ class Evento extends Model
         'modalidad',
         'clasificacion',
         'observaciones',
+        'cod_semillero',
 
     ];
 
     protected $table = 'evento';
     protected $primaryKey = 'cod_evento';
     public $timestamps = false;
+
+    public function semillero()
+    {
+        return $this->belongsTo(Semillero::class, 'cod_semillero');
+    }
 }

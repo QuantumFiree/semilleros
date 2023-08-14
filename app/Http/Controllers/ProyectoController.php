@@ -22,8 +22,8 @@ class ProyectoController extends Controller
                 'estado' => 'required|in:Propuesta,En Curso,Inactivo,Terminado',
                 'fecha_inicio' => 'nullable|date',
                 'fecha_finalizacion' => 'nullable|date',
-                'propuesta' => 'nullable|string',
-                'proyecto_final'=> 'nullable|string',
+                'propuesta' => 'nullable|file|max:2048',
+                'proyecto_final' => 'nullable|file|max:2048',
             ]);
         
             $proyecto = Proyecto::create([
@@ -33,8 +33,8 @@ class ProyectoController extends Controller
                 'estado' => $request->input('estado'),
                 'fecha_inicio' => $request->input('fecha_inicio'),
                 'fecha_finalizacion' => $request->input('fecha_finalizacion'),
-                'propuesta' => $request->input('propuesta'),
-                'proyecto_final'=> $request->input('proyecto_final'),
+                'propuesta'=> $request->file('propuesta')->store('archivos', 'public'),
+                'proyecto_final'=> $request->file('proyecto_final')->store('archivos', 'public'),
             ]);
         
             $proyecto->save();
@@ -69,8 +69,8 @@ class ProyectoController extends Controller
             $proyecto->estado = $request->input('estado');
             $proyecto->fecha_inicio = $request->input('fecha_inicio');
             $proyecto->fecha_finalizacion = $request->input('fecha_finalizacion');
-            $proyecto->propuesta = $request->input('propuesta');
-            $proyecto->proyecto_final = $request->input('proyecto_final');
+            $proyecto->propuesta = $request->file('propuesta')->store('archivos', 'public');
+            $proyecto->proyecto_final = $request->file('proyecto_final')->store('archivos', 'public');              
             $proyecto->save();
             return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido actualizado exitosamente.');
             
