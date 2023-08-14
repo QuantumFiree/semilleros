@@ -37,6 +37,8 @@
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -47,14 +49,31 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('imagenes/carrusel2.jpg')}}" height="440" class="d-block w-100" alt="...">
+                        <img src="{{asset('imagenes/carrusel2.png')}}" height="440" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5></h5>
+                            <p>Sede Pasto</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{asset('imagenes/carrusel3.jpeg')}}" height="440" class="d-block w-100" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                            <div style="background-color: rgba(41,41,41,0.5) ; color: #efefef ; ">
+                                <h5>Semillero de Investigación-Ingeniería de Sistemas</h5> 
+                            </div>
+                            <b><font color="black">Sede Tumaco</font></b> 
+                            
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="{{asset('imagenes/carrusel4.jpg')}}" height="440" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5> </h5>
                             <p> </p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="{{asset('imagenes/carrusel3.jpg')}}" height="440" class="d-block w-100" alt="...">
+                        <img src="{{asset('imagenes/carrusel5.jfif')}}" height="440" class="d-block w-100" alt="...">
                         <div class="carousel-caption d-none d-md-block">
                             <h5> </h5>
                             <p> </p>
@@ -72,13 +91,15 @@
             </div>
 
             <div class="card-body">
-                <h2 class="card-title">Semilleros</h2>
-                <p class="card-text">El semillero de investigación Green Clouds nace a comienzos del año 2020 como producto de las 
-                    iniciativas y necesidades de formación en investigación de los estudiantes pertenecientes al programa de Ingeniería de Sistemas 
-                    de la Universidad de Nariño en la sede Ipiales. Su nombre hace alusión a la ciudad de las “Nubes verdes” de la misma forma que se 
-                    asocia al término “Cloud”, el cual dentro del campo computacional tiene un significado de gran valor relacionado con la interacción 
-                    entre individuos a través del uso de tecnologías de la Información y Comunicación y la conectividad a Internet.</p>
-                                    <h5>¡TANTUM POSSUMUS QUANTUM SCIMUS!</h5>
+                <h2 class="card-title">SEMILLEROS</h2> 
+                <p class="card-text">El programa de Ingeniería de Sistemas de la Universidad de Nariño cuenta actualmente con tres semilleros de investigación en el área de las Ciencias de Computación.</p>
+                <h5>Willa Muru</h5>
+                <p class="card-text">Semillero de Investigación en la sede Pasto. Coordinador Mg. Paola Arturo Delgado.</p>
+                <h5>TecnoPazifico</h5>
+                <p class="card-text">Semillero de Investigación en la sede Tumaco. Coordinador Ing. Carlos Aurelio Rodríguez Molina.</p>
+                <h5>Green Clouds</h5>
+                <p class="card-text">Semillero de Investigación en la sede Ipiales. Coordinador Ing. Sandra Marcela Guerrero Calvache.</p>
+                <br><h5 style="text-align: right">¡TANTUM POSSUMUS QUANTUM SCIMUS!</h5>
             </div>
         </div>
     </div>
