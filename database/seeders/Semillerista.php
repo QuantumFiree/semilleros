@@ -33,7 +33,7 @@ class Semillerista extends Seeder
                 'cod_estudiantil'=>'215034302',
                 'semestre'=>'9',
                 'fecha_vinculacion'=>'2023-08-12',
-                'cod_semillero'=>'1000',
+                'cod_semillero'=>'1001',
                 'reporte_matricula'=>'matriculado'          
             ]
 

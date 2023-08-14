@@ -22,7 +22,7 @@ class ParticipantesEvento extends Seeder
                
                 'cod_evento'=>'3100',
                 'identificacion'=>'1085326103',
-                'correo'=>'felipmoran3@gmail.com',     
+                'correo'=>'arteagafelipe@gmail.com',     
             ],
 
             [
