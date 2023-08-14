@@ -11,11 +11,6 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('eventos.listado') }}" :active="request()->routeIs('eventos.listado')">
-                        {{ __('Eventos') }}
-                    </x-nav-link>
-                </div>
                 @if(auth()->user()->rol == 'admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="{{ route('listadoSemilleristas') }}" :active="request()->routeIs('listadoSemilleristas')">
@@ -27,16 +22,25 @@
                         {{ __('Coordinadores') }}
                     </x-nav-link>
                 </div>
-                @else
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" >
-                        {{ __('Pendiente') }}
-                    </x-nav-link>
-                </div>
                 @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" >
-                        {{ __('Pendiente') }}
+                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('semilleros.listado') }}" :active="request()->routeIs('semilleros.listado')">
+                        {{ __('Semilleros') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('proyectos.listado') }}" :active="request()->routeIs('proyectos.listado')">
+                        {{ __('Proyectos') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('eventos.listado') }}" :active="request()->routeIs('eventos.listado')">
+                        {{ __('Eventos') }}
                     </x-nav-link>
                 </div>
             </div>

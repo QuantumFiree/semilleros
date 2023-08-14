@@ -108,6 +108,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @php
+                                $proyectosData = [];
+                                $proyectoData = [];
+                                @endphp
                                 @foreach($proyectos as $proyecto)
                                 <tr class="bg-gray-700">
                                     <td class="p-3 text-center">{{ $proyecto->titulo}}</td>
@@ -124,10 +128,7 @@
                                     </td>
                                     <td class="p-3 text-center" >
                                     @php
-                                        $proyectosData = [];
-
                                         foreach ($proyectosConParticipantes as $proyectoConParticipantes) {
-                                            $proyectoData = [];
 
                                             if ($proyectoConParticipantes['proyecto']->cod_proyecto == $proyecto->cod_proyecto) {
                                                 $proyectoData['titulo'] = $proyectoConParticipantes['proyecto']->titulo;
