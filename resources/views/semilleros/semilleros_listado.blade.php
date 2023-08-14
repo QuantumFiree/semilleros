@@ -146,13 +146,9 @@
                                                 >
                                                     <i class="far fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('editar_semillero', ['id' => $semillero->cod_semillero]) }}" class="text-blue-500 hover:text-blue-700 mx-2" onclick="event.preventDefault(); document.getElementById('editar-form-{{ $semillero->cod_semillero }}').submit();">
+                                        <a href="{{ route('editar_semillero', ['id' => $semillero->cod_semillero]) }}" class="text-blue-500 hover:text-blue-700 mx-2">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <form id="editar-form-{{ $semillero->cod_semillero }}" action="{{ route('editar_semillero', ['id' => $semillero->cod_semillero]) }}" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('PUT')
-                                        </form>
                                         <a href="{{ route('eliminar_semillero', ['id' => $semillero->cod_semillero]) }}" class="text-red-500 hover:text-red-700 ml-2" onclick="event.preventDefault(); document.getElementById('eliminar-form-{{ $semillero->cod_semillero }}').submit();">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
@@ -178,7 +174,7 @@
         <div class="modal-content-wrapper bg-gray-700 text-white p-4 rounded z-10 relative">
             <h2 class="font-semibold text-xl mb-4 text-center">Detalles del Semillero</h2>
             @isset($semillero)
-                <img id="semillero-logo" class="h-24 w-24 rounded-full object-cover" src="{{ asset('storage/' . $semillero->logo) }}" alt="{{ $semillero->nombre}}" />
+                <img id="semillero-logo" class="mx-auto d-block h-24 w-24 rounded-full object-cover" src="{{ asset('storage/' . $semillero->logo) }}" alt="{{ $semillero->nombre }}" />
             @endisset
                     <table class="table-auto w-full">
                         <tbody>

@@ -165,13 +165,9 @@
                                                 >
                                                     <i class="far fa-eye"></i>
                                         </a>
-                                        <a href="{{ route('editar_proyecto', [$proyecto->cod_proyecto]) }}" class="text-blue-500 hover:text-blue-700 mx-2" onclick="event.preventDefault(); document.getElementById('editar-form-{{ $proyecto->cod_proyecto }}').submit();">
+                                        <a href="{{ route('editar_proyecto', [$proyecto->cod_proyecto]) }}" class="text-blue-500 hover:text-blue-700 mx-2">
                                             <i class="far fa-edit"></i>
                                         </a>
-                                        <form id="editar-form-{{ $proyecto->cod_proyecto }}" action="{{ route('editar_proyecto', [$proyecto->cod_proyecto]) }}" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('PUT')
-                                        </form>
                                         <a href="{{ route('eliminar_proyecto', [$proyecto->cod_proyecto]) }}" class="text-red-500 hover:text-red-700 ml-2" onclick="event.preventDefault(); document.getElementById('eliminar-form-{{ $proyecto->cod_proyecto}}').submit();">
                                             <i class="far fa-trash-alt"></i>
                                         </a>

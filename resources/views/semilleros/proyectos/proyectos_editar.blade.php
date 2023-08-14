@@ -1,8 +1,8 @@
 
 <x-app-layout>
-   
+
 <style>
- 
+
         .form-field {
             margin-bottom: 10px;
         }
@@ -47,13 +47,13 @@
 
 
         .columns-grid select {
-            width: 100%; 
-            padding: 10px; 
+            width: 100%;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
             color: #444;
-            margin-bottom: 10px; 
+            margin-bottom: 10px;
         }
 
 
@@ -80,7 +80,7 @@
             @csrf
             <div class="three-columns-grid">
                 <div class="column">
-                
+
                 <div>
                     <x-label for="titulo" value="{{ __('Título del Proyecto') }}" />
                     <x-input id="titulo" class="block mt-1 w-full border border-green-500" type="text" name="titulo"  required autofocus />
@@ -123,12 +123,12 @@
 
                 <div>
                     <x-label for="propuesta" value="{{ __('Propuesta') }}" />
-                    <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="text" name="propuesta"  />
+                    <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="file" name="propuesta" />
                 </div>
 
                 <div>
                     <x-label for="proyecto_final" value="{{ __('Proyecto Final') }}" />
-                    <x-input id="proyecto_final" class="block mt-1 w-full border border-green-500" type="text" name="proyecto_final"  />
+                    <x-input id="proyecto_final" class="block mt-1 w-full border border-green-500" type="file" name="proyecto_final" />
                 </div>
 
             </div>
