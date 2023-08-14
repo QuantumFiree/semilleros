@@ -27,7 +27,8 @@ class Evento extends Seeder
                 'tipo'=>'Congreso',
                 'modalidad'=>'Virtual',
                 'clasificacion'=>'Regional',
-                'observaciones'=>'ninguna'      
+                'observaciones'=>'ninguna',  
+                'cod_semillero'=>1001    
             ],
 
             [
@@ -39,7 +40,8 @@ class Evento extends Seeder
                 'tipo'=>'Encuentro',
                 'modalidad'=>'Presencial',
                 'clasificacion'=>'Local',
-                'observaciones'=>'ninguna'      
+                'observaciones'=>'ninguna',
+                'cod_semillero'=>1001      
             ]
 
 

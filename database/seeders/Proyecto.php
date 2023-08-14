@@ -21,7 +21,7 @@ class Proyecto extends Seeder
             [
                
                 'titulo'=>'Computación en la nube',
-                'cod_semillero'=>'1000',
+                'cod_semillero'=>'1001',
                 'tipo_proyecto'=>'Proyecto de investigación',
                 'estado'=>'En curso',
                 'fecha_inicio'=>'2023-08-05',

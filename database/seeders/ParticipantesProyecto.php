@@ -21,15 +21,15 @@ class ParticipantesProyecto extends Seeder
             [
                
                 'cod_proyecto'=>'2101',
-                'cod_semillerista'=>'1100',
-                'numero_participantes'=>'3'     
+                'cod_semillerista'=>'1100'
+                     
             ],
 
             [
                
                 'cod_proyecto'=>'2101',
-                'cod_semillerista'=>'1100',
-                'numero_participantes'=>'5'     
+                'cod_semillerista'=>'1100'
+                     
             ]
 
 
