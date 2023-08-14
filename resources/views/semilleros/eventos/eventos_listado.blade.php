@@ -3,26 +3,26 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh; 
+        height: 100vh;
     }
 
-    
+
     .container-form {
-        width: 800px; 
+        width: 800px;
         margin-top: 30px;
     }
 
-    
+
     .input-custom {
         width: 100%;
         padding: 8px;
         border: 1px solid #ccc;
         border-radius: 5px;
         font-size: 16px;
-        margin-bottom: 5px; 
+        margin-bottom: 5px;
     }
 
-    
+
     .button-custom {
         padding: 10px 20px;
         font-size: 16px;
@@ -32,7 +32,7 @@
     .font-semibold.text-xl {
         font-size: 24px;
         margin-bottom: 20px;
-        text-align: center; 
+        text-align: center;
     }
 
     /
@@ -42,7 +42,7 @@
         gap: 20px;
     }
 
-   
+
     .text-red-600 {
         margin-left: auto;
     }
@@ -130,13 +130,9 @@
                                                         <i class="far fa-eye"></i>
                                             </a>
 
-                                            <a href="{{ route('editar_evento', [$evento->cod_evento]) }}" class="text-blue-500 hover:text-blue-700 mx-2" onclick="event.preventDefault(); document.getElementById('editar-form-{{ $evento->cod_evento }}').submit();">
+                                            <a href="{{ route('editar_evento', [$evento->cod_evento]) }}" class="text-blue-500 hover:text-blue-700 mx-2" >
                                                 <i class="far fa-edit"></i>
                                             </a>
-                                            <form id="editar-form-{{ $evento->cod_evento }}" action="{{ route('editar_evento', [$evento->cod_evento]) }}" method="POST" style="display: none;">
-                                                @csrf
-                                                @method('PUT')
-                                            </form>
 
                                             <a href="{{ route('eliminar_evento', [ $evento->cod_evento]) }}" class="text-red-500 hover:text-red-700 ml-2" onclick="event.preventDefault(); document.getElementById('eliminar-form-{{  $evento->cod_evento }}').submit();">
                                                 <i class="far fa-trash-alt"></i>
@@ -145,7 +141,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
-                                            
+
                                         </td>
                                     </tr>
                                 @endforeach
@@ -169,7 +165,7 @@
                                 <td class="text-white"><strong>Código:</strong></td>
                                 <td class="text-white" id="evento-cod-evento"></td>
                             </tr>
-                        
+
                             <tr>
                                 <td class="text-white"><strong>Descripción:</strong></td>
                                 <td class="text-white" id="evento-descripcion"></td>
@@ -223,7 +219,7 @@
             document.getElementById('evento-tipo').innerText = evento.tipo;
             document.getElementById('evento-modalidad').innerText = evento.modalidad;
             document.getElementById('evento-clasificacion').innerText = evento.clasificacion;
-            
+
             document.getElementById('modal-container').classList.remove('hidden');
         }
 
@@ -250,8 +246,8 @@
                 var eventoTipo = button.getAttribute('data-tipo');
                 var eventoModalidad = button.getAttribute('data-modalidad');
                 var eventoClasificacion = button.getAttribute('data-clasificacion');
-                
-              
+
+
                 var eventoData = {
                     cod_evento: eventoCodigo,
                     nombre: eventoNombre,
