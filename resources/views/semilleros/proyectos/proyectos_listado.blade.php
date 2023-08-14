@@ -108,10 +108,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                $proyectosData = [];
-                                $proyectoData = [];
-                                @endphp
                                 @foreach($proyectos as $proyecto)
                                 <tr class="bg-gray-700">
                                     <td class="p-3 text-center">{{ $proyecto->titulo}}</td>
@@ -128,22 +124,22 @@
                                     </td>
                                     <td class="p-3 text-center" >
                                     @php
+                                        $proyectosData = [];
+
                                         foreach ($proyectosConParticipantes as $proyectoConParticipantes) {
-
                                             if ($proyectoConParticipantes['proyecto']->cod_proyecto == $proyecto->cod_proyecto) {
-                                                $proyectoData['titulo'] = $proyectoConParticipantes['proyecto']->titulo;
-                                                $participantes = [];
+                                                $proyectoData = [
+                                                    'codigo' => $proyectoConParticipantes['proyecto']->cod_proyecto,
+                                                    'participantes' => array_map(function($participante) {
+                                                        return $participante->nombres;
+                                                    }, $proyectoConParticipantes['participantes'])
+                                                ];
 
-                                                foreach ($proyectoConParticipantes['participantes'] as $participante) {
-                                                    $participantes[] = $participante->nombres;
-                                                }
-
-                                                $proyectoData['participantes'] = $participantes;
+                                                $proyectosData[$proyecto->cod_proyecto] = $proyectoData;
                                             }
-
-                                            $proyectosData[$proyecto->cod_proyecto] = $proyectoData;
                                         }
                                     @endphp
+
                                         <a href="#" class="text-blue-500 hover:text-blue-700 view-participantes"
                                         data-proyecto-data="{{ json_encode($proyectosData) }}"
                                         data-cod-proyecto = "{{ $proyecto->cod_proyecto }}"
@@ -343,8 +339,9 @@
                         var proyectoData = proyectosData[codProyecto];
                         participantes = proyectoData.participantes;
                     }
+                    openParticipantesModal(participantes);
                 }
-                openParticipantesModal(participantes);
+
             });
         });
 
