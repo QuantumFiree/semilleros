@@ -44,14 +44,18 @@ Route::middleware([
     // Rutas coordinador
     Route::get('/registro/coordinador', [ControllerCoordinador::class, 'registroView'])->name('registroCoordinador');
     Route::post('/registro/coordinador', [ControllerCoordinador::class, 'registro'])->name('registroCoordinador');
-    Route::get('/perfil/coordinador/editar_datos_personales', [ControllerCoordinador::class, 'datosPersonalesView'])->name('perfilCoordinador');
-    Route::post('/perfil/coordinador/editar_datos_personales', [ControllerCoordinador::class, 'datosPersonales'])->name('perfilCoordinador');
+    Route::get('/coordinador/editar_datos_personales/{cod_coordinador}', [ControllerCoordinador::class, 'datosPersonalesView'])->name('perfilCoordinadorView');
+    Route::post('/coordinador/editar_datos_personales', [ControllerCoordinador::class, 'datosPersonales'])->name('perfilCoordinador');
+    Route::get('/coordinador/eliminar/{cod_coordinador}', [ControllerCoordinador::class, 'eliminarCoordinador'])->name('eliminarCoordinador');
+
+    Route::get('/coordinadores/listado', [ControllerCoordinador::class, 'listadoCoordinadoresView'])->name('listadoCoordinadores');
 
     // Rutas semillerista
     Route::get('/registro/semillerista', [ControllerSemillerista::class, 'registroView'])->name('registroSemillerista');
     Route::post('/registro/semillerista', [ControllerSemillerista::class, 'registro'])->name('registroSemillerista');
-    Route::get('/perfil/semillerista/editar_datos_personales', [ControllerSemillerista::class, 'datosPersonalesView'])->name('perfilSemillerista');
+    Route::get('/perfil/semillerista/editar_datos_personales/{cod_semillerista}', [ControllerSemillerista::class, 'datosPersonalesView'])->name('perfilSemilleristaView');
     Route::post('/perfil/semillerista/editar_datos_personales', [ControllerSemillerista::class, 'datosPersonales'])->name('perfilSemillerista');
+    Route::get('/semillerista/eliminar/{cod_semillerista}', [ControllerSemillerista::class, 'eliminarSemillerista'])->name('eliminarSemillerista');
 
     Route::get('/semilleristas/listado', [ControllerSemillerista::class, 'listadoSemilleristasView'])->name('listadoSemilleristas');
 
@@ -64,38 +68,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-
-
-
-    // Rutas Categorias
-
-    Route::get('categorias/registro', [Categorias::class, 'form_registro'])
-        ->name('form_registroCategoria');
-
-    Route::post('categorias/registro', [Categorias::class, 'registrar'])
-        ->name('registrarCategoria');
-
-    Route::get('categorias/actualizar/{id}', [Categorias::class, 'form_actualiza'])
-        ->name('form_actualizaCategoria');
-
-    Route::post('categorias/actualizar/{id}', [Categorias::class, 'actualizar'])
-        ->name('actualizarCategoria');
-
-    Route::get('categorias/eliminar/{id}', [Categorias::class, 'eliminar'])
-        ->name('eliminarCategoria');
-
-
-    // Rutas Productos
-
-    Route::get('productos', [Productos::class, 'index'])->name('productos');
-
-    Route::get('productos/detalle/{id}', [Productos::class, 'detalle'])->name('detalleProducto');;
-
-    Route::get('productos/actualizar/{id}', [Productos::class, 'formularioAct'])->name('form_actualizaProducto');
-
-    Route::post('productos/actualizar/{id}', [Productos::class, 'actualizar'])->name('actualizarProducto');
-
-    Route::get('productos/eliminar/{id}', [Productos::class, 'eliminar'])->name('eliminarProducto');
 });
 
 Route::get('/registro/semillero', [SemilleroController::class, 'showForm'])->name('registro.semillero');

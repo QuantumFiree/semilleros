@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-white leading-tight">
                 {{ __('Dashboard') }}
             </h2>
-            <h2 class="font-bold text-xl text-red-600 leading-tight text-right">
+            <h2 class="justify-self-end font-sans text-end font-extrabold text-2xl text-yellow-400 leading-tight">
                 {{ __(auth()->user()->rol) }}
             </h2>
         </div>
