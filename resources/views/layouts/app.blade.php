@@ -19,6 +19,7 @@
 
     <!-- Styles -->
     @livewireStyles
+    
 </head>
 
 <body class="font-sans antialiased">
@@ -31,13 +32,14 @@
         <!-- Page Heading -->
         @if (isset($header))
         <header class="bg-gray-500 shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto py-3 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>
+            
         </header>
         @endif
 
-        @if (auth()->user()->estado == 'inactivo')
+        @if (auth()->user()->estado != 'activo')
     @component('components.alerta-registro')
     @endcomponent
     @endif

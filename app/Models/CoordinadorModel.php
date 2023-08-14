@@ -8,10 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class CoordinadorModel extends Model
 {
     protected $fillable = [
+        'nombres',
+        'apellidos',
+        'identificacion',
         'direccion',
         'telefono',
-        'area_conocimiento',
         'genero',
+        'fecha_nacimiento',
+        'cod_programa_academico',
+        'cod_docente',
+        'area_conocimiento',
+        'fecha_vinculacion',
         'acuerdo_nombramiento'
         // Agrega otros campos que necesitas actualizar aquí...
     ];
