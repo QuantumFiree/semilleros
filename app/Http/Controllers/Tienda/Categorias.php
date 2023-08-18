@@ -9,9 +9,9 @@ use App\Models\Categoria;
 class Categorias extends Controller
 {
     public function index(){
-        //Visualiza todas las categorias
-        $categorias = Categoria::all();
-        return view('tienda.categorias.categorias', ['categorias' => $categorias]);
+        //Visualiza todas las categorias   
+            $categorias = Categoria::all();
+            return view('tienda.categorias.categorias', ['categorias' => $categorias]);
     }
 
     public function form_registro()  {
