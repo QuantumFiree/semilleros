@@ -150,7 +150,7 @@
 
                 <div>
                     <x-label for="numero_resolucion" value="{{ __('Número de Resolución:') }}" />
-                    <x-input id="numero_resolucion" class="form-input" type="text" name="numero_resolucion" :value="old('numero_resolucion')" required />
+                    <x-input id="numero_resolucion" class="form-input" type="number" name="numero_resolucion" :value="old('numero_resolucion')" placeholder="#" required />
                 </div>
 
                 <div>
@@ -160,14 +160,14 @@
 
                 <div>
                     <x-label for="cod_coordinador" value="{{ __('Código de Coordinador Encargado:') }}" />
-                    <x-input id="cod_coordinador" class="form-input" type="text" name="cod_coordinador" :value="old('cod_coordinador')" required />
+                    <x-input id="cod_coordinador" class="form-input" type="number" name="cod_coordinador" :value="old('cod_coordinador')" placeholder="#" required />
                     @error('cod_coordinador')
                         <p class="text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
 
                 <div>
-                    <x-label for="archivo" value="{{ __('Archivo presentación:') }}" />
+                    <x-label for="archivo" value="{{ __('Archivo Presentación:') }}" />
                     <x-input id="archivo" class="form-input" type="file" name="archivo" :value="old('archivo')" required accept="file/*" />
                 </div>
 

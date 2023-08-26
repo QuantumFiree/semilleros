@@ -20,18 +20,16 @@ return new class extends Migration
             $table->string('apellidos')->nullable(false);
             $table->integer('identificacion')->nullable(false);
             $table->string('direccion')->nullable();
-            $table->integer('telefono')->nullable();
+            $table->bigInteger('telefono')->nullable();
             $table->string('genero')->nullable();
-            $table->string('fecha_nacimiento')->nullable();
-            $table->string('foto')->nullable();
+            $table->date('fecha_nacimiento')->nullable();
+            $table->string('foto',100)->nullable();
             $table->unsignedInteger('cod_programa_academico')->nullable(false);
-
             $table->integer('cod_docente')->nullable(false);
             $table->string('area_conocimiento')->nullable();
-            $table->string('fecha_vinculacion')->nullable();
+            $table->date('fecha_vinculacion')->nullable();
             $table->string('acuerdo_nombramiento')->nullable();
-                    
-            $table->foreign('cod_programa_academico')->references('cod_programa_academico')->on('programa');
+             $table->foreign('cod_programa_academico')->references('cod_programa_academico')->on('programa');
             $table->timestamps();
         });
     }

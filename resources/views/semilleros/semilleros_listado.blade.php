@@ -240,7 +240,7 @@
     <div class="flex justify-center mt-4">
         <a href="{{ route('registro.semillero') }}" class="px-4 py-2 bg-green-500 text-black rounded">Agregar otro semillero</a>
     </div>
-
+    <br>
     <script>
         function openModal(semillero) {
             document.getElementById('semillero-nombre').innerText = semillero.nombre;

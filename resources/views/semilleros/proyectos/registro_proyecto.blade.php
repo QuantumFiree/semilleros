@@ -133,11 +133,11 @@
 
                 <div>
                     <x-label for="cod_semillero" value="{{ __('Código del Semillero') }}" />
-                    <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="text" name="cod_semillero" required />
+                    <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="number" name="cod_semillero" placeholder="#" required />
                 </div>
-
+                
+                <x-label for="tipo" value="{{ __('Tipo de Proyecto') }}" />
                 <div class="form-field">
-                    <label for="tipo">{{ __('Tipo de Proyecto') }}</label>
                     <select id="tipo_proyecto" name="tipo_proyecto" required>
                         <option value="Proyecto de investigación">Proyecto de investigación</option>
                         <option value="Proyecto de innovación y desarrollo">Proyecto de innovación y desarrollo</option>
@@ -146,8 +146,8 @@
                     </select>
                 </div>
 
+                <x-label for="estado" value="{{ __('Estado del Proyecto') }}" />
                 <div class="form-field">
-                    <label for="estado">{{ __('Estado del Proyecto') }}</label>
                     <select id="estado" name="estado" required>
                         <option value="Propuesta">Propuesta</option>
                         <option value="En Curso">En Curso</option>

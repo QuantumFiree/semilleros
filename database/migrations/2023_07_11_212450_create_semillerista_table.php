@@ -20,15 +20,15 @@ return new class extends Migration
             $table->string('apellidos')->nullable(false);
             $table->integer('identificacion')->nullable(false);
             $table->string('direccion')->nullable();
-            $table->integer('telefono')->nullable();
+            $table->bigInteger('telefono')->nullable();
             $table->string('genero')->nullable();
-            $table->string('fecha_nacimiento')->nullable();
-            $table->string('foto')->nullable();
+            $table->date('fecha_nacimiento')->nullable();
+            $table->string('foto',100)->nullable();
             $table->unsignedInteger('cod_programa_academico')->nullable(false);
 
             $table->unsignedInteger('cod_estudiantil')->nullable(false);
             $table->integer('semestre')->nullable();
-            $table->string('fecha_vinculacion')->nullable();
+            $table->date('fecha_vinculacion')->nullable();
             $table->unsignedInteger('cod_semillero')->nullable(false);
             $table->string('reporte_matricula')->nullable();
             

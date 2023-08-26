@@ -114,33 +114,34 @@
                 <div class="column">
                     <div>
                         <label for="nombre">{{ __('Nombre del Evento:') }}</label>
-                        <input id="nombre" type="text" name="nombre" :value="old('nombre')" required />
+                        <input id="nombre" type="text" name="nombre" value="{{$evento->nombre}}" required />
                     </div>
 
                     <div>
                         <label for="descripcion">{{ __('Descripción:') }}</label>
-                        <textarea id="descripcion" name="descripcion" rows="4" required>{{ old('descripcion') }}</textarea>
+                        <textarea id="descripcion" name="descripcion" rows="4" required>{{$evento->descripcion}}</textarea>
                     </div>
 
                     <div class="form-field date-field">
                         <div>
                             <label for="fecha_inicio">{{ __('Fecha de Inicio:') }}</label>
-                            <input id="fecha_inicio" type="date" name="fecha_inicio" :value="old('fecha_inicio')" />
+                            <input id="fecha_inicio" type="date" name="fecha_inicio" value="{{$evento->fecha_inicio}}"/>
                         </div>
                         <div>
                             <label for="fecha_fin">{{ __('Fecha de Fin:') }}</label>
-                            <input id="fecha_fin" type="date" name="fecha_fin" :value="old('fecha_fin')" />
+                            <input id="fecha_fin" type="date" name="fecha_fin" value="{{$evento->fecha_fin}}"  />
                         </div>
                     </div>
                 
                     <div>
                         <label for="lugar">{{ __('Lugar:') }}</label>
-                        <input id="lugar" type="text" name="lugar" :value="old('lugar')" />
+                        <input id="lugar" type="text" name="lugar" value="{{$evento->lugar}}" />
                     </div>
 
                     <div>
                         <label for="tipo">{{ __('Tipo de Evento:') }}</label>
                         <select id="tipo" name="tipo" required>
+                            <option value="{{$evento->tipo}}">{{$evento->tipo}}</option>
                             <option value="Congreso">Congreso</option>
                             <option value="Encuentro">Encuentro</option>
                             <option value="Seminario">Seminario</option>
@@ -150,6 +151,7 @@
                     <div>
                         <label for="modalidad">{{ __('Modalidad:') }}</label>
                         <select id="modalidad" name="modalidad" required>
+                            <option value="{{$evento->modalidad}}">{{$evento->modalidad}}</option>
                             <option value="Presencial">Presencial</option>
                             <option value="Virtual">Virtual</option>
                             <option value="Hibrida">Hibrida</option>
@@ -159,6 +161,7 @@
                     <div>
                         <label for="clasificacion">{{ __('Clasificación:') }}</label>
                         <select id="clasificacion" name="clasificacion" required>                   
+                            <option value="{{$evento->clasificacion}}">{{$evento->clasificacion}}</option>
                             <option value="Local">Local</option>
                             <option value="Regional">Regional</option>
                             <option value="Nacional">Nacional</option>
@@ -168,12 +171,12 @@
                 
                     <div>
                         <label for="observaciones">{{ __('Observaciones:') }}</label>
-                        <textarea id="observaciones" name="observaciones" rows="4">{{ old('observaciones') }}</textarea>
+                        <textarea id="observaciones" name="observaciones" rows="4" >{{$evento->observaciones}}</textarea>
                     </div>
 
                     <div class="form-field">
                         <label for="cod_semillero">{{ __('Código del semillero') }}</label>
-                        <input id="cod_semillero" type="text" name="cod_semillero" :value="old('cod_semillero')" />
+                        <input id="cod_semillero" type="number" class="block mt-1 w-full border border-green-500" name="cod_semillero" value="{{$evento->cod_semillero}}" placeholder="#" />
                     </div>
             </div>
 

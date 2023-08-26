@@ -19,8 +19,8 @@ return new class extends Migration
             $table->unsignedInteger('cod_semillero')->nullable(false);
             $table->string('tipo_proyecto')->nullable();
             $table->string('estado')->nullable(false);
-            $table->string('fecha_inicio')->nullable();
-            $table->string('fecha_finalizacion')->nullable();
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_finalizacion')->nullable();
             $table->string('propuesta')->nullable();
             $table->string('proyecto_final')->nullable();
             $table->foreign('cod_semillero')->references('cod_semillero')->on('semillero');

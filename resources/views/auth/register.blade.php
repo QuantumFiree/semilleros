@@ -72,18 +72,18 @@
             @csrf
             <div class="container-auth">
                 <div>
-                    <x-label class="label-custom" for="email" value="{{ __('Correo Electronico') }}" />
-                    <x-input id="email" class="block mt-1 w-full border border-green-500 border-2" type="email" name="email" :value="old('email')" required autocomplete="username" />
+                    <x-label class="label-custom" for="email" value="{{ __('Correo Electrónico') }}" />
+                    <x-input id="email" class="block mt-1 w-full border border-green-500 border-2" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="Ingresa la dirección de correo" />
                 </div>
 
                 <div>
                     <x-label class="label-custom" for="password" value="{{ __('Contraseña') }}" />
-                    <x-input id="password" class="block mt-1 w-full border border-green-500 border-2" type="password" name="password" required autocomplete="new-password" />
+                    <x-input id="password" class="block mt-1 w-full border border-green-500 border-2" type="password" name="password" required autocomplete="new-password" placeholder="Contraseña" />
                 </div>
 
                 <div>
                     <x-label class="label-custom" for="password_confirmation" value="{{ __('Confirmar Contraseña') }}" />
-                    <x-input id="password_confirmation" class="block mt-1 w-full border border-green-500 border-2" type="password" name="password_confirmation" required autocomplete="new-password" />
+                    <x-input id="password_confirmation" class="block mt-1 w-full border border-green-500 border-2" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmación" />
                 </div>
                 <div style="display:none">
                     <x-input id="inputRol" class="block mt-1 w-full border border-green-500 border-2" type="text" name="rol" autocomplete="rol" value="coordinador" />

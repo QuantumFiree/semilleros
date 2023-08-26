@@ -83,17 +83,17 @@
 
                 <div>
                     <x-label for="titulo" value="{{ __('Título del Proyecto') }}" />
-                    <x-input id="titulo" class="block mt-1 w-full border border-green-500" type="text" name="titulo"  required autofocus />
+                    <x-input id="titulo" class="block mt-1 w-full border border-green-500" type="text" name="titulo" value="{{$proyecto->titulo}}"  required autofocus />
                 </div>
 
                 <div>
                     <x-label for="cod_semillero" value="{{ __('Código del Semillero') }}" />
-                    <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="text" name="cod_semillero" required />
+                    <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="number" name="cod_semillero" value="{{$proyecto->cod_semillero}}" placeholder="#" required />
                 </div>
-
+                
+                <x-label for="tipo" value="{{ __('Tipo de Proyecto') }}" />
                 <div class="form-field">
-                    <label for="tipo">{{ __('Tipo de Proyecto') }}</label>
-                    <select id="tipo_proyecto" name="tipo_proyecto" required>
+                    <select id="tipo_proyecto" name="tipo_proyecto" value="{{$proyecto->tipo_proyecto}}" required>
                         <option value="Proyecto de investigación">Proyecto de investigación</option>
                         <option value="Proyecto de innovación y desarrollo">Proyecto de innovación y desarrollo</option>
                         <option value="Proyecto de Emprendimiento">Proyecto de Emprendimiento</option>
@@ -101,9 +101,11 @@
                     </select>
                 </div>
 
-                <div class="form-field">
-                    <label for="estado">{{ __('Estado del Proyecto') }}</label>
+               
+                <x-label for="estado" value="{{ __('Estado del Proyecto') }}" />
+                <div class="form-field" >   
                     <select id="estado" name="estado" required>
+                        <option value="{{$proyecto->estado}}">{{$proyecto->estado}}</option>
                         <option value="Propuesta">Propuesta</option>
                         <option value="En Curso">En Curso</option>
                         <option value="Inactivo">Inactivo</option>
@@ -113,22 +115,22 @@
 
                 <div>
                     <x-label for="fecha_inicio" value="{{ __('Fecha de Inicio') }}" />
-                    <x-input id="fecha_inicio" class="block mt-1 w-full border border-green-500" type="date" name="fecha_inicio"  />
+                    <x-input id="fecha_inicio" class="block mt-1 w-full border border-green-500" type="date" name="fecha_inicio" value="{{$proyecto->fecha_inicio}}"/>
                 </div>
 
                 <div>
                     <x-label for="fecha_finalizacion" value="{{ __('Fecha de Finalización') }}" />
-                    <x-input id="fecha_finalizacion" class="block mt-1 w-full border border-green-500" type="date" name="fecha_finalizacion"  />
+                    <x-input id="fecha_finalizacion" class="block mt-1 w-full border border-green-500" type="date" name="fecha_finalizacion" value="{{$proyecto->fecha_finalizacion}}"/>
                 </div>
 
                 <div>
                     <x-label for="propuesta" value="{{ __('Propuesta') }}" />
-                    <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="file" name="propuesta" />
+                    <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="file" name="propuesta" value="{{$proyecto->propuesta}}" />
                 </div>
 
                 <div>
                     <x-label for="proyecto_final" value="{{ __('Proyecto Final') }}" />
-                    <x-input id="proyecto_final" class="block mt-1 w-full border border-green-500" type="file" name="proyecto_final" />
+                    <x-input id="proyecto_final" class="block mt-1 w-full border border-green-500" type="file" name="proyecto_final" value="{{$proyecto->proyecto_final}}" />
                 </div>
 
             </div>

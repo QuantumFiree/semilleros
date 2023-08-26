@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('presentacion_proyecto', function (Blueprint $table) {
             $table->unsignedInteger('cod_presentacion_proyecto')->autoIncrement()->startingValue(4100);
             $table->string('participacion')->nullable();
-            $table->string('calificacion')->nullable();
+            $table->float('calificacion')->nullable();
             $table->string('certificacion')->nullable();
             $table->string('evidencias')->nullable();
             $table->unsignedInteger('cod_evento')->nullable(false);

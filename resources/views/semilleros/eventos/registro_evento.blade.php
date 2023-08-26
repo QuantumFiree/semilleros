@@ -161,7 +161,7 @@
 
                 <div class="form-field">
                     <label for="cod_semillero">{{ __('Código del semillero') }}</label>
-                    <input id="cod_semillero" type="text" name="cod_semillero" :value="old('cod_semillero')" />
+                    <input id="cod_semillero" type="number" class="block mt-1 w-full border border-green-500" name="cod_semillero" :value="old('cod_semillero')" placeholder="#" />
                 </div>
 
             
