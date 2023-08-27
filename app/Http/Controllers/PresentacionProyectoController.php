@@ -27,6 +27,12 @@ class PresentacionProyectoController extends Controller
         return view('semilleros.proyectos.presentacion_proyecto', compact('eventos', 'participantes'));
     }
 
+    public function listado()
+    {
+        $presentaciones = PresentacionProyecto::all();
+        return view('semilleros.proyectos.presentaciones_listado', compact('presentaciones'));
+    }
+
     public function store(Request $request)
     {
         $request->validate([

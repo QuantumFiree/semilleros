@@ -102,7 +102,7 @@
                                     <th class="p-3">Nombre</th>
                                     <th class="p-3">Codigo</th>
                                     <th class="p-3">Estado</th>
-                                    <th class="p-3">Presentacion</th>
+                                    <th class="p-3">Vincular presentacion</th>
                                     <th class="p-3">Participantes</th>
                                     <th class="p-3">Acciones</th>
                                 </tr>
@@ -244,7 +244,7 @@
         </div>
     </div>
     <div class="flex justify-center mt-4">
-        <a href="{{ route('registro.proyecto') }}" class="px-4 py-2 bg-green-500 text-black rounded">Registrar otro Proyecto</a> 
+        <a href="{{ route('registro.proyecto') }}" class="px-4 py-2 bg-green-500 text-black rounded">Registrar otro Proyecto</a>
     </div>
     <br>
     <script>
