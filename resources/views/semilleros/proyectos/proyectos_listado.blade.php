@@ -176,6 +176,11 @@
                                 </tr>
                                 @endforeach
                             </tbody>
+                            @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                            @endif
                         </table>
                 </div>
             </div>

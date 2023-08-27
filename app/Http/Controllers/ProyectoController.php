@@ -137,14 +137,18 @@ class ProyectoController extends Controller
 
     public function eliminar($cod_proyecto)
         {
-            $proyecto = Proyecto::find($cod_proyecto);
+            try {
+                $proyecto = Proyecto::find($cod_proyecto);
 
-            if ($proyecto) {
-                ParticipantesProyecto::where('cod_proyecto', $cod_proyecto)->delete();
-                $proyecto->delete();
-                return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido eliminado exitosamente.');
-            } else {
-                return redirect()->route('proyectos.listado')->with('error', 'El proyecto no existe.');
+                if ($proyecto) {
+                    ParticipantesProyecto::where('cod_proyecto', $cod_proyecto)->delete();
+                    $proyecto->delete();
+                    return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido eliminado exitosamente.');
+                } else {
+                    return redirect()->route('proyectos.listado')->with('error', 'El proyecto no existe.');
+                }
+            } catch (\Illuminate\Database\QueryException $e) {
+                return redirect()->route('proyectos.listado')->with('error', 'No se puede borrar este proyecto, hay tablas relacionadas a él.');
             }
         }
 }
