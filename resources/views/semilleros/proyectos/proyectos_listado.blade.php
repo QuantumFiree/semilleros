@@ -55,8 +55,8 @@
         border-radius: 20px;
     }
 
-    tr td:nth-child(n+5),
-    tr th:nth-child(n+5) {
+    tr td:nth-child(n+6),
+    tr th:nth-child(n+6) {
         border-radius: 0 .625rem .625rem 0;
     }
 
@@ -176,6 +176,11 @@
                                 </tr>
                                 @endforeach
                             </tbody>
+                            @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                            @endif
                         </table>
                 </div>
             </div>
@@ -245,6 +250,11 @@
     </div>
     <div class="flex justify-center mt-4">
         <a href="{{ route('registro.proyecto') }}" class="px-4 py-2 bg-green-500 text-black rounded">Registrar otro Proyecto</a>
+    </div>
+    <div class="flex justify-center mt-4">
+        <a href="{{ route('participantes_proyecto.store') }}" class="px-4 py-2 bg-green-500 text-black rounded">
+            {{ __('Agregar participantes a un proyecto') }}
+        </a>
     </div>
     <br>
     <script>

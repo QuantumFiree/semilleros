@@ -44,7 +44,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link href="{{ route('presentaciones.listado') }}" :active="request()->routeIs('eventos.listado')">
+                    <x-nav-link href="{{ route('presentaciones.listado') }}" :active="request()->routeIs('presentaciones.listado')">
                         {{ __('Presentaciones') }}
                     </x-nav-link>
                 </div>

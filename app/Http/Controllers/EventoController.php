@@ -64,13 +64,17 @@ class EventoController extends Controller
 
     public function eliminar($cod_evento)
     {
-        $evento = Evento::find($cod_evento);
+        try{
+            $evento = Evento::find($cod_evento);
 
-        if ($evento) {
-            $evento->delete();
-            return redirect()->route('eventos.listado')->with('success', 'El evento ha sido eliminado exitosamente.');
-        } else {
-            return redirect()->route('eventos.listado')->with('error', 'El evento no existe.');
+            if ($evento) {
+                $evento->delete();
+                return redirect()->route('eventos.listado')->with('success', 'El evento ha sido eliminado exitosamente.');
+            } else {
+                return redirect()->route('eventos.listado')->with('error', 'El evento no existe.');
+            }
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('eventos.listado')->with('error', 'No se puede borrar este evento, hay tablas relacionadas a él.');
         }
     }
 }

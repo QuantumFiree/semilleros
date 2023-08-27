@@ -8,6 +8,8 @@ use App\Models\ParticipantesPresentacionProyecto;
 use App\Models\PresentacionProyecto;
 use App\Models\ParticipantesProyecto;
 use App\Models\SemilleristaModel;
+use App\Models\Semillero;
+use Illuminate\Validation\Rule;
 
 class ProyectoController extends Controller
 {
@@ -16,8 +18,7 @@ class ProyectoController extends Controller
             return view('semilleros.proyectos.registro_proyecto');
         }
 
-    public function register(Request $request)
-
+        public function register(Request $request)
         {
             $request->validate([
                 'titulo' => 'required|string|max:255',
@@ -30,21 +31,33 @@ class ProyectoController extends Controller
                 'proyecto_final' => 'nullable|file|max:2048',
             ]);
 
-            $proyecto = Proyecto::create([
+            $semilleroExist = Semillero::where('cod_semillero', $request->input('cod_semillero'))->exists();
+
+            if (!$semilleroExist) {
+                return redirect()->route('registro.proyecto')->withErrors(['cod_semillero' => 'El código del semillero no está registrado en el sistema.'])->withInput();
+            }
+
+            $proyectoData = [
                 'titulo' => $request->input('titulo'),
                 'cod_semillero' => $request->input('cod_semillero'),
                 'tipo_proyecto' => $request->input('tipo_proyecto'),
                 'estado' => $request->input('estado'),
                 'fecha_inicio' => $request->input('fecha_inicio'),
                 'fecha_finalizacion' => $request->input('fecha_finalizacion'),
-                'propuesta'=> $request->file('propuesta')->store('archivos', 'public'),
-                'proyecto_final'=> $request->file('proyecto_final')->store('archivos', 'public'),
-            ]);
+            ];
 
+            if ($request->hasFile('propuesta')) {
+                $proyectoData['propuesta'] = $request->file('propuesta')->store('archivos', 'public');
+            }
+
+            if ($request->hasFile('proyecto_final')) {
+                $proyectoData['proyecto_final'] = $request->file('proyecto_final')->store('archivos', 'public');
+            }
+
+            $proyecto = Proyecto::create($proyectoData);
             $proyecto->save();
+
             return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido registrado exitosamente.');
-
-
         }
 
     public function listado()
@@ -84,28 +97,58 @@ class ProyectoController extends Controller
     public function update(Request $request, $cod_proyecto)
         {
             $proyecto = Proyecto::find($cod_proyecto);
+
+            $request->validate([
+                'titulo' => 'required|string|max:255',
+                'cod_semillero' => 'required|string|max:255',
+                'tipo_proyecto' => 'required|in:Proyecto de investigación,Proyecto de innovación y desarrollo,Proyecto de Emprendimiento',
+                'estado' => 'required|in:Propuesta,En Curso,Inactivo,Terminado',
+                'fecha_inicio' => 'nullable|date',
+                'fecha_finalizacion' => 'nullable|date',
+                'propuesta' => 'nullable|file|max:2048',
+                'proyecto_final' => 'nullable|file|max:2048',
+            ]);
+
+            $semilleroExist = Semillero::where('cod_semillero', $request->input('cod_semillero'))->exists();
+
+            if (!$semilleroExist) {
+                return redirect()->route('editar_proyecto',['cod_proyecto' => $cod_proyecto])->withErrors(['cod_semillero' => 'El código del semillero no está registrado en el sistema.'])->withInput();
+            }
+
             $proyecto->titulo = $request->input('titulo');
             $proyecto->cod_semillero = $request->input('cod_semillero');
             $proyecto->tipo_proyecto = $request->input('tipo_proyecto');
             $proyecto->estado = $request->input('estado');
             $proyecto->fecha_inicio = $request->input('fecha_inicio');
             $proyecto->fecha_finalizacion = $request->input('fecha_finalizacion');
-            $proyecto->propuesta = $request->file('propuesta')->store('archivos', 'public');
-            $proyecto->proyecto_final = $request->file('proyecto_final')->store('archivos', 'public');
-            $proyecto->save();
-            return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido actualizado exitosamente.');
 
-        }
+            if ($request->hasFile('propuesta')) {
+                $proyecto->propuesta = $request->file('propuesta')->store('archivos', 'public');
+            }
+
+            if ($request->hasFile('proyecto_final')) {
+                $proyecto->proyecto_final = $request->file('proyecto_final')->store('archivos', 'public');
+            }
+
+            $proyecto->save();
+
+            return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido actualizado exitosamente.');
+    }
 
     public function eliminar($cod_proyecto)
         {
-            $proyecto = Proyecto::find($cod_proyecto);
+            try {
+                $proyecto = Proyecto::find($cod_proyecto);
 
-            if ($proyecto) {
-                $proyecto->delete();
-                return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido eliminado exitosamente.');
-            } else {
-                return redirect()->route('proyectos.listado')->with('error', 'El proyecto no existe.');
+                if ($proyecto) {
+                    ParticipantesProyecto::where('cod_proyecto', $cod_proyecto)->delete();
+                    $proyecto->delete();
+                    return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido eliminado exitosamente.');
+                } else {
+                    return redirect()->route('proyectos.listado')->with('error', 'El proyecto no existe.');
+                }
+            } catch (\Illuminate\Database\QueryException $e) {
+                return redirect()->route('proyectos.listado')->with('error', 'No se puede borrar este proyecto, hay tablas relacionadas a él.');
             }
         }
 }

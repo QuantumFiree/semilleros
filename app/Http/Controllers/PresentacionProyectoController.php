@@ -33,6 +33,19 @@ class PresentacionProyectoController extends Controller
         return view('semilleros.proyectos.presentaciones_listado', compact('presentaciones'));
     }
 
+    public function eliminar($cod_presentacion_proyecto)
+    {
+        $presentacion = PresentacionProyecto::find($cod_presentacion_proyecto);
+
+        if ($presentacion) {
+            ParticipantesPresentacionProyecto::where('cod_presentacion_proyecto', $cod_presentacion_proyecto)->delete();
+            $presentacion->delete();
+            return redirect()->route('presentaciones.listado')->with('success', 'La presentacion ha sido eliminado exitosamente.');
+        } else {
+            return redirect()->route('presentaciones.listado')->with('error', 'La presentacion no existe.');
+        }
+    }
+
     public function store(Request $request)
     {
         $request->validate([
