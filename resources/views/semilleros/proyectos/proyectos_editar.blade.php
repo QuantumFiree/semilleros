@@ -89,6 +89,9 @@
                 <div>
                     <x-label for="cod_semillero" value="{{ __('Código del Semillero') }}" />
                     <x-input id="cod_semillero" class="block mt-1 w-full border border-green-500" type="number" name="cod_semillero" value="{{$proyecto->cod_semillero}}" placeholder="#" required />
+                    @if($errors->has('cod_semillero'))
+                        <span class="text-danger">{{ $errors->first('cod_semillero') }}</span>
+                    @endif
                 </div>
                 
                 <x-label for="tipo" value="{{ __('Tipo de Proyecto') }}" />
