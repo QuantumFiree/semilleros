@@ -140,10 +140,11 @@ class ProyectoController extends Controller
             $proyecto = Proyecto::find($cod_proyecto);
 
             if ($proyecto) {
+                ParticipantesProyecto::where('cod_proyecto', $cod_proyecto)->delete();
                 $proyecto->delete();
                 return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido eliminado exitosamente.');
             } else {
                 return redirect()->route('proyectos.listado')->with('error', 'El proyecto no existe.');
             }
-        }   
+        }
 }

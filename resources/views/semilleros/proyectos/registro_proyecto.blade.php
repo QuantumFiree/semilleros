@@ -42,13 +42,13 @@
         }
 
         .columns select {
-            width: 100%; 
-            padding: 10px; 
+            width: 100%;
+            padding: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
             color: #444;
-            margin-bottom: 10px; 
+            margin-bottom: 10px;
         }
 
         .participant-container {
@@ -77,14 +77,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        flex-shrink: 0; 
-        margin-left: -25px; 
+        flex-shrink: 0;
+        margin-left: -25px;
         border-radius: 0 4px 4px 0;
-        position: relative; 
-        right: auto; 
-        margin-left: 0; 
-        margin-top: 5px; 
-       
+        position: relative;
+        right: auto;
+        margin-left: 0;
+        margin-top: 5px;
+
     }
 
     .form-field input[type="text"],
@@ -100,7 +100,7 @@
         margin-bottom: 10px;
     }
 
-    
+
 
 
     </style>
@@ -125,7 +125,7 @@
 
             <div class="three-columns-grid">
                 <div class="column">
-                
+
                 <div>
                     <x-label for="titulo" value="{{ __('Título del Proyecto') }}" />
                     <x-input id="titulo" class="block mt-1 w-full border border-green-500" type="text" name="titulo"  required autofocus />
@@ -138,7 +138,7 @@
                         <span class="text-danger">{{ $errors->first('cod_semillero') }}</span>
                     @endif
                 </div>
-                
+
                 <x-label for="tipo" value="{{ __('Tipo de Proyecto') }}" />
                 <div class="form-field">
                     <select id="tipo_proyecto" name="tipo_proyecto" required>
@@ -171,7 +171,7 @@
 
                 <div>
                     <x-label for="propuesta" value="{{ __('Propuesta') }}" />
-                    <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="file" name="propuesta" />   
+                    <x-input id="propuesta" class="block mt-1 w-full border border-green-500" type="file" name="propuesta" />
                 </div>
 
                 <div>
@@ -186,14 +186,8 @@
                     {{ __('Registrar') }}
                 </button>
             </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a href="{{ route('participantes_proyecto.store') }}" class="btn-register">
-                    {{ __('Agregar participantes a un proyecto') }}
-                </a>
-            </div>
         </form>
 
-       
+
     </x-authentication-card>
 </x-app-layout>
