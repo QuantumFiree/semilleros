@@ -60,8 +60,8 @@
         border-radius: 20px;
     }
 
-    tr td:nth-child(n+4),
-    tr th:nth-child(n+4) {
+    tr td:nth-child(n+5),
+    tr th:nth-child(n+5) {
         border-radius: 0 .625rem .625rem 0;
     }
 
@@ -109,6 +109,7 @@
                                     <th class="p-3 text-left">Participacion</th>
                                     <th class="p-3 text-left">Evento</th>
                                     <th class="p-3 text-left">Proyecto</th>
+                                    <th class="p-3 text-left">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -118,6 +119,15 @@
                                         <td class="px-4 py-2 border text-center">{{ $presentacion->participacion }}</td>
                                         <td class="px-4 py-2 border text-center">{{ $presentacion->cod_evento }}</td>
                                         <td class="px-4 py-2 border text-center">{{ $presentacion->cod_proyecto }}</td>
+                                        <td class="px-4 py-2 border text-center">
+                                            <a href="{{ route('eliminar_presentacion', ['cod_presentacion_proyecto' => $presentacion->cod_presentacion_proyecto]) }}" class="text-red-500 hover:text-red-700 ml-2" onclick="event.preventDefault(); document.getElementById('eliminar-form-{{ $presentacion->cod_presentacion_proyecto }}').submit();">
+                                                <i class="far fa-trash-alt"></i>
+                                            </a>
+                                            <form id="eliminar-form-{{ $presentacion->cod_presentacion_proyecto }}" action="{{ route('eliminar_presentacion', ['cod_presentacion_proyecto' => $presentacion->cod_presentacion_proyecto]) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
