@@ -28,6 +28,12 @@ class EventoController extends Controller
         $evento->save();
         return redirect()->route('eventos.listado')->with('success', 'El evento ha sido registrado exitosamente.');
     }
+    public function reporte()
+    {
+        $eventos = Evento::all();
+        return view('semilleros.eventos.eventos_listado_reporte', compact('eventos'));
+    }
+
 
     public function listado()
     {

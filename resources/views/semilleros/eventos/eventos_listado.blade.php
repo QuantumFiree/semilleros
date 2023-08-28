@@ -205,8 +205,10 @@
 
     <div class="flex justify-center mt-4">
         <a href="{{ route('registro.evento') }}" class="px-4 py-2 bg-green-500 text-black rounded">Agregar otro Evento</a>
+        <a href="{{ route('reporte.evento') }}" class="px-4 py-2 bg-green-300 text-black rounded" name="enviar" id="enviar">Generar Reporte</a>
+        
     </div><br>
-
+    
     <script>
         // Función para abrir el modal cuando se hace clic en el botón del ojo
         function openModal(evento) {

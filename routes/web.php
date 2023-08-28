@@ -94,6 +94,7 @@ Route::post('/participantes/proyecto', [ParticipantesProyectoController::class, 
 Route::get('/registro/evento', [EventoController::class, 'showForm'])->name('registro.evento');
 Route::post('/registro/evento', [EventoController::class, 'register'])->name('registro.evento');
 Route::get('/listado/eventos', [EventoController::class, 'listado'])->name('eventos.listado');
+Route::get('/listado/eventos/reporte', [EventoController::class, 'reporte'])->name('reporte.evento');
 Route::get('/editar/evento/{cod_evento}', [EventoController::class, 'editar'])->name('editar_evento');
 Route::put('/actualizar/evento/{cod_evento}', [EventoController::class, 'update'])->name('actualizar_evento');
 Route::delete('/eliminar/evento/{cod_evento}', [EventoController::class, 'eliminar'])->name('eliminar_evento');

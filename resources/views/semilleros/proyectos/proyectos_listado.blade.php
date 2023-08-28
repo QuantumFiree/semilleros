@@ -245,6 +245,8 @@
     </div>
     <div class="flex justify-center mt-4">
         <a href="{{ route('registro.proyecto') }}" class="px-4 py-2 bg-green-500 text-black rounded">Registrar otro Proyecto</a> 
+        <a href="{{ route('registro.proyecto') }}" class="px-4 py-2 bg-green-300 text-black rounded">Generar Reporte</a> 
+    
     </div>
     <br>
     <script>
