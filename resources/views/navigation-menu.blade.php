@@ -43,7 +43,18 @@
                         {{ __('Eventos') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link href="{{ route('presentaciones.listado') }}" :active="request()->routeIs('presentaciones.listado')">
+                        {{ __('Presentaciones') }}
+                    </x-nav-link>
+                </div>
             </div>
+            <div class="text-right ">
+                <h2 class="font-bold text-xl text-[#00923f] leading-tight  mt-[18px] ">
+                    {{ __(auth()->user()->rol) }}
+                </h2>
+            </div>
+            
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->

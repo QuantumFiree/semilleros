@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->id(); // Llave primaria, autoincremental, unsigned, biginteger
-            $table->string('nombreCategoria', 20);
-            $table->string('descripcion', 45);
-            $table->timestamps();
+        Schema::table('eventos', function (Blueprint $table) {
+            $table->unsignedBigInteger('cod_semillero')->nullable()->change();
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        //
     }
 };

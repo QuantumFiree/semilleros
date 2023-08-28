@@ -35,7 +35,7 @@
         text-align: center;
     }
 
-    /
+    
     .two-columns-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -60,8 +60,8 @@
         border-radius: 20px;
     }
 
-    tr td:nth-child(n+5),
-    tr th:nth-child(n+5) {
+    tr td:nth-child(n+3),
+    tr th:nth-child(n+3) {
         border-radius: 0 .625rem .625rem 0;
     }
 
@@ -88,12 +88,9 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <div class="columns-2">
-            <h2 class="font-semibold text-xl text-blue-800 text-right leading-tight">
+        <div >
+            <h2 class="font-semibold text-xl text-white text-left leading-tight">
                 {{ __('Listado de Eventos') }}
-            </h2>
-            <h2 class="font-bold text-xl text-green-400 leading-tight text-right">
-                {{ __(auth()->user()->rol) }}
             </h2>
         </div>
     </x-slot>
@@ -105,9 +102,9 @@
                         <table class="table text-gray-400 border-separate space-y-6 text-sm">
                             <thead class="bg-gray-700 text-green-400">
                                 <tr>
-                                    <th class="p-3">Nombre</th>
-                                    <th class="p-3">Codigo</th>
-                                    <th class="p-3 text-left">Acciones</th>
+                                    <th class="p-3 text-center">Nombre</th>
+                                    <th class="p-3 text-center">Codigo</th>
+                                    <th class="p-3 text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,6 +142,11 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
                             </tbody>
                     </table>
                 </div>
@@ -158,55 +160,57 @@
                     <table class="table-auto w-full">
                         <tbody>
                             <tr>
-                                <td class="text-white"><strong>Nombre:</strong></td>
+                                <td class="text-[#47c979]"><strong>Nombre:</strong></td>
                                 <td class="text-white" id="evento-nombre"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Código:</strong></td>
+                                <td class="text-[#47c979]"><strong>Código:</strong></td>
                                 <td class="text-white" id="evento-cod-evento"></td>
                             </tr>
 
                             <tr>
-                                <td class="text-white"><strong>Descripción:</strong></td>
+                                <td class="text-[#47c979]"><strong>Descripción:</strong></td>
                                 <td class="text-white" id="evento-descripcion"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Fecha de Inicio:</strong></td>
+                                <td class="text-[#47c979]"><strong>Fecha de Inicio:</strong></td>
                                 <td class="text-white" id="evento-fecha-inicio"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Fecha de finalización:</strong></td>
+                                <td class="text-[#47c979]"><strong>Fecha de finalización:</strong></td>
                                 <td class="text-white"  id="evento-fecha-fin"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Lugar:</strong></td>
+                                <td class="text-[#47c979]"><strong>Lugar:</strong></td>
                                 <td class="text-white" id="evento-lugar"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Tipo:</strong></td>
+                                <td class="text-[#47c979]"><strong>Tipo:</strong></td>
                                 <td class="text-white" id="evento-tipo"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Modalidad:</strong></td>
+                                <td class="text-[#47c979]"><strong>Modalidad:</strong></td>
                                 <td class="text-white" id="evento-modalidad"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Clasificación:</strong></td>
+                                <td class="text-[#47c979]"><strong>Clasificación:</strong></td>
                                 <td class="text-white" id="evento-clasificacion"></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="flex justify-center mt-4">
-                        <button id="close-modal" class="px-4 py-2 bg-blue-500 text-black rounded">Cerrar</button>
+                        <button id="close-modal" class="px-4 py-2 bg-[#00923f] text-white rounded">Cerrar</button>
                     </div>
         </div>
     </div>
 
 
     <div class="flex justify-center mt-4">
-        <a href="{{ route('registro.evento') }}" class="px-4 py-2 bg-green-500 text-black rounded">Agregar otro Evento</a>
-    </div>
-
+        <a href="{{ route('registro.evento') }}" class="px-4 py-2 bg-[#00923f] text-white rounded">Agregar otro Evento</a>
+        <a href="{{ route('reporte.evento') }}" class="px-4 py-2 ml-5 bg-[#00923f] text-white rounded" >Generar Reporte</a>
+        
+    </div><br>
+    
     <script>
         // Función para abrir el modal cuando se hace clic en el botón del ojo
         function openModal(evento) {

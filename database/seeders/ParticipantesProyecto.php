@@ -20,14 +20,14 @@ class ParticipantesProyecto extends Seeder
         $datos =[
             [
                
-                'cod_proyecto'=>'2101',
+                'cod_proyecto'=>'2100',
                 'cod_semillerista'=>'1100'
                      
             ],
 
             [
                
-                'cod_proyecto'=>'2101',
+                'cod_proyecto'=>'2100',
                 'cod_semillerista'=>'1100'
                      
             ]

@@ -43,6 +43,7 @@ Route::middleware([
     'auth'
 ])->group(function () {
     // Rutas semillero
+    Route::get('/semillero/pdf', [SemilleroController::class, 'pdf'])->name('semillero.pdf');
     // Rutas coordinador
     Route::get('/registro/coordinador', [ControllerCoordinador::class, 'registroView'])->name('registroCoordinador');
     Route::post('/registro/coordinador', [ControllerCoordinador::class, 'registro'])->name('registroCoordinador');
@@ -53,6 +54,7 @@ Route::middleware([
     Route::get('/coordinadores/listado', [ControllerCoordinador::class, 'listadoCoordinadoresView'])->name('listadoCoordinadores');
 
     // Rutas semillerista
+    Route::get('/semilleristas/pdf', [ControllerSemillerista::class, 'pdf'])->name('semilleristas.pdf');
     Route::get('/registro/semillerista', [ControllerSemillerista::class, 'registroView'])->name('registroSemillerista');
     Route::post('/registro/semillerista', [ControllerSemillerista::class, 'registro'])->name('registroSemillerista');
     Route::get('/perfil/semillerista/editar_datos_personales/{cod_semillerista}', [ControllerSemillerista::class, 'datosPersonalesView'])->name('perfilSemilleristaView');
@@ -82,6 +84,7 @@ Route::delete('/eliminar/semillero/{id}', [SemilleroController::class, 'eliminar
 Route::get('/registro/proyecto', [ProyectoController::class, 'showForm'])->name('registro.proyecto');
 Route::post('/registro/proyecto', [ProyectoController::class, 'register'])->name('registro.proyecto');
 Route::get('/listado/proyectos', [ProyectoController::class, 'listado'])->name('proyectos.listado');
+Route::get('/listado/proyectos/reporte', [ProyectoController::class, 'reporte'])->name('reporte.proyecto');
 Route::get('/editar/proyecto/{cod_proyecto}', [ProyectoController::class, 'editar'])->name('editar_proyecto');
 Route::post('/editar/proyecto/{cod_proyecto}', [ProyectoController::class, 'update'])->name('actualizar_proyecto');
 Route::delete('/eliminar/proyecto/{cod_proyecto}', [ProyectoController::class, 'eliminar'])->name('eliminar_proyecto');
@@ -95,7 +98,14 @@ Route::post('/proyecto/registro/participantes', [ParticipantesProyectoController
 Route::get('/registro/evento', [EventoController::class, 'showForm'])->name('registro.evento');
 Route::post('/registro/evento', [EventoController::class, 'register'])->name('registro.evento');
 Route::get('/listado/eventos', [EventoController::class, 'listado'])->name('eventos.listado');
+Route::get('/listado/eventos/reporte', [EventoController::class, 'reporte'])->name('reporte.evento');
 Route::get('/editar/evento/{cod_evento}', [EventoController::class, 'editar'])->name('editar_evento');
 Route::put('/actualizar/evento/{cod_evento}', [EventoController::class, 'update'])->name('actualizar_evento');
 Route::delete('/eliminar/evento/{cod_evento}', [EventoController::class, 'eliminar'])->name('eliminar_evento');
+
+
+Route::get('/listado/presentaciones', [PresentacionProyectoController::class, 'listado'])->name('presentaciones.listado');
+Route::get('/presentar/proyecto/{cod_proyecto}', [PresentacionProyectoController::class,'create'])->name('presentar_proyecto');
+Route::post('/guardar/proyecto/{cod_proyecto}', [PresentacionProyectoController::class, 'store'])->name('guardar_proyecto');
+Route::delete('/eliminar/presentacion/{cod_presentacion_proyecto}', [PresentacionProyectoController::class, 'eliminar'])->name('eliminar_presentacion');
 

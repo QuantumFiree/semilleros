@@ -107,7 +107,7 @@ class ProyectoController extends Controller
 
     public function update(Request $request, $cod_proyecto)
         {
-            dd($request->all());
+            dd();
             $proyecto = Proyecto::find($cod_proyecto);
             $proyecto->titulo = $request->input('titulo');
             $proyecto->cod_semillero = $request->input('cod_semillero');
@@ -133,4 +133,4 @@ class ProyectoController extends Controller
                 return redirect()->route('proyectos.listado')->with('error', 'El proyecto no existe.');
             }
         }
-}
+    }

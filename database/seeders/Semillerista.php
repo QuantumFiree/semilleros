@@ -27,13 +27,13 @@ class Semillerista extends Seeder
                 'direccion'=>'Aquine 3',
                 'telefono'=>'7202020',
                 'genero'=>'Masculino',
-                'fecha_nacimiento'=>'1995-26-12',
+                'fecha_nacimiento'=>'1995-05-12',
                 'foto'=>'png',
                 'cod_programa_academico'=>'100',
                 'cod_estudiantil'=>'215034302',
                 'semestre'=>'9',
                 'fecha_vinculacion'=>'2023-08-12',
-                'cod_semillero'=>'1001',
+                'cod_semillero'=>1000,
                 'reporte_matricula'=>'matriculado'          
             ]
 

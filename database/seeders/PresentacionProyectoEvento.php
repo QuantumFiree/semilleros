@@ -24,8 +24,8 @@ class PresentacionProyectoEvento extends Seeder
                 'calificacion'=>'5',
                 'certificacion'=>'certifica que asistieron al evento de inteligencia artificial',
                 'evidencias'=>'presentacion proyeccto hombre y la ciencia',
-                'cod_evento'=>'3100',
-                'cod_proyecto'=>'2101'     
+                'cod_evento'=>3100,
+                'cod_proyecto'=>2100     
             ]
 
 

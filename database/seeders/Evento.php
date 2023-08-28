@@ -28,7 +28,7 @@ class Evento extends Seeder
                 'modalidad'=>'Virtual',
                 'clasificacion'=>'Regional',
                 'observaciones'=>'ninguna',  
-                'cod_semillero'=>1001    
+                'cod_semillero'=>1000    
             ],
 
             [
@@ -41,7 +41,7 @@ class Evento extends Seeder
                 'modalidad'=>'Presencial',
                 'clasificacion'=>'Local',
                 'observaciones'=>'ninguna',
-                'cod_semillero'=>1001      
+                'cod_semillero'=>1000      
             ]
 
 

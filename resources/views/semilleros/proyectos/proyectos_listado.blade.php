@@ -36,8 +36,8 @@
         border-radius: 20px;
     }
 
-    tr td:nth-child(n+5),
-    tr th:nth-child(n+5) {
+    tr td:nth-child(n+6),
+    tr th:nth-child(n+6) {
         border-radius: 0 .625rem .625rem 0;
     }
 
@@ -516,6 +516,11 @@
                                     </div>
                                 @endforeach
                             </tbody>
+                            @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                            @endif
                         </table>
                     </div>
                 </div>

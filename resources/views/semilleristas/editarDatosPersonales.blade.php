@@ -19,12 +19,9 @@
 </style>
 <x-app-layout>
     <x-slot name="header">
-        <div class="columns-2">
-            <h2 class="font-semibold text-xl text-white leading-tight">
+        <div>
+            <h2 class="font-semibold text-xl text-white  text-left leading-tight">
                 {{ __('Actualizar datos personales') }}
-            </h2>
-            <h2 class="justify-self-end font-sans text-end font-extrabold text-2xl text-yellow-400 leading-tight">
-                {{ __(auth()->user()->rol) }}
             </h2>
         </div>
     </x-slot>

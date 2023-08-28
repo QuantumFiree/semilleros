@@ -7,12 +7,13 @@ use App\Models\Semillero;
 use App\Models\CoordinadorModel;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class SemilleroController extends Controller
 {
     public function showForm()
     {
-        return view('semilleros.registro_semillero');
+        $coordinadores = CoordinadorModel::all();
+        return view('semilleros.registro_semillero', compact('coordinadores'));
     }
 
     public function register(Request $request)
@@ -54,7 +55,7 @@ class SemilleroController extends Controller
             'presentacion' => $request->input('presentacion'),
             'fecha_creacion' => $request->input('fecha_creacion'),
             'numero_resolucion' => $request->input('numero_resolucion'),
-            'logo' => $request->file('logo')->store('logos', 'public'), 
+            'logo' => $request->file('logo')->store('logos', 'public'),
             'cod_coordinador' => $request->input('cod_coordinador'),
             'archivo' =>$request->input('archivo'),
             'archivo_resolucion' =>$request->input('archivo_resolucion'),
@@ -69,7 +70,7 @@ class SemilleroController extends Controller
     public function listado()
     {
         $semilleros = Semillero::all();
-        
+
         foreach ($semilleros as $semillero) {
             $semillero->logo_url = Storage::url('public/logos/' . $semillero->logo);
         }
@@ -142,16 +143,25 @@ class SemilleroController extends Controller
 
     public function eliminar($id)
     {
-        $semillero = Semillero::find($id);
+        try {
+            $semillero = Semillero::find($id);
 
-        if ($semillero) {
-            $semillero->delete();
-            return redirect()->route('semilleros.listado')->with('success', 'El evento ha sido eliminado exitosamente.');
-        } else {
-            return redirect()->route('semilleros.listado')->with('error', 'El evento no existe.');
+            if ($semillero) {
+                $semillero->delete();
+                return redirect()->route('semilleros.listado')->with('success', 'El evento ha sido eliminado exitosamente.');
+            } else {
+                return redirect()->route('semilleros.listado')->with('error', 'El evento no existe.');
+            }
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->route('semilleros.listado')->with('error', 'No se puede borrar este semillero, hay tablas relacionadas a él.');
         }
     }
 
+    public function pdf(){
+        $semilleros_pdfs = Semillero::all();
+        $pdf = Pdf::loadView('semilleros.semilleros_pdf', compact('semilleros_pdfs'));
+        return $pdf->stream();
+    }
 
 
 }

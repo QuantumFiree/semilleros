@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedInteger('cod_evento')->autoIncrement()->startingValue(3100);
             $table->string('nombre')->nullable(false);
             $table->string('descripcion')->nullable();
-            $table->string('fecha_inicio')->nullable();
-            $table->string('fecha_fin')->nullable();
+            $table->date('fecha_inicio')->nullable();
+            $table->date('fecha_fin')->nullable();
             $table->string('lugar')->nullable();
             $table->string('tipo')->nullable();
             $table->string('modalidad')->nullable();

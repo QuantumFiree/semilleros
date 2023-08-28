@@ -1,4 +1,3 @@
-
 <x-app-layout>
     <style>
         .form-input {
@@ -15,6 +14,7 @@
             gap: 8px;
 
         }
+
         .container-auth {
             padding: 16px;
             border-radius: 8px;
@@ -23,6 +23,7 @@
             margin-top: 20px;
             background-color: rgb(31, 41, 55);
         }
+
         .nav-custom {
             display: flex;
             flex-direction: row;
@@ -36,21 +37,25 @@
             border-radius: 5px;
             background-color: rgb(31, 41, 55);
         }
+
         .label-custom {
             color: white;
             margin-top: 8px;
         }
+
         .center-title {
             text-align: center;
             background-color: #1f2937;
             padding: 10px 0;
         }
+
         .title-border {
             border: 2px solid white;
             padding: 10px;
             border-radius: 8px;
             margin: 10px auto;
         }
+
         .nav-link-custom {
             background-color: rgb(34, 197, 94);
             width: 100%;
@@ -59,6 +64,7 @@
             border-radius: 4px;
             transition: background-color 0.3s ease-in-out;
         }
+
         .nav-link-off-custom {
             width: 100%;
             text-align: center;
@@ -66,11 +72,13 @@
             border-radius: 4px;
             transition: background-color 0.3s ease-in-out;
         }
+
         .flex-center {
             display: flex;
             justify-content: center;
             align-items: center;
         }
+
         .flex-right {
             display: flex;
             justify-content: flex-end;
@@ -79,146 +87,149 @@
     </style>
 
     <x-slot name="header">
-        <div class="columns-2">
-            <h2 class="font-semibold text-xl text-blue-900 text-right leading-tight">
+        <div>
+            <h2 class="font-semibold text-xl text-white text-left leading-tight">
                 {{ __('Editar información del Semillero') }}
-            </h2>
-
-            <h2 class="font-bold text-xl text-green-400 leading-tight text-right">
-                {{ __(auth()->user()->rol) }}
             </h2>
         </div>
     </x-slot>
+    <div class="pb-10">
+        <x-form_card>
+            <x-slot name="logo">
+            </x-slot>
+            <form class="pb-5" method="POST" action="{{ route('actualizar_semillero', $semillero->cod_semillero) }}" enctype="multipart/form-data">
+                @method('PUT')
+                @csrf
+                <div class="three-columns-grid columns-2">
+                    <div class="mr-10">
+                        <div>
+                            <x-label for="nombre" class="my-2" value="{{ __('Nombre del Semillero') }}" />
+                            <x-input id="nombre" class="form-input" type="text" name="nombre" value="{{$semillero->nombre}}" required autofocus />
+                            @error('nombre')
+                            <p class="text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
 
-    <x-authentication-card>
-        <x-slot name="logo">
-        </x-slot>
-        <form method="POST" action="{{ route('actualizar_semillero', $semillero->cod_semillero) }}" enctype="multipart/form-data">
-            @method('PUT')
-            @csrf
-            <div class="three-columns-grid">
-                <div class="column">
-                <div>
-                    <x-label for="nombre" value="{{ __('Nombre del Semillero') }}" />
-                    <x-input id="nombre" class="form-input" type="text" name="nombre" :value="old('nombre')" required autofocus />
-                    @error('nombre')
+                        <div>
+                            <x-label for="correo" class="my-2" value="{{ __('Correo Electrónico') }}" />
+                            <x-input id="correo" class="form-input" type="email" name="correo" value="{{$semillero->correo}}" required />
+                            @error('correo')
+                            <p class="text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+
+                        <div>
+                            <x-label for="descripcion" class="my-2" class="my-2" value="{{ __('Descripción') }}" />
+                            <textarea id="descripcion" class="form-input h-32" type="text" name="descripcion" required><?php echo $semillero->descripcion; ?></textarea>
+                            @error('descripcion')
+                            <p class="text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <x-label for="mision" class="my-2" value="{{ __('Misión') }}" />
+                            <textarea id="mision" class="form-input  h-32" type="text" name="mision" required><?php echo $semillero->mision; ?></textarea>
+                            @error('mision')
+                            <p class="text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <x-label for="vision" class="my-2" value="{{ __('Visión') }}" />
+                            <textarea id="vision" class="form-input  h-32" type="text" name="vision" required><?php echo $semillero->vision; ?></textarea>
+                            @error('vision')
+                            <p class="text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <x-label for="valores" class="my-2" value="{{ __('Valores') }}" />
+                            <textarea id="valores" class="form-input  h-32" type="text" name="valores" required><?php echo $semillero->valores; ?></textarea>
+                            @error('valores')
+                            <p class="text-red-600">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="h-12">
+                        <h1> </h1>
+                    </div>
+                    <div>
+                        <x-label for="objetivo" class="my-2" value="{{ __('Objetivo') }}" />
+                        <textarea id="objetivo" class="form-input  h-32" type="text" name="objetivo" required><?php echo $semillero->objetivo; ?></textarea>
+                        @error('objetivo')
                         <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
+                        @enderror
+                    </div>
 
-                <div>
-                    <x-label for="correo" value="{{ __('Correo Electrónico') }}" />
-                    <x-input id="correo" class="form-input" type="email" name="correo" :value="old('correo')" required />
-                    @error('correo')
+                    <div>
+                        <x-label for="lineas_investigacion" class="my-2" value="{{ __('Líneas de Investigación') }}" />
+                        <textarea id="lineas_investigacion" class="form-input  h-32" type="text" name="lineas_investigacion" required><?php echo $semillero->lineas_investigacion; ?></textarea>
+                        @error('lineas_investigacion')
                         <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
+                        @enderror
+                    </div>
 
 
-                <div>
-                    <x-label for="descripcion" value="{{ __('Descripción') }}" />
-                    <x-input id="descripcion" class="form-input" type="text" name="descripcion" :value="old('descripcion')" required />
-                    @error('descripcion')
+
+                    <div>
+                        <x-label for="presentacion" class="my-2" value="{{ __('Presentación') }}" />
+                        <x-input id="presentacion" class="form-input" type="text" name="presentacion" value="{{$semillero->presentacion}}" required />
+                        @error('presentacion')
                         <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
+                        @enderror
+                    </div>
 
-                <div>
-                    <x-label for="mision" value="{{ __('Misión') }}" />
-                    <x-input id="mision" class="form-input" type="text" name="mision" :value="old('mision')" required />
-                    @error('mision')
+                    <div>
+                        <x-label for="fecha_creacion" class="my-2" value="{{ __('Fecha de Creación') }}" />
+                        <x-input id="fecha_creacion" class="form-input" type="date" name="fecha_creacion" value="{{$semillero->fecha_creacion}}" required />
+                        @error('fecha_creacion')
                         <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div>
-                    <x-label for="vision" value="{{ __('Visión') }}" />
-                    <x-input id="vision" class="form-input" type="text" name="vision" :value="old('vision')" required />
-                    @error('vision')
+                        @enderror
+                    </div>
+
+                    <div>
+                        <x-label for="numero_resolucion" class="my-2" value="{{ __('Número de Resolución') }}" />
+                        <x-input id="numero_resolucion" class="form-input" type="number" name="numero_resolucion" value="{{$semillero->numero_resolucion}}" placeholder="#" required />
+                        @error('numero_resolucion')
                         <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
+                        @enderror
+                    </div>
 
-                <div>
-                    <x-label for="valores" value="{{ __('Valores') }}" />
-                    <x-input id="valores" class="form-input" type="text" name="valores" :value="old('valores')" required />
-                    @error('valores')
+                    <div>
+                        <x-label for="logo" class="my-2" value="{{ __('Logo (Imagen)') }}" />
+                        <x-input id="logo" class="form-input" type="file" name="logo" value="{{$semillero->logo}}" required accept="image/*" />
+                        @error('logo')
                         <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
+                        @enderror
+                    </div>
 
-                <div>
-                    <x-label for="objetivo" value="{{ __('Objetivo') }}" />
-                    <x-input id="objetivo" class="form-input" type="text" name="objetivo" :value="old('objetivo')" required />
-                    @error('objetivo')
+                    <div>
+                        <x-label for="cod_coordinador" class="my-2" value="{{ __('Código de Coordinador Encargado') }}" />
+                        <x-input id="cod_coordinador" class="form-input" type="number" name="cod_coordinador" value="{{$semillero->cod_coordinador}}" placeholder="#" required />
+                        @error('cod_coordinador')
                         <p class="text-red-600">{{ $message }}</p>
-                    @enderror
+                        @enderror
+                    </div>
+
+                    <div>
+                        <x-label for="archivo" class="my-2" value="{{ __('Archivo Presentación:') }}" />
+                        <x-input id="archivo" class="form-input" type="file" name="archivo" value="{{$semillero->archivo}}" required accept="file/*" />
+                    </div>
+
+                    <div>
+                        <x-label for="archivo_resolucion" class="my-2" value="{{ __('Archivo Resolución:') }}" />
+                        <x-input id="archivo_resolucion" class="form-input" type="file" name="archivo_resolucion" value="{{$semillero->archivo_resolucion}}" required accept="file/*" />
+                    </div>
                 </div>
 
-                <div>
-                    <x-label for="lineas_investigacion" value="{{ __('Líneas de Investigación') }}" />
-                    <x-input id="lineas_investigacion" class="form-input" type="text" name="lineas_investigacion" :value="old('lineas_investigacion')" required />
-                    @error('lineas_investigacion')
-                        <p class="text-red-600">{{ $message }}</p>
-                    @enderror
+                <div class="flex justify-end mt-4">
+                    <x-button type="submit">
+                        {{ isset($semillero) ? __('Actualizar') : __('Registrar') }}
+                    </x-button>
                 </div>
+            </form>
+        </x-form_card>
+    </div>
 
-                <div>
-                    <x-label for="presentacion" value="{{ __('Presentación') }}" />
-                    <x-input id="presentacion" class="form-input" type="text" name="presentacion" :value="old('presentacion')" required />
-                    @error('presentacion')
-                        <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div>
-                    <x-label for="fecha_creacion" value="{{ __('Fecha de Creación') }}" />
-                    <x-input id="fecha_creacion" class="form-input" type="date" name="fecha_creacion" :value="old('fecha_creacion')" required />
-                    @error('fecha_creacion')
-                        <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div>
-                    <x-label for="numero_resolucion" value="{{ __('Número de Resolución') }}" />
-                    <x-input id="numero_resolucion" class="form-input" type="text" name="numero_resolucion" :value="old('numero_resolucion')" required />
-                    @error('numero_resolucion')
-                        <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div>
-                    <x-label for="logo" value="{{ __('Logo (Imagen)') }}" />
-                    <x-input id="logo" class="form-input" type="file" name="logo" :value="old('logo')" required accept="image/*" />
-                    @error('logo')
-                        <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div>
-                    <x-label for="cod_coordinador" value="{{ __('Código de Coordinador Encargado') }}" />
-                    <x-input id="cod_coordinador" class="form-input" type="text" name="cod_coordinador" :value="old('cod_coordinador')" required />
-                    @error('cod_coordinador')
-                        <p class="text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div>
-                    <x-label for="archivo" value="{{ __('Archivo (File)') }}" />
-                    <x-input id="archivo" class="form-input" type="file" name="archivo" :value="old('archivo')" required accept="file/*" />
-                </div>
-
-                <div>
-                    <x-label for="archivo_resolucion" value="{{ __('Archivo (File)') }}" />
-                    <x-input id="archivo_resolucion" class="form-input" type="file" name="archivo_resolucion" :value="old('archivo')" required accept="file/*" />
-                </div>
-            </div>
-
-            <div class="flex items-center justify-center mt-4">
-                <button type="submit" class="btn-register bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    {{ isset($semillero) ? __('Actualizar') : __('Registrar') }}
-                </button>
-            </div>
-        </form>
-    </x-authentication-card>
 </x-app-layout>
-

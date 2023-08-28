@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('objetivo')->nullable();
             $table->string('lineas_investigacion')->nullable();
             $table->string('presentacion')->nullable();
-            $table->string('fecha_creacion')->nullable();
+            $table->date('fecha_creacion')->nullable();
             $table->integer('numero_resolucion')->nullable();
             $table->string('logo')->nullable();
             $table->unsignedInteger('cod_coordinador')->nullable(false);

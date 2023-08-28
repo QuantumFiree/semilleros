@@ -1,19 +1,28 @@
 <x-app-layout>
-<div class="flex justify-center items-center h-screen">
-        <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+    <x-slot name="header">
+    <div>
+        <h2 class="font-semibold text-xl  text-left leading-tight text-white">
+            {{ __('Registro de Presentacion') }}
+        </h2>
+    </div>
+    </x-slot>
+    <div class=" flex flex-col w-full items-center ">
+        <div class="mt-6 px-6 py-4 shadow-2xl overflow-hidden sm:rounded-lg" style="background-color: #bcd9c8">
             <h2 class="text-2xl font-semibold mb-4 text-center">Crear Presentación de Proyecto</h2>
-            <form action="{{ route('guardar_proyecto') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('guardar_proyecto', [$proyecto->cod_proyecto]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
                         <label for="participacion" class="block text-sm font-medium text-gray-700">Participación:</label>
-                        <input type="text" name="participacion" id="participacion" class="mt-1 p-2 border border-green-500 rounded-md w-full focus:border-green-700">
+                        <input type="text" name="participacion" id="participacion" class="mt-1 p-2 border border-green-500 rounded-md w-full focus:border-green-700" required>
                 <div class="mb-4">
                     <label for="calificacion" class="block text-sm font-medium text-gray-700">Calificación:</label>
-                    <input type="text" name="calificacion" id="calificacion" class="mt-1 p-2 border rounded-md w-full">
+                    <input type="number" step="any" name="calificacion" id="calificacion" class="mt-1 p-2 border rounded-md w-full" placeholder="#" required>
                 </div>
+                <p>Participantes:</p><br>
                 @foreach($participantes as $participante)
                     <div class="mb-3 ml-4">
-                        <input class="block form-check-input" type="checkbox" id="participante_{{ $participante->cod_semillerista }}" name="participantes[]" value="{{ $participante->cod_semillerista }}">
+
+                        <input class="block form-check-input" type="checkbox" id="participante_{{ $participante->cod_semillerista }}" name="participantes[]" value="{{ $participante->cod_semillerista }}" >
                         <label class="form-check-label" for="participante_{{ $participante->cod_semillerista }}">
                             {{ $participante->nombres}}
                         </label>
@@ -21,36 +30,29 @@
                 @endforeach
                 <div class="mb-4">
                     <label for="certificacion" class="block text-sm font-medium text-gray-700">Certificación:</label>
-                    <input type="file" name="certificacion" id="certificacion" class="mt-1 p-2 border rounded-md w-full">
+                    <input type="file" name="certificacion" id="certificacion" class="mt-1 p-2 border rounded-md w-full" required>
                 </div>
                 <div class="mb-4">
                     <label for="evidencias" class="block text-sm font-medium text-gray-700">Evidencias:</label>
-                    <input type="file" name="evidencias" id="evidencias" class="mt-1 p-2 border rounded-md w-full">
+                    <input type="file" name="evidencias" id="evidencias" class="mt-1 p-2 border rounded-md w-full" required>
                 </div>
                 <div class="mb-4">
                     <label for="cod_evento" class="block text-sm font-medium text-gray-700">Evento:</label>
-                    <select name="cod_evento" id="cod_evento" class="mt-1 p-2 border rounded-md w-full">
+                    <select name="cod_evento" id="cod_evento" class="mt-1 p-2 border rounded-md w-full" required>
                         @foreach ($eventos as $evento)
                             <option value="{{ $evento->cod_evento }}">{{ $evento->nombre }}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="mb-4">
-                    <label for="cod_proyecto" class="block text-sm font-medium text-gray-700">Proyecto:</label>
-                    <input type="text" name="cod_proyecto" id="cod_proyecto" class="mt-1 p-2 border rounded-md w-full">
+                <div class="mb-4" >
+                    <h1><strong>Proyecto: </strong>{{ $proyecto->titulo }}</h1>
                 </div>
-                <!-- <div class="form-field">
-                    <label for="tipo">{{ __('Modalidad') }}</label>
-                    <select id="modalidad" name="modalidad" required>
-                        <option value="poster">Poster</option>
-                        <option value="ponencia">Ponencia</option>
-                    </select>
-                </div> -->
-                <div class="flex justify-center">
-                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">
-                        Guardar
-                    </button>
+                <div class="flex items-center justify-end mt-4">
+                    <x-button type="submit" >
+                        {{ __('Registrar') }}
+                    </x-button>
                 </div>
-        </form>
+            </form>
+        </div>
     </div>
 </x-app-layout>
