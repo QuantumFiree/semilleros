@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ParticipantesProyecto; 
+use App\Models\Proyecto; 
+use App\Models\SemilleristaModel;
 
 class ParticipantesProyectoController extends Controller
 {
     public function create()
+
     {
-        return view('semilleros.proyectos.participantes_proyecto');
+        $proyectos = Proyecto::all();
+        $semilleristas = SemilleristaModel::all();
+        return view('semilleros.proyectos.participantes_proyecto', compact('proyectos', 'semilleristas'));
     }
+    
 
     public function store(Request $request)
     {
