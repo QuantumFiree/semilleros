@@ -99,6 +99,6 @@ Route::delete('/eliminar/evento/{cod_evento}', [EventoController::class, 'elimin
 
 Route::get('/listado/presentaciones', [PresentacionProyectoController::class, 'listado'])->name('presentaciones.listado');
 Route::get('/presentar/proyecto/{cod_proyecto}', [PresentacionProyectoController::class,'create'])->name('presentar_proyecto');
-Route::post('/guardar/proyecto', [PresentacionProyectoController::class, 'store'])->name('guardar_proyecto');
+Route::post('/guardar/proyecto/{cod_proyecto}', [PresentacionProyectoController::class, 'store'])->name('guardar_proyecto');
 Route::delete('/eliminar/presentacion/{cod_presentacion_proyecto}', [PresentacionProyectoController::class, 'eliminar'])->name('eliminar_presentacion');
 

@@ -8,12 +8,14 @@ use App\Models\PresentacionProyecto;
 use App\Models\ParticipantesProyecto;
 use App\Models\SemilleristaModel;
 use App\Models\ParticipantesPresentacionProyecto;
+use App\Models\Proyecto;
 
 class PresentacionProyectoController extends Controller
 {
     public function create(Request $request, $cod_proyecto)
     {
         $eventos = Evento::all();
+        $proyecto = Proyecto::find($cod_proyecto);
         $participantes_proyecto = ParticipantesProyecto::where('cod_proyecto', $cod_proyecto)->get();
         $participantes = [];
 
@@ -24,7 +26,7 @@ class PresentacionProyectoController extends Controller
             }
         }
 
-        return view('semilleros.proyectos.presentacion_proyecto', compact('eventos', 'participantes'));
+        return view('semilleros.proyectos.presentacion_proyecto', compact('eventos', 'participantes', 'proyecto'));
     }
 
     public function listado()
@@ -46,7 +48,7 @@ class PresentacionProyectoController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $cod_proyecto)
     {
         $request->validate([
             'participacion' => 'required|string',
@@ -54,7 +56,6 @@ class PresentacionProyectoController extends Controller
             'certificacion' => 'required|file|max:2048',
             'evidencias' => 'required|file|max:2048',
             'cod_evento' => 'required|exists:evento,cod_evento',
-            'cod_proyecto' => 'required|integer',
             // 'modalidad' => 'required|array',
             // 'modalidad.*' => 'in:poster,ponencia',
         ]);
@@ -66,7 +67,7 @@ class PresentacionProyectoController extends Controller
         $presentacion->certificacion = $request->input('certificacion');
         $presentacion->evidencias = $request->input('evidencias');
         $presentacion->cod_evento = $request->input('cod_evento');
-        $presentacion->cod_proyecto = $request->input('cod_proyecto');
+        $presentacion->cod_proyecto = $cod_proyecto;
         // $presentacion->modalidades = $request->input('modalidad');
         // TODO El campo de modalidad no existe en la base de datos, se debe agregar en la migracion y en el modelo
 
