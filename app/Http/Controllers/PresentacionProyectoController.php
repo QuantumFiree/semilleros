@@ -31,7 +31,7 @@ class PresentacionProyectoController extends Controller
 
     public function listado()
     {
-        $presentaciones = PresentacionProyecto::all();
+        $presentaciones = PresentacionProyecto::with(['proyecto', 'evento'])->get();
         return view('semilleros.proyectos.presentaciones_listado', compact('presentaciones'));
     }
 

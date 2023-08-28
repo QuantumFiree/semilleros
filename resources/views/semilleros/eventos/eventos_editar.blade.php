@@ -134,7 +134,7 @@
                             <input id="lugar" type="text" name="lugar" value="{{$evento->lugar}}" />
                         </div>
 
-                       
+
                     </div>
 
                     <div class="h-20">
@@ -176,8 +176,12 @@
                     </div>
 
                     <div class="form-field">
-                        <label for="cod_semillero">{{ __('Código del semillero') }}</label>
-                        <input id="cod_semillero" type="number" class="block mt-1 w-full border border-green-500" name="cod_semillero" value="{{$evento->cod_semillero}}" placeholder="#" />
+                        <label for="cod_semillero">{{ __('Selecciona un semillero') }}</label>
+                        <select id="cod_semillero" class="block mt-1 w-full border border-green-500" name="cod_semillero">
+                            @foreach ($semilleros as $semillero)
+                                <option value="{{ $semillero->cod_semillero }}" @if ($semillero->cod_semillero == $evento->cod_semillero) selected @endif>{{ $semillero->nombre }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
 
@@ -187,6 +191,7 @@
                         {{ isset($evento) ? __('Actualizar') : __('Registrar') }}
                     </x-button>
                 </div>
+            </div>
         </form>
     </x-form_card>
 </x-app-layout>
