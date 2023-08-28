@@ -10,6 +10,7 @@ use App\Models\Semillero;
 use Faker\Core\Coordinates;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ControllerSemillerista extends Controller
 {
@@ -208,5 +209,11 @@ class ControllerSemillerista extends Controller
         $semilleristas = SemilleristaModel::join('users', 'users.id', '=', 'semillerista.cod_user')->join('semillero', 'semillero.cod_semillero', '=', 'semillerista.cod_semillero')->join('programa', 'programa.cod_programa_academico', '=', 'semillerista.cod_programa_academico')->select('cod_semillerista', 'nombres', 'apellidos', 'identificacion', 'direccion', 'telefono', 'genero', 'fecha_nacimiento', 'cod_estudiantil', 'semestre', 'fecha_vinculacion', 'semillerista.cod_semillero', 'reporte_matricula', 'nombre', 'programa.cod_programa_academico', 'nombre_programa', 'estado', 'profile_photo_path', 'email', 'users.id')->get();
 
         return view('semilleristas.listado', ['semilleristas' => $semilleristas]);
+    }
+
+    public function pdf(){
+        $semilleristas_pdfs = Semillero::all();
+        $pdf = Pdf::loadView('semilleros.semilleristas_pdf', compact('semilleristas_pdfs'));
+        return $pdf->stream();
     }
 }

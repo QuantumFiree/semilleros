@@ -49,10 +49,10 @@
             </h2>
         </div>
     </x-slot>
-    
+
 
     <div class="min-h-xl flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-        
+
         <div class="container-custom w-full sm:max-w-4xl px-4 pt-3 pb-8 mt-3 shadow-md overflow-hidden sm:rounded-lg bg-gray-200">
             <!-- component -->
             <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
@@ -122,7 +122,7 @@
                                         <a href="{{ route('perfilSemilleristaView', ['cod_semillerista' => $semillerista->id]) }}" class="text-gray-400 hover:text-gray-100  mx-2">
                                             <i class="material-icons-outlined text-base">edit</i>
                                         </a>
-                                        
+
                                         <a href="{{route('eliminarSemillerista', ['cod_semillerista'=>$semillerista->cod_semillerista])}}" type='' class="text-gray-400 hover:text-red-500  ml-2"><i class="material-icons-round text-base">delete_outline</i></a>
 
 

@@ -54,6 +54,7 @@ Route::middleware([
     Route::get('/coordinadores/listado', [ControllerCoordinador::class, 'listadoCoordinadoresView'])->name('listadoCoordinadores');
 
     // Rutas semillerista
+    Route::get('/semilleristas/pdf', [ControllerSemillerista::class, 'pdf'])->name('semilleristas.pdf');
     Route::get('/registro/semillerista', [ControllerSemillerista::class, 'registroView'])->name('registroSemillerista');
     Route::post('/registro/semillerista', [ControllerSemillerista::class, 'registro'])->name('registroSemillerista');
     Route::get('/perfil/semillerista/editar_datos_personales/{cod_semillerista}', [ControllerSemillerista::class, 'datosPersonalesView'])->name('perfilSemilleristaView');
