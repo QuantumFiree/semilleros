@@ -1,6 +1,13 @@
 <x-app-layout>
-<div class="flex justify-center items-center h-screen">
-  <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+    <x-slot name="header">
+    <div>
+        <h2 class="font-semibold text-xl  text-left leading-tight text-white">
+            {{ __('Registro de Presentacion') }}
+        </h2>
+    </div>
+    </x-slot>
+    <div class=" flex flex-col w-full items-center ">
+        <div class="mt-6 px-6 py-4 shadow-2xl overflow-hidden sm:rounded-lg" style="background-color: #bcd9c8">
             <h2 class="text-2xl font-semibold mb-4 text-center">Crear Presentación de Proyecto</h2>
             <form action="{{ route('guardar_proyecto', [$proyecto->cod_proyecto]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -40,11 +47,12 @@
                 <div class="mb-4" >
                     <h1><strong>Proyecto: </strong>{{ $proyecto->titulo }}</h1>
                 </div>
-                <div class="flex justify-center">
-                    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">
-                        Guardar
-                    </button>
+                <div class="flex items-center justify-end mt-4">
+                    <x-button type="submit" >
+                        {{ __('Registrar') }}
+                    </x-button>
                 </div>
-        </form>
+            </form>
+        </div>
     </div>
 </x-app-layout>
