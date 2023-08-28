@@ -83,12 +83,13 @@ Route::get('/registro/proyecto', [ProyectoController::class, 'showForm'])->name(
 Route::post('/registro/proyecto', [ProyectoController::class, 'register'])->name('registro.proyecto');
 Route::get('/listado/proyectos', [ProyectoController::class, 'listado'])->name('proyectos.listado');
 Route::get('/editar/proyecto/{cod_proyecto}', [ProyectoController::class, 'editar'])->name('editar_proyecto');
-Route::put('/actualizar/proyecto/{cod_proyecto}', [ProyectoController::class, 'update'])->name('actualizar_proyecto');
+Route::post('/editar/proyecto/{cod_proyecto}', [ProyectoController::class, 'update'])->name('actualizar_proyecto');
 Route::delete('/eliminar/proyecto/{cod_proyecto}', [ProyectoController::class, 'eliminar'])->name('eliminar_proyecto');
 Route::get('/presentar/proyecto/{cod_proyecto}', [PresentacionProyectoController::class,'create'])->name('presentar_proyecto');
 Route::post('/guardar/proyecto', [PresentacionProyectoController::class, 'store'])->name('guardar_proyecto');
-Route::get('/participantes/proyecto', [ParticipantesProyectoController::class, 'create'])->name('participantes_proyecto.create');
-Route::post('/participantes/proyecto', [ParticipantesProyectoController::class, 'store'])->name('participantes_proyecto.store');
+Route::get('/proyecto/registro/participantes/{cod_proyecto}', [ParticipantesProyectoController::class, 'create'])->name('participantes_proyecto.create');
+// Route::get('/registro/participantes/proyecto', [ParticipantesProyectoController::class, 'viewRegistro'])->name('registro_participantes_proyecto');
+Route::post('/proyecto/registro/participantes', [ParticipantesProyectoController::class, 'store'])->name('participantes_proyecto.store');
 
 
 Route::get('/registro/evento', [EventoController::class, 'showForm'])->name('registro.evento');

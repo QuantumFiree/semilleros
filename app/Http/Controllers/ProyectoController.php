@@ -8,38 +8,61 @@ use App\Models\ParticipantesPresentacionProyecto;
 use App\Models\PresentacionProyecto;
 use App\Models\ParticipantesProyecto;
 use App\Models\SemilleristaModel;
+use App\Models\Semillero;
+use Illuminate\Support\Facades\DB;
 
 class ProyectoController extends Controller
 {
     public function showForm()
         {
-            return view('semilleros.proyectos.registro_proyecto');
+            $semilleros = Semillero::all();
+            return view('semilleros.proyectos.registro_proyecto', ['semilleros' => $semilleros]);
         }
 
     public function register(Request $request)
-
         {
             $request->validate([
                 'titulo' => 'required|string|max:255',
-                'cod_semillero' => 'required|string|max:255',
-                'tipo_proyecto' => 'required|in:Proyecto de investigación,Proyecto de innovación y desarrollo,Proyecto de Emprendimiento',
-                'estado' => 'required|in:Propuesta,En Curso,Inactivo,Terminado',
+                'cod_semillero' => 'required|string',
+                'tipo_proyecto' => 'required|in:Proyecto de investigacion,Proyecto de innovacion y desarrollo,Proyecto de emprendimiento',
+                'estado' => 'required|in:Propuesta,En curso,Inactivo,Terminado',
                 'fecha_inicio' => 'nullable|date',
                 'fecha_finalizacion' => 'nullable|date',
-                'propuesta' => 'nullable|file|max:2048',
+                'propuesta' => 'file|max:2048',
                 'proyecto_final' => 'nullable|file|max:2048',
             ]);
 
-            $proyecto = Proyecto::create([
-                'titulo' => $request->input('titulo'),
-                'cod_semillero' => $request->input('cod_semillero'),
-                'tipo_proyecto' => $request->input('tipo_proyecto'),
-                'estado' => $request->input('estado'),
-                'fecha_inicio' => $request->input('fecha_inicio'),
-                'fecha_finalizacion' => $request->input('fecha_finalizacion'),
-                'propuesta'=> $request->file('propuesta')->store('archivos', 'public'),
-                'proyecto_final'=> $request->file('proyecto_final')->store('archivos', 'public'),
-            ]);
+            if($request->hasFile('propuesta')){
+                $proyecto = Proyecto::create([
+                    'titulo' => $request->input('titulo'),
+                    'cod_semillero' => $request->input('cod_semillero'),
+                    'tipo_proyecto' => $request->input('tipo_proyecto'),
+                    'estado' => $request->input('estado'),
+                    'fecha_inicio' => $request->input('fecha_inicio'),
+                    'fecha_finalizacion' => $request->input('fecha_finalizacion'),
+                    'propuesta'=> $request->file('propuesta')->store('propuestas_proyectos', 'public'),
+                ]);
+            }else if($request->hasFile('propuesta') && $request->hasFile('proyecto_final')){
+                $proyecto = Proyecto::create([
+                    'titulo' => $request->input('titulo'),
+                    'cod_semillero' => $request->input('cod_semillero'),
+                    'tipo_proyecto' => $request->input('tipo_proyecto'),
+                    'estado' => $request->input('estado'),
+                    'fecha_inicio' => $request->input('fecha_inicio'),
+                    'fecha_finalizacion' => $request->input('fecha_finalizacion'),
+                    'propuesta'=> $request->file('propuesta')->store('propuestas_proyectos', 'public'),
+                    'proyecto_final'=> $request->file('proyecto_final')->store('proyectos_finales', 'public'),
+                ]);
+            }else{
+                $proyecto = Proyecto::create([
+                    'titulo' => $request->input('titulo'),
+                    'cod_semillero' => $request->input('cod_semillero'),
+                    'tipo_proyecto' => $request->input('tipo_proyecto'),
+                    'estado' => $request->input('estado'),
+                    'fecha_inicio' => $request->input('fecha_inicio'),
+                    'fecha_finalizacion' => $request->input('fecha_finalizacion')
+                ]);
+            }
 
             $proyecto->save();
             return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido registrado exitosamente.');
@@ -49,40 +72,42 @@ class ProyectoController extends Controller
 
     public function listado()
         {
-            $proyectos = Proyecto::all();
-            $participantes_presentacion_proyecto = ParticipantesPresentacionProyecto::all();
+            $participantes = ParticipantesProyecto::join('semillerista', 'semillerista.cod_semillerista', '=', 'participantes_proyecto.cod_semillerista')
+            ->join('users', 'users.id', '=', 'semillerista.cod_user')
+            ->join('programa', 'programa.cod_programa_academico', '=', 'semillerista.cod_programa_academico')
+            ->select('nombres', 'apellidos', 'semillerista.cod_semillerista', 'cod_proyecto', 'email', 'profile_photo_path', 'nombre_programa', 'identificacion', 'telefono', 'fecha_vinculacion', 'semestre')->get();
+            $participantesArray = $participantes->toArray();
+            $proyectos = DB::table('proyecto')
+    ->select('proyecto.*', DB::raw('COALESCE(pp.num_participantes, 0) AS numero_participantes'))
+    ->leftJoinSub(
+        'SELECT cod_proyecto, COUNT(*) AS num_participantes FROM participantes_proyecto GROUP BY cod_proyecto',
+        'pp',
+        'proyecto.cod_proyecto',
+        '=',
+        'pp.cod_proyecto'
+    )
+    ->get();
 
-            $proyectosConParticipantes = [];
 
-            foreach ($participantes_presentacion_proyecto as $participante_presentacion) {
-                $proyecto_con_presentacion = Proyecto::find($participante_presentacion->presentacionProyecto->cod_proyecto);
-                $semillerista = SemilleristaModel::find($participante_presentacion->cod_semillerista);
-
-                if (!isset($proyectosConParticipantes[$proyecto_con_presentacion->cod_proyecto])) {
-                    $proyectosConParticipantes[$proyecto_con_presentacion->cod_proyecto] = [
-                        'proyecto' => $proyecto_con_presentacion,
-                        'participantes' => [],
-                    ];
-                }
-
-                $proyectosConParticipantes[$proyecto_con_presentacion->cod_proyecto]['participantes'][] = $semillerista;
-            }
-            return view('semilleros.proyectos.proyectos_listado', compact('proyectos', 'proyectosConParticipantes'));
+            return view('semilleros.proyectos.proyectos_listado', ['proyectos' => $proyectos, 'participantes' => $participantesArray]);
         }
 
     public function editar($cod_proyecto)
         {
-            $proyecto = Proyecto::find($cod_proyecto);
-
+            $proyecto = Proyecto::find($cod_proyecto)
+            ->join('semillero', 'semillero.cod_semillero', '=', 'proyecto.cod_semillero')
+            ->first();
+            $semilleros = Semillero::all();
             if (!$proyecto) {
                 return redirect()->route('proyectos.listado')->with('error', 'El proyecto no existe.');
             }
 
-            return view('semilleros.proyectos.proyectos_editar', compact('proyecto'));
+            return view('semilleros.proyectos.proyectos_editar', ['proyecto' => $proyecto, 'semilleros' => $semilleros]);
         }
 
     public function update(Request $request, $cod_proyecto)
         {
+            dd($request->all());
             $proyecto = Proyecto::find($cod_proyecto);
             $proyecto->titulo = $request->input('titulo');
             $proyecto->cod_semillero = $request->input('cod_semillero');

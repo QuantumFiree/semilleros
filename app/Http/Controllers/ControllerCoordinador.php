@@ -77,7 +77,6 @@ class ControllerCoordinador extends Controller
 
     public function datosPersonalesView($cod_coordinador)
     {
-
         $programas = ProgramaModel::all();
         $defaultNombres = 'Semillero no asignado';
 
