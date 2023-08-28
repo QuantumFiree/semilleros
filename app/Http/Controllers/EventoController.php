@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Evento;
-use App\Models\Semillero; 
+use App\Models\Semillero;
 
 class EventoController extends Controller
 {
@@ -28,15 +28,12 @@ class EventoController extends Controller
         $evento->modalidad = $request->input('modalidad');
         $evento->clasificacion = $request->input('clasificacion');
         $evento->observaciones = $request->input('observaciones');
-        $cod_semillero = $request->input('cod_semillero');
-    
-        if ($cod_semillero) {
-            $evento->cod_semillero = $cod_semillero;
-        }
+        $evento->cod_semillero = $request->input('cod_semillero');
 
         $evento->save();
         return redirect()->route('eventos.listado')->with('success', 'El evento ha sido registrado exitosamente.');
     }
+
     public function reporte()
     {
         $eventos = Evento::all();
@@ -53,12 +50,13 @@ class EventoController extends Controller
     public function editar($cod_evento)
     {
         $evento = Evento::find($cod_evento);
+        $semilleros = Semillero::all();
 
         if (!$evento) {
             return redirect()->route('eventos.listado')->with('error', 'El evento no existe.');
         }
 
-        return view('semilleros.eventos.eventos_editar', compact('evento'));
+        return view('semilleros.eventos.eventos_editar', compact('evento', 'semilleros'));
     }
 
     public function update(Request $request, $cod_evento)
@@ -73,6 +71,8 @@ class EventoController extends Controller
         $evento->modalidad = $request->input('modalidad');
         $evento->clasificacion = $request->input('clasificacion');
         $evento->observaciones = $request->input('observaciones');
+        $evento->cod_semillero = $request->input('cod_semillero');
+
         $evento->save();
         return redirect()->route('eventos.listado')->with('success', 'El evento ha sido actualizado exitosamente.');
     }

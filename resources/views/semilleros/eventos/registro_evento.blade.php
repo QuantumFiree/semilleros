@@ -1,7 +1,7 @@
 <x-app-layout>
     <style>
         .form-field {
-            margin-bottom: 10px;
+            margin-bottom: 10px; 
         }
 
         .form-field label {
@@ -21,7 +21,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
-            margin-bottom: 5px;
+            margin-bottom: 5px; 
         }
 
         .form-field textarea {
@@ -30,7 +30,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             font-size: 16px;
-            margin-bottom: 5px;
+            margin-bottom: 5px; 
         }
 
         .btn-register {
@@ -50,17 +50,17 @@
         .date-field {
             display: flex;
             gap: 80px;
-            align-items: center;
-            margin-bottom: 10px;
+            align-items: center; 
+            margin-bottom: 10px; 
         }
 
         .date-field label {
-            margin-bottom: 0;
+            margin-bottom: 0; 
         }
 
         .date-field input[type="date"] {
-            width: 130%;
-            padding: 10px;
+            width: 130%; 
+            padding: 10px; 
         }
 
         .form-container input[type="text"],
@@ -84,19 +84,18 @@
             </h2>
         </div>
     </x-slot>
-    <div class=" flex flex-col w-full items-center pb-10 ">
-        <div class=" w-[30%] mt-6 px-6 py-4 shadow-2xl overflow-hidden sm:rounded-lg" style="background-color: #bcd9c8">
-            <x-slot name="logo">
-            </x-slot>
-
-            <form method="POST" action="{{ route('registro.evento') }}" enctype="multipart/form-data" class="">
-                @csrf
-                <div class="centered-form">
-
-                    <div class="form-field">
-                        <label for="nombre">{{ __('Nombre del Evento') }}</label>
-                        <input id="nombre" type="text" name="nombre" :value="old('nombre')" required />
-                    </div>
+    <x-authentication-card>
+        <x-slot name="logo">
+        </x-slot>
+        
+        <form method="POST" action="{{ route('registro.evento') }}" enctype="multipart/form-data">
+            @csrf
+            <div class="centered-form">
+            
+                <div class="form-field">
+                    <label for="nombre">{{ __('Nombre del Evento') }}</label>
+                    <input id="nombre" type="text" name="nombre" :value="old('nombre')" required />
+                </div>
 
                     <div class="form-field">
                         <label for="descripcion">{{ __('Descripción') }}</label>
@@ -157,26 +156,22 @@
                         <textarea id="observaciones" name="observaciones" rows="4">{{ old('observaciones') }}</textarea>
                     </div>
 
-                    <div class="form-field">
-                        <label for="cod_semillero">{{ __('Selecciona un semillero (opcional):') }}</label>
-                        <select id="cod_semillero" class="block mt-1 w-full border border-green-500" name="cod_semillero">
-                            <option value="">Selecciona un semillero</option>
-                            @foreach ($semilleros as $semillero)
-                            <option value="{{ $semillero->id }}">{{ $semillero->nombre }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-
-                    <div class="flex items-center justify-end mt-4">
-                        <x-button type="submit">
-                            {{ __('Registrar') }}
-                        </x-button>
-                    </div>
+                <div class="form-field">
+                    <label for="cod_semillero">{{ __('Selecciona un semillero') }}</label>
+                    <select id="cod_semillero" class="block mt-1 w-full border border-green-500" name="cod_semillero">
+                        @foreach ($semilleros as $semillero)
+                            <option value="{{ $semillero->cod_semillero }}">{{ $semillero->nombre }}</option>
+                        @endforeach
+                    </select>
                 </div>
-            </form>
-        </div>
-    </div>
 
-
+            
+                <div class="flex items-center justify-end mt-4">
+                    <button type="submit" class="btn-register">
+                        {{ __('Registrar') }}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </x-authentication-card>
 </x-app-layout>

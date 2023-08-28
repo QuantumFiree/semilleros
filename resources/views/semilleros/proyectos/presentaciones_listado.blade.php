@@ -35,7 +35,7 @@
         text-align: center;
     }
 
-    
+
     .two-columns-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -103,19 +103,20 @@
                             <thead class="bg-gray-700 text-green-400">
                                 <tr>
                                     <th class="p-3">Codigo</th>
-                                    <th class="p-3 text-left">Participacion</th>
-                                    <th class="p-3 text-left">Evento</th>
-                                    <th class="p-3 text-left">Proyecto</th>
-                                    <th class="p-3 text-left">Acciones</th>
+                                    <th class="p-3 text-center">Participacion</th>
+                                    <th class="p-3 text-center">Evento</th>
+                                    <th class="p-3 text-center">Proyecto</th>
+                                    <th class="p-3 text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($presentaciones as $presentacion)
+
                                     <tr class="bg-gray-700">
                                         <td class="px-4 py-2 border text-center">{{ $presentacion->cod_presentacion_proyecto }}</td>
                                         <td class="px-4 py-2 border text-center">{{ $presentacion->participacion }}</td>
-                                        <td class="px-4 py-2 border text-center">{{ $presentacion->cod_evento }}</td>
-                                        <td class="px-4 py-2 border text-center">{{ $presentacion->cod_proyecto }}</td>
+                                        <td class="px-4 py-2 border text-center">{{ $presentacion->evento->nombre }}</td>
+                                        <td class="px-4 py-2 border text-center">{{ $presentacion->proyecto->titulo }}</td>
                                         <td class="px-4 py-2 border text-center">
                                             <a href="{{ route('eliminar_presentacion', ['cod_presentacion_proyecto' => $presentacion->cod_presentacion_proyecto]) }}" class="text-red-500 hover:text-red-700 ml-2" onclick="event.preventDefault(); document.getElementById('eliminar-form-{{ $presentacion->cod_presentacion_proyecto }}').submit();">
                                                 <i class="far fa-trash-alt"></i>
