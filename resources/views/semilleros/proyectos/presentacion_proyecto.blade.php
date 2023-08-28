@@ -1,20 +1,20 @@
 <x-app-layout>
-<br><br><br><br><br><div class="flex justify-center items-center h-screen">
+<div class="flex justify-center items-center h-screen">
   <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-2xl font-semibold mb-4 text-center">Crear Presentación de Proyecto</h2>
-            <form action="{{ route('guardar_proyecto') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('guardar_proyecto', [$proyecto->cod_proyecto]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-4">
                         <label for="participacion" class="block text-sm font-medium text-gray-700">Participación:</label>
                         <input type="text" name="participacion" id="participacion" class="mt-1 p-2 border border-green-500 rounded-md w-full focus:border-green-700" required>
                 <div class="mb-4">
                     <label for="calificacion" class="block text-sm font-medium text-gray-700">Calificación:</label>
-                    <input type="number" step="any" name="calificacion" id="calificacion" class="mt-1 p-2 border rounded-md w-full" placeholder="#" required> 
+                    <input type="number" step="any" name="calificacion" id="calificacion" class="mt-1 p-2 border rounded-md w-full" placeholder="#" required>
                 </div>
                 <p>Participantes:</p><br>
                 @foreach($participantes as $participante)
                     <div class="mb-3 ml-4">
-                        
+
                         <input class="block form-check-input" type="checkbox" id="participante_{{ $participante->cod_semillerista }}" name="participantes[]" value="{{ $participante->cod_semillerista }}" >
                         <label class="form-check-label" for="participante_{{ $participante->cod_semillerista }}">
                             {{ $participante->nombres}}
@@ -37,13 +37,9 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="mb-4">
-                    <label for="cod_proyecto" class="block text-sm font-medium text-gray-700">Proyecto:</label>
-                    <input type="number" name="cod_proyecto" id="cod_proyecto" class="mt-1 p-2 border rounded-md w-full" placeholder="#" required>
-          
-                   
+                <div class="mb-4" >
+                    <h1><strong>Proyecto: </strong>{{ $proyecto->titulo }}</h1>
                 </div>
-             
                 <div class="flex justify-center">
                     <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">
                         Guardar

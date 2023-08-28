@@ -85,8 +85,6 @@ Route::get('/listado/proyectos', [ProyectoController::class, 'listado'])->name('
 Route::get('/editar/proyecto/{cod_proyecto}', [ProyectoController::class, 'editar'])->name('editar_proyecto');
 Route::put('/actualizar/proyecto/{cod_proyecto}', [ProyectoController::class, 'update'])->name('actualizar_proyecto');
 Route::delete('/eliminar/proyecto/{cod_proyecto}', [ProyectoController::class, 'eliminar'])->name('eliminar_proyecto');
-Route::get('/presentar/proyecto/{cod_proyecto}', [PresentacionProyectoController::class,'create'])->name('presentar_proyecto');
-Route::post('/guardar/proyecto', [PresentacionProyectoController::class, 'store'])->name('guardar_proyecto');
 Route::get('/participantes/proyecto', [ParticipantesProyectoController::class, 'create'])->name('participantes_proyecto.create');
 Route::post('/participantes/proyecto', [ParticipantesProyectoController::class, 'store'])->name('participantes_proyecto.store');
 
@@ -98,4 +96,10 @@ Route::get('/listado/eventos/reporte', [EventoController::class, 'reporte'])->na
 Route::get('/editar/evento/{cod_evento}', [EventoController::class, 'editar'])->name('editar_evento');
 Route::put('/actualizar/evento/{cod_evento}', [EventoController::class, 'update'])->name('actualizar_evento');
 Route::delete('/eliminar/evento/{cod_evento}', [EventoController::class, 'eliminar'])->name('eliminar_evento');
+
+
+Route::get('/listado/presentaciones', [PresentacionProyectoController::class, 'listado'])->name('presentaciones.listado');
+Route::get('/presentar/proyecto/{cod_proyecto}', [PresentacionProyectoController::class,'create'])->name('presentar_proyecto');
+Route::post('/guardar/proyecto/{cod_proyecto}', [PresentacionProyectoController::class, 'store'])->name('guardar_proyecto');
+Route::delete('/eliminar/presentacion/{cod_presentacion_proyecto}', [PresentacionProyectoController::class, 'eliminar'])->name('eliminar_presentacion');
 

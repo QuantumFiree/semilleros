@@ -60,8 +60,8 @@
         border-radius: 20px;
     }
 
-    tr td:nth-child(n+5),
-    tr th:nth-child(n+5) {
+    tr td:nth-child(n+3),
+    tr th:nth-child(n+3) {
         border-radius: 0 .625rem .625rem 0;
     }
 
@@ -105,9 +105,9 @@
                         <table class="table text-gray-400 border-separate space-y-6 text-sm">
                             <thead class="bg-gray-700 text-green-400">
                                 <tr>
-                                    <th class="p-3">Nombre</th>
-                                    <th class="p-3">Codigo</th>
-                                    <th class="p-3 text-left">Acciones</th>
+                                    <th class="p-3 text-center">Nombre</th>
+                                    <th class="p-3 text-center">Codigo</th>
+                                    <th class="p-3 text-center">Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -145,6 +145,11 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                @if(session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
                             </tbody>
                     </table>
                 </div>

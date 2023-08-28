@@ -1,13 +1,7 @@
 <x-guest-layout>
     <style>
         /* En tu hoja de estilos CSS */
-        .container-auth {
-            padding: 20px 50px 30px 50px;
-            border-radius: 10px;
-            width: 400px;
-            margin: auto;
-            background-color: rgb(31, 41, 55)
-        }
+        
 
         .nav-custom {
             display: flex;
@@ -18,18 +12,17 @@
             width: 300px;
             margin: auto;
             margin-bottom: 30px;
-            margin-top: 10px;
-            border: 1px solid rgb(31, 41, 55);
+            margin-top: 10px; 
+            border: 1px solid ;
             border-radius: 5px;
             background-color: rgb(31, 41, 55);
         }
 
         .label-custom {
-            color: white;
             margin-top: 10px
         }
         .nav-link-custom {
-            background-color: rgb(34, 197, 94);
+            background-color: #00913e;
             width: 100%;
             text-align: center;
             color: white;
@@ -70,26 +63,26 @@
         <h1 class="title-auth">REGISTRO</h1>
         <form id="formUser" method="POST" action="{{ route('register') }}">
             @csrf
-            <div class="container-auth">
+            <div>
                 <div>
                     <x-label class="label-custom" for="email" value="{{ __('Correo Electrónico') }}" />
-                    <x-input id="email" class="block mt-1 w-full border border-green-500 border-2" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="Ingresa la dirección de correo" />
+                    <x-input id="email" class="block mt-1 w-full border-2" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="ejemplo@gmail.com" />
                 </div>
 
                 <div>
                     <x-label class="label-custom" for="password" value="{{ __('Contraseña') }}" />
-                    <x-input id="password" class="block mt-1 w-full border border-green-500 border-2" type="password" name="password" required autocomplete="new-password" placeholder="Contraseña" />
+                    <x-input id="password" class="block mt-1 w-full  " type="password" name="password" required autocomplete="new-password" placeholder="********" />
                 </div>
 
                 <div>
                     <x-label class="label-custom" for="password_confirmation" value="{{ __('Confirmar Contraseña') }}" />
-                    <x-input id="password_confirmation" class="block mt-1 w-full border border-green-500 border-2" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirmación" />
+                    <x-input id="password_confirmation" class="block mt-1 w-full border " type="password" name="password_confirmation" required autocomplete="new-password" placeholder="********" />
                 </div>
                 <div style="display:none">
-                    <x-input id="inputRol" class="block mt-1 w-full border border-green-500 border-2" type="text" name="rol" autocomplete="rol" value="coordinador" />
+                    <x-input id="inputRol" class="block mt-1 w-full border " type="text" name="rol" autocomplete="rol" value="coordinador" />
                 </div>
                 <div style="display:none">
-                    <x-input id="estado" class="block mt-1 w-full border border-green-500 border-2" type="text" name="estado" autocomplete="estado" value="estado" />
+                    <x-input id="estado" class="block mt-1 w-full" type="text" name="estado" autocomplete="estado" value="estado" />
                 </div>
             </div>
 

@@ -159,8 +159,14 @@
                 </div>
 
                 <div>
-                    <x-label for="cod_coordinador" value="{{ __('Código de Coordinador Encargado:') }}" />
-                    <x-input id="cod_coordinador" class="form-input" type="number" name="cod_coordinador" :value="old('cod_coordinador')" placeholder="#" required />
+                    <x-label for="cod_coordinador" value="{{ __('Coordinador Encargado:') }}" />
+                    <select id="cod_coordinador" class="form-input" name="cod_coordinador" required>
+                        <option value="">Selecciona un coordinador</option> 
+                        @foreach ($coordinadores as $coordinador)
+                            <option value="{{ $coordinador->cod_coordinador }}">{{ $coordinador->nombres }} {{ $coordinador->apellidos }}</option>
+
+                        @endforeach
+                    </select>
                     @error('cod_coordinador')
                         <p class="text-red-600">{{ $message }}</p>
                     @enderror

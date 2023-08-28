@@ -14,7 +14,7 @@
             border-radius: 4px;
             cursor: pointer;
             transition: background-color 0.3s ease-in-out;
-            margin-right: 10px; 
+            margin-right: 10px;
         }
 
         .btn-register:last-child {
@@ -41,7 +41,7 @@
         .form-container {
             margin: 20px auto;
             max-width: 800px;
-            padding: 2px; 
+            padding: 2px;
             background: none; /* Cambia el color de fondo a un gris claro */
             border-color: #ccc; /* Cambia el color de fondo */
             border-radius: 8px;
@@ -74,8 +74,8 @@
 
         .date-field {
             display: flex;
-            gap: 80px; 
-            align-items: center; 
+            gap: 80px;
+            align-items: center;
         }
 
         .date-field label {
@@ -84,7 +84,7 @@
 
         .date-field input[type="date"] {
             width: 130%;
-            padding: 10px; 
+            padding: 10px;
         }
 
 
@@ -132,7 +132,7 @@
                             <input id="fecha_fin" type="date" name="fecha_fin" value="{{$evento->fecha_fin}}"  />
                         </div>
                     </div>
-                
+
                     <div>
                         <label for="lugar">{{ __('Lugar:') }}</label>
                         <input id="lugar" type="text" name="lugar" value="{{$evento->lugar}}" />
@@ -160,7 +160,7 @@
 
                     <div>
                         <label for="clasificacion">{{ __('Clasificación:') }}</label>
-                        <select id="clasificacion" name="clasificacion" required>                   
+                        <select id="clasificacion" name="clasificacion" required>
                             <option value="{{$evento->clasificacion}}">{{$evento->clasificacion}}</option>
                             <option value="Local">Local</option>
                             <option value="Regional">Regional</option>
@@ -168,7 +168,7 @@
                             <option value="Internacional">Internacional</option>
                         </select>
                     </div>
-                
+
                     <div>
                         <label for="observaciones">{{ __('Observaciones:') }}</label>
                         <textarea id="observaciones" name="observaciones" rows="4" >{{$evento->observaciones}}</textarea>
