@@ -24,6 +24,13 @@ class ParticipantesProyectoController extends Controller
             'cod_proyecto' => 'required',
             'cod_semillerista' => 'required',
         ]);
+
+        try {
+            ParticipantesProyecto::create($validatedData);
+            return redirect()->route('participantes_proyecto.create')->with('success', 'Participante registrado exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->route('participantes_proyecto.create')->withErrors(['error' => 'Error al registrar el participante.'])->withInput();
+        }
         
         ParticipantesProyecto::create($validatedData);
         return redirect()->route('participantes_proyecto.create')->with('success', 'Participante registrado exitosamente.');
