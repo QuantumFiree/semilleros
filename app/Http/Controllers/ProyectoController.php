@@ -60,7 +60,14 @@ class ProyectoController extends Controller
             return redirect()->route('proyectos.listado')->with('success', 'El proyecto ha sido registrado exitosamente.');
         }
 
-    public function listado()
+        public function reporte()
+        {
+            $proyectos = Proyecto::all();
+            
+            return view('semilleros.proyectos.proyectos_listado_reporte', compact('proyectos'));
+        }
+        public function listado()
+
         {
             $proyectos = Proyecto::all();
             $participantes_presentacion_proyecto = ParticipantesPresentacionProyecto::all();

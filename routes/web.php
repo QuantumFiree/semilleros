@@ -82,6 +82,7 @@ Route::delete('/eliminar/semillero/{id}', [SemilleroController::class, 'eliminar
 Route::get('/registro/proyecto', [ProyectoController::class, 'showForm'])->name('registro.proyecto');
 Route::post('/registro/proyecto', [ProyectoController::class, 'register'])->name('registro.proyecto');
 Route::get('/listado/proyectos', [ProyectoController::class, 'listado'])->name('proyectos.listado');
+Route::get('/listado/proyectos/reporte', [ProyectoController::class, 'reporte'])->name('reporte.proyecto');
 Route::get('/editar/proyecto/{cod_proyecto}', [ProyectoController::class, 'editar'])->name('editar_proyecto');
 Route::put('/actualizar/proyecto/{cod_proyecto}', [ProyectoController::class, 'update'])->name('actualizar_proyecto');
 Route::delete('/eliminar/proyecto/{cod_proyecto}', [ProyectoController::class, 'eliminar'])->name('eliminar_proyecto');
