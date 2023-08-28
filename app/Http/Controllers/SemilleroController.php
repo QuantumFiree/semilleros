@@ -7,7 +7,7 @@ use App\Models\Semillero;
 use App\Models\CoordinadorModel;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Storage;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class SemilleroController extends Controller
 {
     public function showForm()
@@ -156,6 +156,11 @@ class SemilleroController extends Controller
         }
     }
 
+    public function pdf(){
+        $semilleros_pdfs = Semillero::all();
+        $pdf = Pdf::loadView('semilleros.semilleros_pdf', compact('semilleros_pdfs'));
+        return $pdf->stream();
+    }
 
 
 }

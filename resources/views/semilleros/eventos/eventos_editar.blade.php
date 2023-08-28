@@ -42,8 +42,10 @@
             margin: 20px auto;
             max-width: 800px;
             padding: 2px;
-            background: none; /* Cambia el color de fondo a un gris claro */
-            border-color: #ccc; /* Cambia el color de fondo */
+            background: none;
+            /* Cambia el color de fondo a un gris claro */
+            border-color: #ccc;
+            /* Cambia el color de fondo */
             border-radius: 8px;
         }
 
@@ -86,68 +88,67 @@
             width: 130%;
             padding: 10px;
         }
-
-
-
     </style>
 
 
     <x-slot name="header">
-        <div class="columns-2">
-            <h2 class="font-semibold text-xl text-blue-900 text-right leading-tight">
+        <div >
+            <h2 class="font-semibold text-xl text-white text-left    leading-tight">
                 {{ __('Editar información del Evento') }}
-            </h2>
-
-            <h2 class="font-bold text-xl text-green-400 leading-tight text-right">
-                {{ __(auth()->user()->rol) }}
             </h2>
         </div>
     </x-slot>
 
-    <x-authentication-card>
+    <x-form_card>
         <x-slot name="logo">
         </x-slot>
         <form method="POST" action="{{ route('actualizar_evento', $evento->cod_evento) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
-            <div class="form-container">
+            <div class="form-container columns-2">
                 <div class="column">
-                    <div>
-                        <label for="nombre">{{ __('Nombre del Evento:') }}</label>
-                        <input id="nombre" type="text" name="nombre" value="{{$evento->nombre}}" required />
-                    </div>
-
-                    <div>
-                        <label for="descripcion">{{ __('Descripción:') }}</label>
-                        <textarea id="descripcion" name="descripcion" rows="4" required>{{$evento->descripcion}}</textarea>
-                    </div>
-
-                    <div class="form-field date-field">
+                    <div class="mr-10">
                         <div>
-                            <label for="fecha_inicio">{{ __('Fecha de Inicio:') }}</label>
-                            <input id="fecha_inicio" type="date" name="fecha_inicio" value="{{$evento->fecha_inicio}}"/>
+                            <label for="nombre">{{ __('Nombre del Evento:') }}</label>
+                            <input id="nombre" type="text" name="nombre" value="{{$evento->nombre}}" required />
                         </div>
+
                         <div>
-                            <label for="fecha_fin">{{ __('Fecha de Fin:') }}</label>
-                            <input id="fecha_fin" type="date" name="fecha_fin" value="{{$evento->fecha_fin}}"  />
+                            <label for="descripcion">{{ __('Descripción:') }}</label>
+                            <textarea id="descripcion" name="descripcion" rows="4" required>{{$evento->descripcion}}</textarea>
                         </div>
+
+                        <div >
+                            <div class="mb-2">
+                                <label for="fecha_inicio">{{ __('Fecha de Inicio:') }}</label>
+                                <input id="fecha_inicio" type="date" name="fecha_inicio" value="{{$evento->fecha_inicio}}" />
+                            </div>
+                            <div>
+                                <label for="fecha_fin">{{ __('Fecha de Fin:') }}</label>
+                                <input id="fecha_fin" type="date" name="fecha_fin" value="{{$evento->fecha_fin}}" />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="lugar">{{ __('Lugar:') }}</label>
+                            <input id="lugar" type="text" name="lugar" value="{{$evento->lugar}}" />
+                        </div>
+
+                       
                     </div>
 
+                    <div class="h-20">
+
+                    </div>
                     <div>
-                        <label for="lugar">{{ __('Lugar:') }}</label>
-                        <input id="lugar" type="text" name="lugar" value="{{$evento->lugar}}" />
-                    </div>
-
-                    <div>
-                        <label for="tipo">{{ __('Tipo de Evento:') }}</label>
-                        <select id="tipo" name="tipo" required>
-                            <option value="{{$evento->tipo}}">{{$evento->tipo}}</option>
-                            <option value="Congreso">Congreso</option>
-                            <option value="Encuentro">Encuentro</option>
-                            <option value="Seminario">Seminario</option>
-                        </select>
-                    </div>
-
+                            <label for="tipo">{{ __('Tipo de Evento:') }}</label>
+                            <select id="tipo" name="tipo" required>
+                                <option value="{{$evento->tipo}}">{{$evento->tipo}}</option>
+                                <option value="Congreso">Congreso</option>
+                                <option value="Encuentro">Encuentro</option>
+                                <option value="Seminario">Seminario</option>
+                            </select>
+                        </div>
                     <div>
                         <label for="modalidad">{{ __('Modalidad:') }}</label>
                         <select id="modalidad" name="modalidad" required>
@@ -171,21 +172,21 @@
 
                     <div>
                         <label for="observaciones">{{ __('Observaciones:') }}</label>
-                        <textarea id="observaciones" name="observaciones" rows="4" >{{$evento->observaciones}}</textarea>
+                        <textarea id="observaciones" name="observaciones" rows="4">{{$evento->observaciones}}</textarea>
                     </div>
 
                     <div class="form-field">
                         <label for="cod_semillero">{{ __('Código del semillero') }}</label>
                         <input id="cod_semillero" type="number" class="block mt-1 w-full border border-green-500" name="cod_semillero" value="{{$evento->cod_semillero}}" placeholder="#" />
                     </div>
-            </div>
+                </div>
 
 
-            <div class="btn-container">
-                <button type="submit" class="btn-register bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    {{ isset($evento) ? __('Actualizar') : __('Registrar') }}
-                </button>
-            </div>
+                <div class="btn-container">
+                    <x-button type="submit" >
+                        {{ isset($evento) ? __('Actualizar') : __('Registrar') }}
+                    </x-button>
+                </div>
         </form>
-    </x-authentication-card>
+    </x-form_card>
 </x-app-layout>

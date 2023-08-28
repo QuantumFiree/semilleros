@@ -82,12 +82,9 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <div class="columns-2">
-            <h2 class="font-semibold text-xl text-blue-800 text-right leading-tight">
+        <div>
+            <h2 class="font-semibold text-xl text-white text-left leading-tight">
                 {{ __('Listado de Proyectos') }}
-            </h2>
-            <h2 class="font-bold text-xl text-green-400 leading-tight text-right">
-                {{ __(auth()->user()->rol) }}
             </h2>
         </div>
     </x-slot>
@@ -193,48 +190,48 @@
                     <table class="table-auto w-full">
                         <tbody>
                             <tr>
-                                <td class="text-white"><strong>Código:</strong></td>
+                                <td class="text-[#47c979]"><strong>Código:</strong></td>
                                 <td class="text-white" id="proyecto-cod-proyecto"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Título:</strong></td>
+                                <td class="text-[#47c979]"><strong>Título:</strong></td>
                                 <td class="text-white" id="proyecto-titulo"></td>
                             </tr>
 
                             <tr>
-                                <td class="text-white"><strong>Código del semillero:</strong></td>
+                                <td class="text-[#47c979]"><strong>Código del semillero:</strong></td>
                                 <td class="text-white" id="proyecto-cod-semillero"></td>
                             </tr>
 
                             <tr>
-                                <td class="text-white"><strong>Tipo:</strong></td>
+                                <td class="text-[#47c979]"><strong>Tipo:</strong></td>
                                 <td class="text-white" id="proyecto-tipo-proyecto"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Estado:</strong></td>
+                                <td class="text-[#47c979]"><strong>Estado:</strong></td>
                                 <td class="text-white" id="proyecto-estado"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Fecha de Inicio:</strong></td>
+                                <td class="text-[#47c979]"><strong>Fecha de Inicio:</strong></td>
                                 <td class="text-white" id="proyecto-fecha-inicio"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Fecha de finalización:</strong></td>
+                                <td class="text-[#47c979]"><strong>Fecha de finalización:</strong></td>
                                 <td class="text-white"  id="proyecto-fecha-finalizacion"></td>
                             </tr>
 
                             <tr>
-                                <td class="text-white"><strong>Propuesta:</strong></td>
+                                <td class="text-[#47c979]"><strong>Propuesta:</strong></td>
                                 <td class="text-white" id="proyecto-propuesta"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Proyecto Final:</strong></td>
+                                <td class="text-[#47c979]"><strong>Proyecto Final:</strong></td>
                                 <td class="text-white" id="proyecto-proyecto-final"></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="flex justify-center mt-4">
-                        <button id="close-modal" class="px-4 py-2 bg-blue-500 text-black rounded">Cerrar</button>
+                        <button id="close-modal" class="px-4 py-2 bg-[#00923f] text-white rounded">Cerrar</button>
                     </div>
         </div>
     </div>
@@ -248,14 +245,17 @@
             </div>
         </div>
     </div>
-    <div class="flex justify-center mt-4">
-        <a href="{{ route('registro.proyecto') }}" class="px-4 py-2 bg-green-500 text-black rounded">Registrar otro Proyecto</a>
+    <div class="flex justify-center">
+        <div class="m-4">
+            <a href="{{ route('registro.proyecto') }}" class="px-4 py-2 bg-[#00923f] text-white rounded">Registrar otro Proyecto</a>
+        </div>
+        <div class="m-4">
+            <a href="{{ route('participantes_proyecto.store') }}" class="px-4 py-2 bg-[#00923f] text-white rounded">
+                {{ __('Agregar participantes a un proyecto') }}
+            </a>
+        </div>
     </div>
-    <div class="flex justify-center mt-4">
-        <a href="{{ route('participantes_proyecto.store') }}" class="px-4 py-2 bg-green-500 text-black rounded">
-            {{ __('Agregar participantes a un proyecto') }}
-        </a>
-    </div>
+    
     <br>
     <script>
         // Función para abrir el modal cuando se hace clic en el botón del ojo

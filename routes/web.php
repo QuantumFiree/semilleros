@@ -43,6 +43,7 @@ Route::middleware([
     'auth'
 ])->group(function () {
     // Rutas semillero
+    Route::get('/semillero/pdf', [SemilleroController::class, 'pdf'])->name('semillero.pdf');
     // Rutas coordinador
     Route::get('/registro/coordinador', [ControllerCoordinador::class, 'registroView'])->name('registroCoordinador');
     Route::post('/registro/coordinador', [ControllerCoordinador::class, 'registro'])->name('registroCoordinador');
