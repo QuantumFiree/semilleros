@@ -12,7 +12,8 @@ class SemilleroController extends Controller
 {
     public function showForm()
     {
-        return view('semilleros.registro_semillero');
+        $coordinadores = CoordinadorModel::all();
+        return view('semilleros.registro_semillero', compact('coordinadores'));
     }
 
     public function register(Request $request)
