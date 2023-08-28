@@ -71,7 +71,7 @@
     }
     .caja{
           
-          background-color: #33FFC9;
+        
           padding: 15px;
           border-radius: 15px; 
     }
@@ -86,39 +86,37 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <div class="columns-2">
-            <h2 class="font-semibold text-xl text-blue-800 text-right leading-tight">
-                
-            </h2>
-            <h2 class="font-bold text-xl text-green-400 leading-tight text-right">
-                {{ __(auth()->user()->rol) }}
-            </h2>
+        <div>
+            
+        <h2 class="font-semibold text-xl text-white text-left leading-tight">
+                {{ __('Reporte de eventos') }}
+        </h2>
+          
         </div>
     </x-slot>
     <div class="min-h-xl flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
-        <div class="container-custom w-full sm:max-w-4xl px-4 pt-3 pb-8 mt-3 shadow-md overflow-hidden sm:rounded-lg bg-gray-300">
+        <div class=" w-full sm:max-w-4xl px-4 pt-3 pb-8 mt-3 shadow-md overflow-hidden sm:rounded-lg bg-gray-300">
             <div class="container-list-custom flex items-baseline justify-center bg-gray-300 overflow-auto">
                 <div class="col-span-12">
                     <div class="overflow-auto lg:overflow-visible ">
                        
-                       <br> <h2 class="text-blue-800 text-center "><FONT SIZE=6><strong>REPORTE DE EVENTOS</strong></font></h2><br>
                         @foreach($eventos as $evento)
 
 
                         <div class="caja">
                             
-                                <legend class="px-5 py-2 border text-center"><b><h5>Nombre del Evento: {{ $evento->nombre }}</h5></b></legend>
+                                <legend class="px-5 py-2 text-center bg-[#00923f]  text-white"><b><h5>Nombre del Evento: {{ $evento->nombre }}</h5></b></legend>
                                 
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Código del Evento:</strong> {{ $evento->cod_evento }}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Descripción del Evento:</strong> {{ $evento->descripcion }}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Fecha de Inicio del Evento:</strong> {{ $evento->fecha_inicio }}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Fecha de Finalización del Evento:</strong> {{ $evento->fecha_fin }}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Lugar del Evento:</strong> {{ $evento->lugar }}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Tipo de Evento:</strong> {{ $evento->tipo}}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Modalidad de Evento:</strong> {{ $evento->modalidad}}</h5> <br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Clasificación del Evento:</strong> {{ $evento->clasificacion}}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Observaciones del Evento:</strong> {{ $evento->observaciones}}</h5> <br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Código del semillero al que pertenece:</strong> {{ $evento->cod_semillero}}</h5> <br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Código del Evento:</strong> {{ $evento->cod_evento }}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Descripción del Evento:</strong> {{ $evento->descripcion }}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Fecha de Inicio del Evento:</strong> {{ $evento->fecha_inicio }}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Fecha de Finalización del Evento:</strong> {{ $evento->fecha_fin }}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Lugar del Evento:</strong> {{ $evento->lugar }}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Tipo de Evento:</strong> {{ $evento->tipo}}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Modalidad de Evento:</strong> {{ $evento->modalidad}}</h5> <br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Clasificación del Evento:</strong> {{ $evento->clasificacion}}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Observaciones del Evento:</strong> {{ $evento->observaciones}}</h5> <br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Código del semillero al que pertenece:</strong> {{ $evento->cod_semillero}}</h5> <br>
                            
                         </div> <br> <br>
                         @endforeach
@@ -131,7 +129,7 @@
         </div>
     </div>
     <div class="flex justify-center mt-4">
-        <a href="{{ route('eventos.listado') }}" class="px-4 py-2 bg-green-500 text-black rounded">Regresar</a>
+        <a href="{{ route('eventos.listado') }}" class="px-4 py-2 ml-5 bg-[#00923f] text-white rounded">Regresar</a>
         
     </div><br>
   

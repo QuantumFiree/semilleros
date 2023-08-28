@@ -79,13 +79,10 @@
 
 <x-app-layout>
     <x-slot name="header">
-        <div class="columns-2">
-            <h2 class="font-semibold text-xl text-blue-800 text-right leading-tight">
-                
-            </h2>
-            <h2 class="font-bold text-xl text-green-400 leading-tight text-right">
-                {{ __(auth()->user()->rol) }}
-            </h2>
+        <div >
+        <h2 class="font-semibold text-xl text-white text-left leading-tight">
+                {{ __('Reporte de proyectos') }}
+        </h2>
         </div>
     </x-slot>
     <div class="min-h-xl flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
@@ -93,20 +90,20 @@
             <div class="container-list-custom flex items-baseline justify-center bg-gray-300 overflow-auto">
                 <div class="col-span-12">
                     <div class="overflow-auto lg:overflow-visible ">                       
-                       <br> <h2 class="text-blue-800 text-center "><FONT SIZE=6><strong>REPORTE DE PROYECTOS</strong></font></h2><br>
+                    
                         @foreach($proyectos as $proyecto)
 
-                        <div class="caja">
+                        <div >
                             
-                                <legend class="px-5 py-2 border text-center"><b><h5>Título del Proyecto: {{ $proyecto->titulo }}</h5></b></legend>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Código del Proyecto:</strong> {{ $proyecto->cod_proyecto }}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Código del Semillero:</strong> {{ $proyecto->cod_semillero }}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Tipo de Proyecto:</strong> {{ $proyecto->tipo_proyecto}}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Estado del Proyecto:</strong> {{ $proyecto->estado}}</h5> <br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Fecha de Inicio del Proyecto:</strong> {{ $proyecto->fecha_inicio }}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Fecha de Finalización del Proyecto:</strong> {{ $proyecto->fecha_finalizacion }}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Propuesta:</strong> {{ $proyecto->propuesta }}</h5><br>
-                                <h5 class="bg-gray-700 text-green-400 px-4 py-2 border text-center"><strong>Proyecto Final:</strong> {{ $proyecto->proyecto_final}}</h5><br>
+                                <legend class="px-5 py-2 text-center bg-[#00923f]  text-white"><b><h5 >Título del Proyecto: {{ $proyecto->titulo }}</h5></b></legend>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Código del Proyecto:</strong> {{ $proyecto->cod_proyecto }}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Código del Semillero:</strong> {{ $proyecto->cod_semillero }}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Tipo de Proyecto:</strong> {{ $proyecto->tipo_proyecto}}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Estado del Proyecto:</strong> {{ $proyecto->estado}}</h5> <br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Fecha de Inicio del Proyecto:</strong> {{ $proyecto->fecha_inicio }}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Fecha de Finalización del Proyecto:</strong> {{ $proyecto->fecha_finalizacion }}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Propuesta:</strong> {{ $proyecto->propuesta }}</h5><br>
+                                <h5 class="bg-[#374151] text-white px-4 py-2 rounded text-center"><strong class="text-[#42d47d]">Proyecto Final:</strong> {{ $proyecto->proyecto_final}}</h5><br>
                         </div> <br> <br>
                         @endforeach
     
@@ -116,7 +113,7 @@
         </div>
     </div>
     <div class="flex justify-center mt-4">
-        <a href="{{ route('proyectos.listado') }}" class="px-4 py-2 bg-green-500 text-black rounded"> Regresar </a>
+        <a href="{{ route('proyectos.listado') }}" class="px-4 py-2 ml-5 bg-[#00923f] text-white rounded"> Regresar </a>
         
     </div><br>
  

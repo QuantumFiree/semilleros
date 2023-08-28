@@ -212,7 +212,7 @@ class ControllerSemillerista extends Controller
     }
 
     public function pdf(){
-        $semilleristas_pdfs = Semillero::all();
+        $semilleristas_pdfs = SemilleristaModel::all();
         $pdf = Pdf::loadView('semilleros.semilleristas_pdf', compact('semilleristas_pdfs'));
         return $pdf->stream();
     }

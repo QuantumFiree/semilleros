@@ -26,16 +26,16 @@
         padding: 8px;
     }
 
-    .nombre_td {
-        width: 190px;
+  .nom{
+    width: 136px;
+  }
+  .apellido{
+    width: 158px;
+  }
+  .identi{
 
-    }
-
-    .cod_td {
-        width: 176px;
-        max-width: 176px;
-    }
-
+    width: 220px;
+  }
     .semillero_td {
         /* width: ; */
     }
@@ -67,16 +67,20 @@
         <table id="customers">
             <thead>
                 <tr>
-                    <th>Semillerista</th>
-                    <th>Semillero</th>
-                    <th>Estado</th>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Identificacion</th>
+                    <th>codigo</th>
                 </tr>
             </thead>
         </table>
-        @foreach( $semilleristas_pdfs as $semillero)
+        @foreach( $semilleristas_pdfs as $semillerista)
         <table id="customers">
             <tr>
-                
+                <td class="nom">{{$semillerista->nombres}}</td>
+                <td class="apellido">{{$semillerista->apellidos}}</td>
+                <td class="identi"> {{$semillerista->identificacion}}</td>
+                <td>{{$semillerista->cod_semillerista}}</td>
             </tr>
         </table>
         @endforeach

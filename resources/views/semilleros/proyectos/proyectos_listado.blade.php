@@ -248,12 +248,14 @@
     <div class="flex justify-center">
         <div class="m-4">
             <a href="{{ route('registro.proyecto') }}" class="px-4 py-2 bg-[#00923f] text-white rounded">Registrar otro Proyecto</a>
-            <a href="{{ route('reporte.proyecto') }}" class="px-4 py-2 bg-green-300 text-black rounded" >Generar Reporte</a>
-    </div>
-        <div class="m-4">
-            <a href="{{ route('participantes_proyecto.store') }}" class="px-4 py-2 bg-[#00923f] text-white rounded">
+            <a href="{{ route('participantes_proyecto.store') }}" class="px-4 py-2 ml-2 bg-[#00923f] text-white rounded">
                 {{ __('Agregar participantes a un proyecto') }}
             </a>
+            <a href="{{ route('reporte.proyecto') }}" class="px-4 py-2 ml-2 bg-[#00923f] text-white rounded" >Generar Reporte</a>
+            
+    </div>
+        <div class="m-4">
+            
         </div>
     </div>
     

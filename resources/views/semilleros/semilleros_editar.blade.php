@@ -223,7 +223,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-center justify-center mt-4">
+                <div class="flex justify-end mt-4">
                     <x-button type="submit">
                         {{ isset($semillero) ? __('Actualizar') : __('Registrar') }}
                     </x-button>

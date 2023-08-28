@@ -323,6 +323,12 @@
             </div>
 
         </div>
+        <div class="flex justify-center">
+        
+        <div class=" m-4">
+            <a href="{{route('semilleristas.pdf')}}" class="px-4 py-2 bg-[#00923f] text-white rounded">Generar reporte</a>
+        </div>
+    </div>
     </div>
 
 

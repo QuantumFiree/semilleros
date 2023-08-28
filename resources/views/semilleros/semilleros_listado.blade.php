@@ -54,8 +54,8 @@
         border-radius: 20px;
     }
 
-    tr td:nth-child(n+5),
-    tr th:nth-child(n+5) {
+    tr td:nth-child(n+4),
+    tr th:nth-child(n+4) {
         border-radius: 0 .625rem .625rem 0;
     }
 
@@ -97,11 +97,10 @@
                         <table class="table text-gray-400 border-separate space-y-6 text-sm">
                             <thead class="bg-gray-700 text-green-400">
                                 <tr>
-                                    <th class="p-3">Nombre</th>
-                                    <th class="p-3">Codigo</th>
-                                    <th class="p-3">Archivo</th>
-                                    <th class="p-3">Coordinador </th>
-                                    <th class="p-3 text-left">Acciones</th>
+                                    <th class="p-3 text-center">Nombre</th>
+                                    <th class="p-3 text-center">Codigo</th>
+                                    <th class="p-3 text-center">Coordinador </th>
+                                    <th class="p-3 text-center">Acciones</th>
 
                                 </tr>
                             </thead>
@@ -110,11 +109,6 @@
                                 <tr class="bg-gray-700">
                                     <td class="p-3 text-center">{{ $semillero->nombre }}</td>
                                     <td class="p-3 text-center">{{ $semillero->cod_semillero }}</td>
-                                    <td class="p-3 text-center">
-                                        <a href="#" class="text-gray-400 hover:text-gray-100">
-                                            <i class="fas fa-search"></i>
-                                        </a>
-                                    </td>
                                     <td class="p-3 text-center">
                                         @if ($semillero->cod_coordinador)
                                             {{ $semillero->coordinador->nombres }} {{ $semillero->coordinador->apellidos }}
