@@ -82,12 +82,9 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <x-app-layout>
     <x-slot name="header">
-        <div class="columns-2">
-            <h2 class="font-semibold text-xl text-blue-800 text-right leading-tight">
+        <div >
+            <h2 class="w-full font-semibold text-xl text-white text-left leading-tight">
                 {{ __('Listado de semilleros') }}
-            </h2>
-            <h2 class="font-bold text-xl text-green-400 leading-tight text-right">
-                {{ __(auth()->user()->rol) }}
             </h2>
         </div>
     </x-slot>
@@ -181,70 +178,76 @@
             @isset($semillero)
                 <img id="semillero-logo" class="mx-auto d-block h-24 w-24 rounded-full object-cover" src="{{ asset('storage/' . $semillero->logo) }}" alt="{{ $semillero->nombre }}" />
             @endisset
-                    <table class="table-auto w-full">
-                        <tbody>
+                    <table class="table-auto w-full ">
+                        <tbody class="">
                             <tr>
-                                <td class="text-white"><strong>Nombre:</strong></td>
+                                <td class="text-[#47c979]"><strong>Nombre: </strong></td>
                                 <td class="text-white" id="semillero-nombre"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Código:</strong></td>
+                                <td class="text-[#47c979]"><strong>Código:</strong></td>
                                 <td class="text-white" id="semillero-cod-semillero"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Correo:</strong></td>
+                                <td class="text-[#47c979]"><strong>Correo:</strong></td>
                                 <td class="text-white" id="semillero-correo"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Descripción:</strong></td>
+                                <td class="text-[#47c979]"><strong>Descripción:</strong></td>
                                 <td class="text-white" id="semillero-descripcion"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Misión:</strong></td>
+                                <td class="text-[#47c979]"><strong>Misión:</strong></td>
                                 <td class="text-white" id="semillero-mision"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Visión:</strong></td>
+                                <td class="text-[#47c979]"><strong>Visión:</strong></td>
                                 <td class="text-white"  id="semillero-vision"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Valores:</strong></td>
+                                <td class="text-[#47c979]"><strong>Valores:</strong></td>
                                 <td class="text-white" id="semillero-valores"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Objetivo:</strong></td>
+                                <td class="text-[#47c979]"><strong>Objetivo:</strong></td>
                                 <td class="text-white" id="semillero-objetivo"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Líneas de investigación:</strong></td>
+                                <td class="text-[#47c979]"><strong>Líneas de investigación:</strong></td>
                                 <td class="text-white" id="semillero-lineas-investigacion"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Presentación:</strong></td>
+                                <td class="text-[#47c979]"><strong>Presentación:</strong></td>
                                 <td class="text-white" id="semillero-presentacion"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Fecha de creación:</strong></td>
+                                <td class="text-[#47c979]"><strong>Fecha de creación:</strong></td>
                                 <td class="text-white" id="semillero-fecha-creacion"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Número de resolución:</strong></td>
+                                <td class="text-[#47c979]"><strong>Número de resolución:</strong></td>
                                 <td class="text-white" id="semillero-numero-resolucion"></td>
                             </tr>
                             <tr>
-                                <td class="text-white"><strong>Código de coordinador:</strong></td>
+                                <td class="text-[#47c979]"><strong>Código de coordinador:</strong></td>
                                 <td class="text-white" id="semillero-cod-coordinador"></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="flex justify-center mt-4">
-                        <button id="close-modal" class="px-4 py-2 bg-blue-500 text-black rounded">Cerrar</button>
+                        <button id="close-modal" class="px-4 py-2 bg-[#00923f] text-white rounded">Cerrar</button>
                     </div>
         </div>
     </div>
-    <div class="flex justify-center mt-4">
-        <a href="{{ route('registro.semillero') }}" class="px-4 py-2 bg-green-500 text-black rounded">Agregar otro semillero</a>
+    <div class="flex justify-center">
+        <div class=" m-4">
+            <a href="{{ route('registro.semillero') }}" class="px-4 py-2 bg-[#00923f] text-white rounded">Agregar otro semillero</a>
+        </div>
+        <div class=" m-4">
+            <a href="{{route('semillero.pdf')}}" class="px-4 py-2 bg-[#00923f] text-white rounded">Generar reporte</a>
+        </div>
     </div>
+    
     <br>
     <script>
         function openModal(semillero) {

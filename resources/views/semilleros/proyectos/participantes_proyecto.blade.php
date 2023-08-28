@@ -1,11 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="columns-2">
-            <h2 class="font-semibold text-xl text-blue-800 text-right leading-tight">
+        <div >
+            <h2 class="font-semibold text-xl text-white text-left leading-tight">
                 {{ __('Registrar participantes a un proyecto') }}
-            </h2>
-            <h2 class="font-bold text-xl text-green-400 leading-tight text-right">
-                {{ __(auth()->user()->rol) }}
             </h2>
         </div>
     </x-slot>

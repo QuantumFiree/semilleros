@@ -93,8 +93,8 @@
         </div>
     </x-slot>
 
-    <x-authentication-card>
-        <x-slot name="logo">
+    <x-form_card>
+        <x-slot name="logo" class="bg" >
         </x-slot>
         <form method="POST" action="{{ route('registro.semillero') }}" enctype="multipart/form-data">
             @csrf
@@ -190,6 +190,6 @@
             </div>
 
         </form>
-    </x-authentication-card>
+    </x-form_card>
 
 </x-app-layout>

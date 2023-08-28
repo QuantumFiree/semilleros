@@ -1,12 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-    <div class="columns-2">
+    <div>
             <h2 class="font-semibold text-xl text-white leading-tight">
                 {{ __('Perfil') }}
-            </h2>
-            <h2 class="justify-self-end font-sans text-end font-extrabold text-2xl text-yellow-400 leading-tight">
-                {{ __(auth()->user()->rol) }}
-            </h2>
+            </h2>   
         </div>
     </x-slot>
 

@@ -49,6 +49,12 @@
                     </x-nav-link>
                 </div>
             </div>
+            <div class="text-right ">
+                <h2 class="font-bold text-xl text-[#00923f] leading-tight  mt-[18px] ">
+                    {{ __(auth()->user()->rol) }}
+                </h2>
+            </div>
+            
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 <!-- Teams Dropdown -->
